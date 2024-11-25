@@ -1,6 +1,9 @@
 class_name Main
 extends Node2D
 
+var area1_card_count: int = 0
+
+
 @export var player_stats: PlayerStats
 @export var card_pile: CardPile
 
@@ -9,31 +12,25 @@ extends Node2D
 @onready var policy_tooltip: PolicyTooltip = $UI/PolicyTooltip
 @onready var ui: UI = $UI
 @onready var player_handler: PlayerHandler = $PlayerHandler
-
-@onready var player: Player = $Player
-@onready var enemy_area_1: Area1 = $EnemyArea1
-
+@onready var player_stats_ui: PlayerStatsUI = $Player/PlayerStatsUI
 
 
 
 func _ready():
 	var new_stats: PlayerStats = player_stats.create_instance()
 	ui.player_stats = new_stats
-	player.player_stats = new_stats
+	
+	# Connect the player_stats_changed signal to the update function in UI
+	new_stats.player_stats_changed.connect(player_stats_ui.update_stats)
+	
 	discard_area.connect("body_entered", Callable(self, "_on_body_entered"))
 	card_pile.shuffle()
 	
 	game_start(new_stats)
-	
-	enemy_area_1.connect("card_snapped_to_slot", Callable(self, "_on_card_snapped_to_slot"))
 
 
 func game_start(stats: PlayerStats) -> void:
 	player_handler.game_start(stats)
-
-
-func _on_card_snapped_to_slot(card_ui: CardUI):
-	print("Card snapped to enemy area slot:", card_ui.name)
 
 
 

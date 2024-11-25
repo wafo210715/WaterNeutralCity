@@ -32,7 +32,14 @@ func _ready() -> void:
 
 # add a card as the hand's child
 func add_card(card: Card) -> void:
-	if get_child_count() >= max_cards_in_hand:
+	# Count only cards that are not marked as `used`
+	var active_card_count = 0
+	for child in get_children():
+		if child is CardUI and not child.used:
+			active_card_count += 1
+	
+	
+	if active_card_count >= max_cards_in_hand:
 		print("Hand is full, cannot add more cards.")
 		return
 		
@@ -60,8 +67,11 @@ func _on_card_played(_card: Card) -> void:
 
 
 func _update_cards(dragged_card = null):
-	# Get the number of cards
-	var num_cards: int = get_child_count()
+	var num_cards: int = 0
+	for card in get_children():
+		if card is CardUI and not card.used:
+			num_cards += 1
+	
 	var all_cards_size: float = CardUI.SIZE.x * num_cards + x_sep * (num_cards - 1)
 	var final_x_sep: float = x_sep
 
@@ -72,11 +82,11 @@ func _update_cards(dragged_card = null):
 
 	# Center the cards
 	var offset: float = (size.x - all_cards_size) / 2.0
+
 	var card_index = 0
-	
 	for card in get_children():
 		# Skip the dragged card
-		if card == dragged_card:
+		if card == dragged_card or (card is CardUI and card.used):
 			continue
 
 		var y_multiplier := hand_curve.sample(1.0 / (num_cards - 1) * card_index)

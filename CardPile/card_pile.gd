@@ -14,7 +14,6 @@ func draw_card() -> Card:
 	card_pile_size_changed.emit(cards.size())
 	return card
 
-
 func add_card(card: Card):
 	cards.append(card)
 	card_pile_size_changed.emit(cards.size())

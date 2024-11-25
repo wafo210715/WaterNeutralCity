@@ -30,26 +30,27 @@ func issue_is_water_quantity() -> bool:
 
 
 func play(targets: Array[Node], player_stats: PlayerStats) -> bool:
+	print("Card: Play function called for card ID:", id)
 	Events.card_played.emit(self)
-	
-	# Check if there is enough funding
+
 	if player_stats.funding + funding < 0:
+		print("Insufficient funding for card ID:", id)
 		return false
-	
+
 	player_stats.funding += funding
-	
-	
-	# var tree := targets[0].get_tree()
-	# var area1_nodes = tree.get_nodes_in_group("area1")
-	var area1_nodes = targets.filter(func(n): return n.name == "Area1")
+	print("Funding updated for card ID:", id, "New funding:", player_stats.funding)
+
+	var tree := targets[0].get_tree()
+	var area1_nodes = tree.get_nodes_in_group("area1")
 	if area1_nodes.size() > 0:
+		print("Applying effects to area1 nodes for card ID:", id)
 		apply_effects(area1_nodes)
-	
+
 	apply_effects(targets)
-	print("Targets:", targets)
-	print("Player funding before:", player_stats.funding)
-	
+	print("Play successful for card ID:", id, "Targets:", targets)
 	return true
+
+
 
 
 

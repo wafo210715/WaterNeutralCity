@@ -39,7 +39,6 @@ offset_right = 1920.0
 offset_bottom = 1440.0
 texture = SubResource("CompressedTexture2D_13t4e")
 expand_mode = 1
-metadata/_edit_lock_ = true
 
 [node name="DiscardArea" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -58,7 +57,8 @@ position = Vector2(950.5, 536.5)
 shape = SubResource("RectangleShape2D_j7ovs")
 debug_color = Color(0, 0.6, 0.701961, 0.239216)
 
-[node name="EnemyArea1" parent="." groups=["area1"] instance=ExtResource("4_3tx81")]
+[node name="Area1" parent="." groups=["area1"] instance=ExtResource("4_3tx81")]
+position = Vector2(909, 287)
 
 [node name="Player" parent="." instance=ExtResource("4_6bwaq")]
 position = Vector2(1514, 40)
@@ -87,7 +87,7 @@ offset_top = 319.0
 offset_right = 2283.0
 offset_bottom = 769.0
 
-[node name="NextSeasonButton" type="Button" parent="UI"]
+[node name="NestSeasonButton" type="Button" parent="UI"]
 unique_name_in_owner = true
 offset_left = 1677.0
 offset_top = 1377.0

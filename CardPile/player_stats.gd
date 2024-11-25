@@ -24,7 +24,7 @@ var funding: int : set = set_funding
 func set_funding(value: int):
 	funding = value
 	print("Emitting player_stats_changed signal with funding:", funding)
-	player_stats_changed.emit()
+	player_stats_changed.emit(self)
 
 func funding_changed(amount: int):
 	set_funding(self.funding + amount)

@@ -51,8 +51,7 @@ var original_position: Vector2
 var original_rotation: float
 
 
-var used: bool = false
-
+var used: bool = false  # Flag to track if the card has been played
 
 
 
@@ -179,7 +178,7 @@ func destroy() -> void:
 	if tween_destroy and tween_destroy.is_running():
 		tween_destroy.kill()
 	tween_destroy = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween_destroy.tween_property(material, "shader_parameter/dissolve_value", 0.0, 2.0).from(1.0)
+	tween_destroy.tween_property(material, "shader_parameter/dissolve_value", 0.0, 1.0).from(1.0)
 	tween_destroy.parallel().tween_property(shadow, "self_modulate:a", 0.0, 1.0)
 	
 	tween_destroy.finished.connect(func():
@@ -264,10 +263,15 @@ func _on_mouse_exited():
 
 
 func play() -> bool:
+	print("CardUI: Attempting to play card:", name)
 	if not card:
+		print("Error: Card data is missing for:", name)
 		return false
-	
-	return card.play(targets, player_stats)
+
+	var result = card.play(targets, player_stats)
+	print("CardUI play result for", name, ":", result)
+	return result
+
 
 
 # replace information with card resources

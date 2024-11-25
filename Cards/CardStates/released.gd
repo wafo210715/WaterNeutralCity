@@ -3,6 +3,10 @@ extends CardState
 var target: Node  # This will hold the target node (e.g., DiscardArea, CardDropArea, or another CardUI)
 var played: bool
 
+# Counters for stacking cards
+var area1_card_count: int = 0
+
+
 func enter():
 	print("Released.")
 	played = false
@@ -12,6 +16,7 @@ func enter():
 		Events.tooltip_hide_requested.emit()
 		card_ui.card_stats.visible = false
 		card_ui.stats_shadow.visible = false
+		card_ui.shadow.visible = false
 		
 		target = card_ui.targets[0]
 		print("Target detected:", target.name)
@@ -23,21 +28,17 @@ func enter():
 			return
 		
 		elif target.name == "Area1":
-			# Attempt to play the card
+			print("Attempting to play card:", card_ui.name)
 			if card_ui.play():
+				print("Card played successfully:", card_ui.name)
 				played = true
 				card_ui.reset_rotation()
-				
-				# Get the parent node of `Area2D` (which is `Area1`)
-				var area_node = target.get_parent()
-				if area_node.has_method("snap_card_to_slot"):
-					area_node.snap_card_to_slot(card_ui)  # Call `snap_card_to_slot` on the parent node
-				else:
-					print("Error: Target does not have 'snap_card_to_slot' method.")
-					
+				snap_to_slot_area1()
+				card_ui.used = true  # Synchronize the `used` flag in `CardUI.gd`
+				print("Card snapped to slot after play:", card_ui.position)
 				return
 			else:
-				print("Not enough funding, snapping back to hand.")
+				print("Card play failed (insufficient funding):", card_ui.name)
 				snap_back_to_hand()
 				return
 		
@@ -56,20 +57,22 @@ func snap_back_to_hand():
 	)
 
 
+func snap_to_slot_area1():
+	var base_position = Vector2(720, -1060)
+	var main_node = get_tree().root.get_node("Main")
+	var y_offset = 35 * main_node.area1_card_count  # Access the counter from Main.gd
+	
+	card_ui.position = base_position + Vector2(0, y_offset)
+	card_ui.z_index = main_node.area1_card_count  # Set z_index based on the count
+	card_ui.used = true
+	
+	main_node.area1_card_count += 1
+	print("Card marked as used:", card_ui.used)
+	print("Card snapped to position for Area1:", card_ui.position)
+
+
+
+
 func exit():
 	Events.tooltip_hide_requested.emit()
 	card_ui.targets.clear()
-
-
-# Raycast function to check for the target area when the card is released
-func raycast_check_for_target_area() -> Node:
-	var space_state = card_ui.get_world_2d().direct_space_state
-	var parameters = PhysicsPointQueryParameters2D.new()
-	parameters.position = card_ui.get_global_mouse_position()
-	parameters.collide_with_areas = true
-	var result = space_state.intersect_point(parameters)
-
-	if result.size() > 0:
-		return result[0].collider.get_parent()  # Return the parent node (e.g., DiscardArea, Area1)
-
-	return null

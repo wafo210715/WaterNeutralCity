@@ -9,6 +9,7 @@ var tween: Tween
 
 
 func update_stats(stats: PlayerStats):
+	print("update_stats called in PlayerStatsUI with funding:", stats.funding)
 	# set the pivot in the center of the image, so the animation looks more centered
 	funding_image.pivot_offset = Vector2(39, 39)
 	
@@ -16,5 +17,6 @@ func update_stats(stats: PlayerStats):
 	tween.tween_property(funding_image, "scale", Vector2(1.2, 1.2), 0.5)
 	
 	funding_text.text = str(stats.funding)
+	print("Updated funding text to:", funding_text.text)
 	
 	tween.tween_property(funding_image, "scale", Vector2(1.0, 1.0), 0.5)

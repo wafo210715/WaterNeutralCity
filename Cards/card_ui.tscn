@@ -62,6 +62,7 @@ custom_minimum_size = Vector2(181, 264)
 offset_right = 8.0
 offset_bottom = 8.0
 pivot_offset = Vector2(90, 132)
+mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxEmpty_fp4o7")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_qe2pt")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_4rrca")
