@@ -8,6 +8,12 @@ var dragged_card: CardUI = null
 
 var cards_played_this_turn := 0
 
+# Starting positions for animations
+var policy_card_start_position: Vector2 = Vector2(-150, -5)  # Example position for policy cards
+var tech_card_start_position: Vector2 = Vector2(-150, -300)    # Example position for tech cards
+
+
+
 
 @export var hand_curve: Curve
 @export var rotation_curve: Curve
@@ -32,12 +38,26 @@ func _ready() -> void:
 
 
 
-# Add a card as the hand's child
+func animate_card_to_position(card: CardUI, new_position: Vector2, speed: float = 0.5):
+	var tween = card.create_tween()
+	tween.tween_property(card, "position", new_position, speed)
+	tween.finished.connect(func():
+		print("Tween finished for card:", card.name)
+		card.position = new_position
+		print("Card position updated to:", card.position)
+	)
+
+
+
+
+
+
+
 func add_card(card: Card) -> void:
 	var active_policy_count = 0
 	var active_tech_count = 0
 
-	# Count the number of active (not used) policy and tech cards in hand
+	# Count the number of active (not used) policy and tech cards
 	for child in get_children():
 		if child is CardUI and not child.used:
 			if child.card.type == Card.Type.POLICY:
@@ -45,28 +65,42 @@ func add_card(card: Card) -> void:
 			elif child.card.type == Card.Type.TECH:
 				active_tech_count += 1
 
-	# Check if we have reached the limits for policy or tech cards
-	if card.type == Card.Type.POLICY: 
+	# Check draw limits using TurnManager
+	if card.type == Card.Type.POLICY:
 		if TurnManager.policy_cards_drawn_this_round >= TurnManager.max_policy_cards_in_hand:
-			print("Hand is full for policy cards, cannot add more policy cards.")
+			print("Draw limit reached for policy cards.")
 			return
 		TurnManager.policy_cards_drawn_this_round += 1
-		
+
 	elif card.type == Card.Type.TECH:
 		if TurnManager.tech_cards_drawn_this_round >= TurnManager.max_tech_cards_in_hand:
-			print("Hand is full for tech cards, cannot add more tech cards.")
+			print("Draw limit reached for tech cards.")
 			return
 		TurnManager.tech_cards_drawn_this_round += 1
 
-	# Instantiate and add the card to the hand
+	# Instantiate the card and set its initial position
 	var new_card_ui = card_ui.instantiate()
 	add_child(new_card_ui)
-	new_card_ui.set_original_position_and_rotation()  # Set initial position and rotation
+
+	# Set the starting position based on the card type
+	if card.type == Card.Type.POLICY:
+		new_card_ui.position = policy_card_start_position
+	elif card.type == Card.Type.TECH:
+		new_card_ui.position = tech_card_start_position
+
+	# Set card properties
+	new_card_ui.set_original_position_and_rotation()
 	new_card_ui.reparent_requested.connect(_on_card_ui_reparent_requested)
 	new_card_ui.card = card
 	new_card_ui.player_stats = player_stats
-	new_card_ui.connect("destroyed", Callable(self, "_on_card_destroyed"))  # Connect to destroyed signal
+	new_card_ui.connect("destroyed", Callable(self, "_on_card_destroyed"))
+
+	# Ensure the card's position is set before updating and animating
+	print("New card added at starting position:", new_card_ui.position)
+
+	# Update the layout and animate the card to the target position
 	_update_cards()
+
 
 
 
@@ -106,44 +140,43 @@ func _update_cards(dragged_card = null):
 	for card in get_children():
 		if card is CardUI and not card.used:
 			num_cards += 1
-	
+
 	var all_cards_size: float = CardUI.SIZE.x * num_cards + x_sep * (num_cards - 1)
 	var final_x_sep: float = x_sep
 
-	# Adjust final_x_sep if cards are overflowing the hand width
 	if all_cards_size > size.x:
 		final_x_sep = (size.x - CardUI.SIZE.x * num_cards) / (num_cards - 1)
-		all_cards_size = float(size.x)  # Ensure all_cards_size is treated as float
+		all_cards_size = float(size.x)
 
-	# Center the cards
 	var offset: float = (size.x - all_cards_size) / 2.0
 
 	var card_index = 0
 	for card in get_children():
-		# Skip the dragged card
-		if card == dragged_card or (card is CardUI and card.used):
-			continue
+		if card is CardUI and not card.used:
+			var y_multiplier := hand_curve.sample(1.0 / (num_cards - 1) * card_index)
+			var rot_multiplier := rotation_curve.sample(1.0 / (num_cards - 1) * card_index)
 
-		var y_multiplier := hand_curve.sample(1.0 / (num_cards - 1) * card_index)
-		var rot_multiplier := rotation_curve.sample(1.0 / (num_cards - 1) * card_index)
+			if num_cards == 1:
+				y_multiplier = 0.0
+				rot_multiplier = 0.0
 
-		if num_cards == 1:
-			y_multiplier = 0.0
-			rot_multiplier = 0.0
+			var final_x: float = offset + CardUI.SIZE.x * card_index + final_x_sep * card_index
+			var final_y: float = (y_min + y_max) * y_multiplier
+			var final_position = Vector2(final_x, final_y)
 
-		# Calculate final position and rotation
-		var final_x: float = offset + CardUI.SIZE.x * card_index + final_x_sep * card_index
-		var final_y: float = (y_min + y_max) * y_multiplier
+			print("Animating card:", card.name, "to position:", final_position)
+			animate_card_to_position(card, final_position)
 
-		card.position = Vector2(final_x, final_y)
-		card.rotation_degrees = max_rotation_degrees * rot_multiplier
+			card.rotation_degrees = max_rotation_degrees * rot_multiplier
+			card.original_position = final_position
+			card.original_rotation = card.rotation_degrees
 
-		# Set original position and rotation
-		card.original_position = card.position
-		card.original_rotation = card.rotation_degrees
+			card_index += 1
 
-		card_index += 1
-		print("Card ", card_index, " Y Multiplier: ", y_multiplier, " Rotation: ", rot_multiplier)
+
+
+
+
 
 
 

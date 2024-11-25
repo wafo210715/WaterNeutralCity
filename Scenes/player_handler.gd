@@ -14,9 +14,12 @@ func game_start(player_stats: PlayerStats) -> void:
 
 
 func start_turn() -> void:
-	draw_card()
+	print("Start of a new turn. Waiting for player to draw cards manually.")
 
 
 func draw_card() -> void:
+	if player.policy_card_draw_pile.empty():
+		print("No more cards in the draw pile.")
+		return
 	hand.add_card(player.policy_card_draw_pile.draw_card())
 	Events.player_hand_drawn.emit()
