@@ -10,4 +10,6 @@ innitial_funding = 4
 max_policy_card = 1
 max_tech_card = 2
 policy_card_deck = ExtResource("1_8nmo7")
+policy_card_draw_pile = ExtResource("1_8nmo7")
+policy_card_discard = ExtResource("1_8nmo7")
 tech_card_deck = ExtResource("3_xpfxs")

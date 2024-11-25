@@ -12,6 +12,9 @@ signal player_stats_changed
 
 
 @export var policy_card_deck: CardPile
+@export var policy_card_draw_pile: CardPile
+@export var policy_card_discard : CardPile
+
 @export var tech_card_deck: CardPile
 
 
@@ -33,3 +36,10 @@ func can_play_policy_card(card: Card)-> bool:
 
 func can_play_tech_card(card: Card)-> bool:
 	return funding + card.funding > 0 
+
+
+
+func create_instance() -> Resource:
+	var instance: PlayerStats = self.duplicate()
+	instance.funding = innitial_funding
+	return instance

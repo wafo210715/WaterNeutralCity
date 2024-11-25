@@ -3,7 +3,7 @@
 [ext_resource type="Shader" path="res://Themes/shaders/dissolve.gdshader" id="1_r1xj6"]
 [ext_resource type="Texture2D" uid="uid://dbtypman3k585" path="res://Cards/Policy/Policy_Community Infrastructure Levy_画板 1.png" id="2_1qabg"]
 [ext_resource type="Script" path="res://Cards/card_ui.gd" id="2_l3ts8"]
-[ext_resource type="Resource" uid="uid://b4fivcic8p4lc" path="res://CardPile/GeneralCharacter/Tech/tech_biobed.tres" id="3_555iw"]
+[ext_resource type="Resource" uid="uid://x2ud0bhuys4k" path="res://CardPile/GeneralCharacter/Policy/policy_stop_bnb.tres" id="3_s0s40"]
 [ext_resource type="Shader" path="res://Themes/shaders/fake_3D.gdshader" id="4_fenr8"]
 [ext_resource type="Script" path="res://Cards/card_state_machine.gd" id="4_i426q"]
 [ext_resource type="Resource" uid="uid://bq488oaycntco" path="res://CardPile/GeneralCharacter/player.tres" id="4_r5c52"]
@@ -41,6 +41,7 @@ shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_svxdg")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0unri"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_guncd"]
+resource_local_to_scene = true
 shader = ExtResource("4_fenr8")
 shader_parameter/rect_size = Vector2(180, 264)
 shader_parameter/fov = 90.0
@@ -67,7 +68,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_4rrca")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_mpl40")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0unri")
 script = ExtResource("2_l3ts8")
-card = ExtResource("3_555iw")
+card = ExtResource("3_s0s40")
 player_stats = ExtResource("4_r5c52")
 
 [node name="Shadow" type="TextureRect" parent="."]

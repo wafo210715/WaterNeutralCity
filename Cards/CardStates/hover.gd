@@ -1,9 +1,11 @@
 extends CardState
 
+
 func enter():
 	card_ui.shadow.visible = true
 	card_ui.stats_shadow.visible = true
 	card_ui.card_stats.visible = true
+	
 	card_ui.pick_up_card()
 	print("Hover")
  
@@ -15,6 +17,7 @@ func exit():
 
 # Transition back to Base when mouse leaves the card area
 func on_mouse_exited():
+	Events.tooltip_hide_requested.emit()
 	transition_requested.emit(self, CardState.State.BASE)
 	card_ui.reset_transform() # Ensure reset upon leaving hover
 

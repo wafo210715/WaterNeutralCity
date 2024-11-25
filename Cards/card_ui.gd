@@ -4,6 +4,7 @@ extends Button
 signal reparent_requested(which_card_ui: CardUI)
 signal destroyed  # Define a signal to notify when the card is fully destroyed
 
+
 @export var card: Card : set = _set_card
 @export var player_stats: PlayerStats
 
@@ -80,13 +81,14 @@ var original_rotation: float
 
 
 
-
-
 @onready var collision_shape_2d: CollisionShape2D = $DestroyArea/CollisionShape2D
 
 @onready var card_state_machine: CardStateMachine = $CardStateMachine as CardStateMachine
 
 @onready var drop_point_detector: Area2D = $DropPointDetector
+
+
+
 
 
 @onready var targets: Array[Node] = []
@@ -184,6 +186,7 @@ func destroy() -> void:
 		print("CardUI: destroyed")  # Print statement to confirm destruction
 		queue_free()  # Remove the card from the scene tree after destruction
 	)
+
 
 
 

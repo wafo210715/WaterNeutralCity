@@ -1,10 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://cxvwuvusrju61"]
+[gd_scene load_steps=15 format=3 uid="uid://b04dlgv774o1t"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_cqk0h"]
 [ext_resource type="Script" path="res://Cards/hand.gd" id="2_36bfw"]
-[ext_resource type="Texture2D" uid="uid://i156o7q2sdt6" path="res://Map/UI_7.png" id="2_dttm3"]
+[ext_resource type="Resource" uid="uid://bq488oaycntco" path="res://CardPile/GeneralCharacter/player.tres" id="2_p5wye"]
+[ext_resource type="Resource" uid="uid://cxq4ektwcslgl" path="res://CardPile/GeneralCharacter/policy_card_deck.tres" id="3_n12me"]
 [ext_resource type="PackedScene" uid="uid://csgjhpq32lxm" path="res://Scenes/area_1.tscn" id="4_3tx81"]
 [ext_resource type="PackedScene" uid="uid://dllle1f2o1hf0" path="res://Scenes/player.tscn" id="4_6bwaq"]
+[ext_resource type="Script" path="res://Scenes/ui.gd" id="4_kghsa"]
+[ext_resource type="Script" path="res://Scenes/player_handler.gd" id="5_wyg3o"]
+[ext_resource type="PackedScene" uid="uid://mv3o0wojyv34" path="res://Scenes/policy_tooltip.tscn" id="6_15x1w"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_13t4e"]
+load_path = "res://.godot/imported/UI_9.png-1856479fd594dd15635b550f2ff97c9b.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hfe8f"]
 size = Vector2(179, 265)
@@ -23,18 +30,19 @@ point_count = 3
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_cqk0h")
+player_stats = ExtResource("2_p5wye")
+card_pile = ExtResource("3_n12me")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(1920, 1440)
 offset_right = 1920.0
 offset_bottom = 1440.0
-texture = ExtResource("2_dttm3")
+texture = SubResource("CompressedTexture2D_13t4e")
 expand_mode = 1
-metadata/_edit_lock_ = true
 
 [node name="DiscardArea" type="Area2D" parent="."]
 unique_name_in_owner = true
-collision_layer = 2
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DiscardArea"]
 position = Vector2(1778.5, 152.5)
@@ -52,9 +60,14 @@ debug_color = Color(0, 0.6, 0.701961, 0.239216)
 [node name="Area1" parent="." groups=["area1"] instance=ExtResource("4_3tx81")]
 
 [node name="Player" parent="." instance=ExtResource("4_6bwaq")]
-position = Vector2(1676, 722)
+position = Vector2(1514, 40)
+
+[node name="PlayerHandler" type="Node" parent="." node_paths=PackedStringArray("hand")]
+script = ExtResource("5_wyg3o")
+hand = NodePath("../UI/Hand")
 
 [node name="UI" type="CanvasLayer" parent="." groups=["ui_layer"]]
+script = ExtResource("4_kghsa")
 
 [node name="Hand" type="Control" parent="UI"]
 layout_mode = 3
@@ -66,6 +79,19 @@ offset_bottom = 1357.0
 script = ExtResource("2_36bfw")
 hand_curve = SubResource("Curve_mujov")
 rotation_curve = SubResource("Curve_pxqcy")
+
+[node name="PolicyTooltip" parent="UI" instance=ExtResource("6_15x1w")]
+offset_left = 1903.0
+offset_top = 319.0
+offset_right = 2283.0
+offset_bottom = 769.0
+
+[node name="NestSeasonButton" type="Button" parent="UI"]
+unique_name_in_owner = true
+offset_left = 1677.0
+offset_top = 1377.0
+offset_right = 1883.0
+offset_bottom = 1418.0
 
 [node name="DrawCardButton" type="Button" parent="."]
 z_index = -1

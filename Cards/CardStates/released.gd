@@ -9,11 +9,16 @@ func enter():
 
 	# Check if we are over a specific target area
 	if card_ui.targets.size() > 0:
+		Events.tooltip_hide_requested.emit()
+		card_ui.card_stats.visible = false
+		card_ui.stats_shadow.visible = false
+		
 		target = card_ui.targets[0]
 		print("Target detected:", target.name)
 		
 		if target.name == "DiscardArea":
 			print("Releasing over DiscardArea.")
+			card_ui.reset_rotation()
 			card_ui.destroy()  # Call destroy function to discard the card
 			return
 		
@@ -44,4 +49,5 @@ func snap_back_to_hand():
 
 
 func exit():
+	Events.tooltip_hide_requested.emit()
 	card_ui.targets.clear()

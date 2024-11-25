@@ -19,28 +19,31 @@ var cards_played_this_turn := 0
 
 @export var max_cards_in_hand := 4 # Set the maximum number of cards allowed in hand
 
+@export var player_stats : PlayerStats
+
+@onready var card_ui := preload("res://Cards/card_ui.tscn")
 
 # Called when the node enters the scene tree for the first time.
 # This loop connects a signal (reparent_requested) from each child CardUI node to _on_card_ui_reparent_requested. 
 # This is useful for handling reparenting when cards are moved out of the hand (e.g., during drag-and-drop interactions).
 func _ready() -> void:
 	Events.card_played.connect(_on_card_played)
-	for child in get_children():
-		var card_ui := child as CardUI
-		card_ui.reparent_requested.connect(_on_card_ui_reparent_requested)
-		card_ui.destroyed.connect(_on_card_destroyed)  # Connect to each card's destroyed signal
 
 
 # add a card as the hand's child
-func add_card():
+func add_card(card: Card) -> void:
 	if get_child_count() >= max_cards_in_hand:
 		print("Hand is full, cannot add more cards.")
 		return
 		
-	var new_card = CARD.instantiate()
-	add_child(new_card)
-	new_card.set_original_position_and_rotation()  # Set initial position and rotation
-	new_card.connect("destroyed", Callable(self, "_on_card_destroyed")) # Connect to destroyed signal for layout update
+	var new_card_ui = card_ui.instantiate()
+	add_child(new_card_ui)
+	new_card_ui.set_original_position_and_rotation()  # Set initial position and rotation
+	new_card_ui.reparent_requested.connect(_on_card_ui_reparent_requested)
+	new_card_ui.card = card
+	# new_card_ui.parent = self
+	new_card_ui.player_stats = player_stats
+	new_card_ui.connect("destroyed", Callable(self, "_on_card_destroyed")) # Connect to destroyed signal for layout update
 	_update_cards()
 
 
@@ -100,6 +103,7 @@ func _update_cards(dragged_card = null):
 
 
 func _on_card_ui_reparent_requested(child: CardUI):
-	# child.disabled = true
+	child.disabled = true
 	child.reparent(self)
+	child.set_deferred("disabled", false)
 	

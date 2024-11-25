@@ -39,6 +39,7 @@ func on_gui_input(event: InputEvent):
 
 	# Right-click cancels dragging and returns to original position
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.is_released():
+		Events.tooltip_hide_requested.emit()
 		# Immediately stop following the mouse and disable `_process`
 		card_ui.following_mouse = false
 		set_process(false)

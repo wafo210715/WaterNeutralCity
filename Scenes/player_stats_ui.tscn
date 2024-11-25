@@ -11,14 +11,6 @@ offset_right = 0.519989
 offset_bottom = 0.239998
 script = ExtResource("1_b1jkg")
 
-[node name="FundingImage" type="TextureRect" parent="."]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(78, 78)
-layout_mode = 2
-texture = ExtResource("1_lnd5c")
-expand_mode = 3
-stretch_mode = 5
-
 [node name="FundingText" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
@@ -31,3 +23,11 @@ text = "20
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="FundingImage" type="TextureRect" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(78, 78)
+layout_mode = 2
+texture = ExtResource("1_lnd5c")
+expand_mode = 3
+stretch_mode = 5
