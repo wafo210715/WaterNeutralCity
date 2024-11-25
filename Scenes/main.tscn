@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b04dlgv774o1t"]
+[gd_scene load_steps=16 format=3 uid="uid://b04dlgv774o1t"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_cqk0h"]
 [ext_resource type="Script" path="res://Cards/hand.gd" id="2_36bfw"]
@@ -6,12 +6,11 @@
 [ext_resource type="Resource" uid="uid://cxq4ektwcslgl" path="res://CardPile/GeneralCharacter/policy_card_deck.tres" id="3_n12me"]
 [ext_resource type="PackedScene" uid="uid://csgjhpq32lxm" path="res://Scenes/area_1.tscn" id="4_3tx81"]
 [ext_resource type="PackedScene" uid="uid://dllle1f2o1hf0" path="res://Scenes/player.tscn" id="4_6bwaq"]
+[ext_resource type="Texture2D" uid="uid://b2l0jll6ysbbe" path="res://Map/UI_11.png" id="4_fx8i7"]
 [ext_resource type="Script" path="res://Scenes/ui.gd" id="4_kghsa"]
 [ext_resource type="Script" path="res://Scenes/player_handler.gd" id="5_wyg3o"]
 [ext_resource type="PackedScene" uid="uid://mv3o0wojyv34" path="res://Scenes/policy_tooltip.tscn" id="6_15x1w"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_13t4e"]
-load_path = "res://.godot/imported/UI_9.png-1856479fd594dd15635b550f2ff97c9b.ctex"
+[ext_resource type="PackedScene" uid="uid://cifqpawchfhpb" path="res://TurnManagement/season_ui.tscn" id="10_87ptg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hfe8f"]
 size = Vector2(179, 265)
@@ -37,8 +36,9 @@ card_pile = ExtResource("3_n12me")
 custom_minimum_size = Vector2(1920, 1440)
 offset_right = 1920.0
 offset_bottom = 1440.0
-texture = SubResource("CompressedTexture2D_13t4e")
+texture = ExtResource("4_fx8i7")
 expand_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="DiscardArea" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -75,7 +75,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_left = 298.0
 offset_top = 1091.0
-offset_right = 839.0
+offset_right = 1637.0
 offset_bottom = 1357.0
 script = ExtResource("2_36bfw")
 hand_curve = SubResource("Curve_mujov")
@@ -87,13 +87,6 @@ offset_top = 319.0
 offset_right = 2283.0
 offset_bottom = 769.0
 
-[node name="NestSeasonButton" type="Button" parent="UI"]
-unique_name_in_owner = true
-offset_left = 1677.0
-offset_top = 1377.0
-offset_right = 1883.0
-offset_bottom = 1418.0
-
 [node name="DrawCardButton" type="Button" parent="."]
 z_index = -1
 offset_left = 48.0
@@ -101,5 +94,23 @@ offset_top = 1097.0
 offset_right = 227.0
 offset_bottom = 1360.0
 
+[node name="NextSeasonButton" type="Button" parent="."]
+offset_left = 1676.0
+offset_top = 1377.0
+offset_right = 1883.0
+offset_bottom = 1419.0
+
+[node name="SeasonUI" parent="." instance=ExtResource("10_87ptg")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1664.0
+offset_top = 821.0
+offset_right = 1895.0
+offset_bottom = 1052.0
+grow_horizontal = 1
+grow_vertical = 1
+
 [connection signal="body_entered" from="DiscardArea" to="." method="_on_discard_area_body_entered"]
 [connection signal="pressed" from="DrawCardButton" to="." method="_on_draw_card_button_pressed"]
+[connection signal="pressed" from="NextSeasonButton" to="." method="_on_next_season_button_pressed"]

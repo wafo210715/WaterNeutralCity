@@ -14,6 +14,8 @@ var area1_card_count: int = 0
 @onready var player_handler: PlayerHandler = $PlayerHandler
 @onready var player_stats_ui: PlayerStatsUI = $Player/PlayerStatsUI
 
+@onready var next_season_button: Button = $NextSeasonButton
+@onready var season_ui: Control = $SeasonUI
 
 
 func _ready():
@@ -22,6 +24,9 @@ func _ready():
 	
 	# Connect the player_stats_changed signal to the update function in UI
 	new_stats.player_stats_changed.connect(player_stats_ui.update_stats)
+	
+	next_season_button.connect("pressed", Callable(self, "_on_next_season_button_pressed"))
+	update_season_ui()
 	
 	discard_area.connect("body_entered", Callable(self, "_on_body_entered"))
 	card_pile.shuffle()
@@ -32,6 +37,15 @@ func _ready():
 func game_start(stats: PlayerStats) -> void:
 	player_handler.game_start(stats)
 
+
+func update_season_ui() -> void:
+	# Manually update the Season UI with the current season and year (in case needed at startup)
+	season_ui._on_season_changed(SeasonManager.current_season, SeasonManager.current_year)
+
+
+func _on_next_season_button_pressed() -> void:
+	# Call the next_season function in SeasonManager when the button is pressed
+	SeasonManager.next_season()
 
 
 func _on_draw_card_button_pressed() -> void:

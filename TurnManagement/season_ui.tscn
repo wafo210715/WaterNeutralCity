@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://cifqpawchfhpb"]
+
+[ext_resource type="Script" path="res://TurnManagement/season_ui.gd" id="1_cwgkr"]
+[ext_resource type="Texture2D" uid="uid://da78w2pr5srlj" path="res://TurnManagement/over_72ppi.png" id="1_qy2rj"]
+[ext_resource type="Texture2D" uid="uid://ke8gws5kwpqd" path="res://TurnManagement/progress_72ppi.png" id="2_t6352"]
+
+[node name="SeasonUI" type="Control"]
+layout_mode = 3
+anchor_right = 0.12
+anchor_bottom = 0.16
+offset_right = 0.599991
+offset_bottom = 0.599991
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cwgkr")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+max_value = 4.0
+value = 3.0
+fill_mode = 4
+texture_over = ExtResource("1_qy2rj")
+texture_progress = ExtResource("2_t6352")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 71.0
+offset_right = 159.0
+offset_bottom = 159.0
+
+[node name="YearText" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "Year 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SeasonText" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "Autumn"
+horizontal_alignment = 1
+vertical_alignment = 1
