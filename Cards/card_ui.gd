@@ -231,6 +231,19 @@ func set_original_position_and_rotation():
 	original_rotation = rotation_degrees
 
 
+func get_card_with_highest_z_index(cards: Array) -> CardUI:
+	var highest_z_card: CardUI = cards[0]
+	var highest_z_index = highest_z_card.z_index
+
+	for i in range(1, cards.size()):
+		var current_card: CardUI = cards[i]
+		if current_card.z_index > highest_z_index:
+			highest_z_card = current_card
+			highest_z_index = current_card.z_index
+
+	return highest_z_card
+
+
 
 func _input(event: InputEvent):
 	card_state_machine.on_input(event)

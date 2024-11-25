@@ -51,3 +51,17 @@ func snap_back_to_hand():
 func exit():
 	Events.tooltip_hide_requested.emit()
 	card_ui.targets.clear()
+
+
+# Raycast function to check for the target area when the card is released
+func raycast_check_for_target_area() -> Node:
+	var space_state = card_ui.get_world_2d().direct_space_state
+	var parameters = PhysicsPointQueryParameters2D.new()
+	parameters.position = card_ui.get_global_mouse_position()
+	parameters.collide_with_areas = true
+	var result = space_state.intersect_point(parameters)
+
+	if result.size() > 0:
+		return result[0].collider.get_parent()  # Return the parent node (e.g., DiscardArea, Area1)
+
+	return null
