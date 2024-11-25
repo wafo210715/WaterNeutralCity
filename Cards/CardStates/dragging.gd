@@ -1,31 +1,53 @@
 extends CardState
 
-const DRAG_MINIMUM_THRESHOLD := 0.05
-
-var minimum_drag_time_elapsed := false
-
 func enter():
-	var ui_layer := get_tree().get_first_node_in_group("ui_layer")
-	if ui_layer:
-		card_ui.reparent(ui_layer)
-		
-	print("Dragging.")
-	
-	minimum_drag_time_elapsed = false
-	var threshold_timer := get_tree().create_timer(DRAG_MINIMUM_THRESHOLD, false)
-	threshold_timer.timeout.connect(func(): minimum_drag_time_elapsed = true)
+	# Set the card to follow the mouse
+	card_ui.following_mouse = true
+	set_process(true)  # Enable per-frame updates while dragging
+	print("Dragging")
+
+func _process(delta: float) -> void:
+	# Update position and rotation while dragging
+	card_ui.follow_mouse(delta)
+	card_ui.rotate_velocity(delta)
 
 
-func on_input(event: InputEvent):
-	var mouse_motion := event is InputEventMouseMotion
-	var cancel = event.is_action_pressed("right_mouse")
-	var confirm = event.is_action_released("left_mouse") or event.is_action_pressed("left_mouse")
-	
-	if mouse_motion:
+func exit():
+	# card_ui.reset_transform()
+	# Stop following the mouse when exiting the Dragging state
+	card_ui.following_mouse = false
+	set_process(false)
+	# Smoothly reset rotation with a tween to ensure the card has no angle
+	if card_ui.tween_rot and card_ui.tween_rot.is_running():
+		card_ui.tween_rot.kill()
+	card_ui.tween_rot = card_ui.create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	card_ui.tween_rot.tween_property(card_ui, "rotation", 0.0, 0.3)
+
+	# Reset scale if needed
+	card_ui.reset_scale()
+
+
+func on_gui_input(event: InputEvent):
+	# Update position on mouse motion
+	if event is InputEventMouseMotion and card_ui.following_mouse:
 		card_ui.global_position = card_ui.get_global_mouse_position() - card_ui.pivot_offset
-		
-	if cancel:
-		transition_requested.emit(self, CardState.State.BASE)
-	elif minimum_drag_time_elapsed and confirm:
-		get_viewport().set_input_as_handled()
+
+	# End dragging on left-click release
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_released():
 		transition_requested.emit(self, CardState.State.RELEASED)
+
+	# Right-click cancels dragging and returns to original position
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.is_released():
+		# Immediately stop following the mouse and disable `_process`
+		card_ui.following_mouse = false
+		set_process(false)
+		
+		# Tween back to original position and rotation
+		var tween = card_ui.create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+		tween.tween_property(card_ui, "position", card_ui.original_position, 0.3)
+		tween.tween_property(card_ui, "rotation_degrees", card_ui.original_rotation, 0.3)
+
+		# Transition to Base state once the tween completes
+		tween.finished.connect(func():
+			transition_requested.emit(self, CardState.State.BASE)
+		)

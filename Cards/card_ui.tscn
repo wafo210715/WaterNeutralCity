@@ -3,13 +3,11 @@
 [ext_resource type="Shader" path="res://Themes/shaders/dissolve.gdshader" id="1_r1xj6"]
 [ext_resource type="Texture2D" uid="uid://dbtypman3k585" path="res://Cards/Policy/Policy_Community Infrastructure Levy_画板 1.png" id="2_1qabg"]
 [ext_resource type="Script" path="res://Cards/card_ui.gd" id="2_l3ts8"]
-[ext_resource type="Material" uid="uid://v3336p6jkcgf" path="res://Themes/resources/grayscale_shader_material.tres" id="4_6aio8"]
+[ext_resource type="Shader" path="res://Themes/shaders/fake_3D.gdshader" id="4_fenr8"]
 [ext_resource type="Script" path="res://Cards/card_state_machine.gd" id="4_i426q"]
 [ext_resource type="Script" path="res://Cards/CardStates/base.gd" id="5_s80rf"]
 [ext_resource type="Script" path="res://Cards/CardStates/hover.gd" id="6_dj5ap"]
-[ext_resource type="Script" path="res://Cards/CardStates/clicked.gd" id="7_6qjgp"]
 [ext_resource type="Script" path="res://Cards/CardStates/dragging.gd" id="8_wrncb"]
-[ext_resource type="Script" path="res://Cards/CardStates/aiming.gd" id="9_2d1qd"]
 [ext_resource type="Script" path="res://Cards/CardStates/released.gd" id="10_7grre"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_i7jhy"]
@@ -33,6 +31,18 @@ shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_svxdg")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mpl40"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0unri"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_guncd"]
+shader = ExtResource("4_fenr8")
+shader_parameter/rect_size = Vector2(180, 264)
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yrxmu"]
+size = Vector2(132, 223)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32h4j"]
 size = Vector2(181, 264)
@@ -65,7 +75,7 @@ texture = ExtResource("2_1qabg")
 expand_mode = 1
 
 [node name="CardTexture" type="TextureRect" parent="."]
-material = ExtResource("4_6aio8")
+material = SubResource("ShaderMaterial_guncd")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -75,6 +85,13 @@ grow_vertical = 2
 texture = ExtResource("2_1qabg")
 expand_mode = 1
 
+[node name="DestroyArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyArea"]
+position = Vector2(90, 150.5)
+shape = SubResource("RectangleShape2D_yrxmu")
+disabled = true
+
 [node name="DropPointDetector" type="Area2D" parent="."]
 collision_mask = 2
 monitorable = false
@@ -82,8 +99,6 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DropPointDetector"]
 position = Vector2(90.5, 132)
 shape = SubResource("RectangleShape2D_32h4j")
-disabled = true
-debug_color = Color(0, 0.6, 0.701961, 0.227451)
 
 [node name="CardStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_i426q")
@@ -96,21 +111,13 @@ script = ExtResource("5_s80rf")
 script = ExtResource("6_dj5ap")
 state = 1
 
-[node name="Clicked" type="Node" parent="CardStateMachine"]
-script = ExtResource("7_6qjgp")
-state = 2
-
 [node name="Dragging" type="Node" parent="CardStateMachine"]
 script = ExtResource("8_wrncb")
-state = 3
-
-[node name="Aiming" type="Node" parent="CardStateMachine"]
-script = ExtResource("9_2d1qd")
-state = 4
+state = 2
 
 [node name="Released" type="Node" parent="CardStateMachine"]
 script = ExtResource("10_7grre")
-state = 5
+state = 3
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxvwuvusrju61"]
+[gd_scene load_steps=8 format=3 uid="uid://cxvwuvusrju61"]
 
 [ext_resource type="Texture2D" uid="uid://dcihyi420wa13" path="res://Map/1920x1440.png" id="1_8yaw6"]
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_cqk0h"]
 [ext_resource type="Script" path="res://Cards/hand.gd" id="2_36bfw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfe8f"]
+size = Vector2(186, 240)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7ovs"]
 size = Vector2(435.5, 220)
@@ -27,8 +30,17 @@ texture = ExtResource("1_8yaw6")
 expand_mode = 1
 metadata/_edit_lock_ = true
 
+[node name="DiscardArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DiscardArea"]
+position = Vector2(138, 686)
+shape = SubResource("RectangleShape2D_hfe8f")
+
 [node name="CardDropArea" type="Area2D" parent="."]
-light_mask = 2
+unique_name_in_owner = true
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CardDropArea"]
 position = Vector2(875, 310)
@@ -53,11 +65,5 @@ offset_top = 1363.0
 offset_right = 229.0
 offset_bottom = 1406.0
 
-[node name="DiscardCardButton" type="Button" parent="."]
-offset_left = 39.0
-offset_top = 502.0
-offset_right = 245.0
-offset_bottom = 545.0
-
+[connection signal="body_entered" from="DiscardArea" to="." method="_on_discard_area_body_entered"]
 [connection signal="pressed" from="DrawCardButton" to="." method="_on_draw_card_button_pressed"]
-[connection signal="pressed" from="DiscardCardButton" to="." method="_on_discard_card_button_pressed"]

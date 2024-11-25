@@ -20,22 +20,22 @@ func _ready() -> void:
 	for child in get_children():
 		var card_ui := child as CardUI
 		card_ui.reparent_requested.connect(_on_card_ui_reparent_requested)
+		card_ui.destroyed.connect(_on_card_destroyed)  # Connect to each card's destroyed signal
 
 # add a card as the hand's child
 func add_card():
 	var new_card = CARD.instantiate()
 	add_child(new_card)
+	new_card.set_original_position_and_rotation()  # Set initial position and rotation
+	new_card.connect("destroyed", Callable(self, "_on_card_destroyed")) # Connect to destroyed signal for layout update
 	_update_cards()
 
 
-func discard_card():
-	if get_child_count() < 1:
-		return
-	
-	var child := get_child(-1)
-	child.reparent(get_tree().root)
-	child.queue_free()
-	_update_cards()
+# Update layout and position after a card is destroyed
+func _on_card_destroyed():
+	print("Hand: Card destroyed, updating layout")  # Print statement in Hand
+	# Defer the update to allow the destroyed card to be fully removed from the scene
+	call_deferred("_update_cards")
 
 
 func _update_cards():
@@ -69,6 +69,10 @@ func _update_cards():
 		
 		card.position = Vector2(final_x, final_y)
 		card.rotation_degrees = max_rotation_degrees * rot_multiplier
+		
+		card.original_position = card.position
+		card.original_rotation = card.rotation_degrees
+		
 		print("Card ", i, " Y Multiplier: ", y_multiplier, " Rotation: ", rot_multiplier)
 
 
