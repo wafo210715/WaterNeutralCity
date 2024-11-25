@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwc0dg053v3oj"]
+
+[ext_resource type="Script" path="res://Scenes/enemy_area_2.gd" id="1_cqe3b"]
+[ext_resource type="Texture2D" uid="uid://c670xoks341xs" path="res://Enemies/Area2/area2_cut.png" id="2_nidyf"]
+[ext_resource type="PackedScene" uid="uid://bcbxpdp1x1t3r" path="res://Scenes/enemy_stats_ui.tscn" id="4_ihdjd"]
+
+[node name="EnemyArea2" type="Node2D"]
+script = ExtResource("1_cqe3b")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Area" type="Area2D" parent="Node2D"]
+position = Vector2(-311, -188)
+collision_layer = 4
+
+[node name="TextureRect" type="TextureRect" parent="Node2D/Area"]
+offset_right = 623.0
+offset_bottom = 378.0
+pivot_offset = Vector2(311, 189)
+texture = ExtResource("2_nidyf")
+expand_mode = 1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D/Area"]
+polygon = PackedVector2Array(201, 62, 125, 20, 122, 79, 129, 140, 128, 188, 82, 222, 61, 281, 35, 309, 107, 293, 167, 284, 245, 306, 312, 332, 337, 364, 387, 298, 453, 285, 550, 282, 555, 232, 539, 141, 540, 111, 509, 83, 388, 83, 301, 65)
+
+[node name="EnemyStatsUI" parent="." instance=ExtResource("4_ihdjd")]
+offset_left = -86.0
+offset_top = -253.0
+offset_right = 86.0
+offset_bottom = 110.0
+
+[connection signal="mouse_entered" from="Node2D/Area" to="." method="_on_area_mouse_entered"]
+[connection signal="mouse_exited" from="Node2D/Area" to="." method="_on_area_mouse_exited"]
