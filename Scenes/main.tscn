@@ -1,13 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://b04dlgv774o1t"]
+[gd_scene load_steps=15 format=3 uid="uid://b04dlgv774o1t"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_cqk0h"]
 [ext_resource type="Script" path="res://Cards/hand.gd" id="2_36bfw"]
 [ext_resource type="Resource" uid="uid://bq488oaycntco" path="res://CardPile/GeneralCharacter/player.tres" id="2_p5wye"]
-[ext_resource type="Resource" uid="uid://cxq4ektwcslgl" path="res://CardPile/GeneralCharacter/policy_card_deck.tres" id="3_n12me"]
 [ext_resource type="PackedScene" uid="uid://csgjhpq32lxm" path="res://Scenes/area_1.tscn" id="4_3tx81"]
 [ext_resource type="PackedScene" uid="uid://dllle1f2o1hf0" path="res://Scenes/player.tscn" id="4_6bwaq"]
-[ext_resource type="Texture2D" uid="uid://b2l0jll6ysbbe" path="res://Map/UI_11.png" id="4_fx8i7"]
 [ext_resource type="Script" path="res://Scenes/ui.gd" id="4_kghsa"]
+[ext_resource type="Texture2D" uid="uid://clifc854mwq0q" path="res://Map/UI_12.png" id="4_skmpb"]
 [ext_resource type="Script" path="res://Scenes/player_handler.gd" id="5_wyg3o"]
 [ext_resource type="PackedScene" uid="uid://mv3o0wojyv34" path="res://Scenes/policy_tooltip.tscn" id="6_15x1w"]
 [ext_resource type="PackedScene" uid="uid://cifqpawchfhpb" path="res://TurnManagement/season_ui.tscn" id="10_87ptg"]
@@ -30,13 +29,12 @@ point_count = 3
 [node name="Main" type="Node2D"]
 script = ExtResource("1_cqk0h")
 player_stats = ExtResource("2_p5wye")
-card_pile = ExtResource("3_n12me")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(1920, 1440)
 offset_right = 1920.0
 offset_bottom = 1440.0
-texture = ExtResource("4_fx8i7")
+texture = ExtResource("4_skmpb")
 expand_mode = 1
 metadata/_edit_lock_ = true
 
@@ -74,7 +72,7 @@ script = ExtResource("4_kghsa")
 layout_mode = 3
 anchors_preset = 0
 offset_left = 298.0
-offset_top = 1091.0
+offset_top = 1102.0
 offset_right = 1637.0
 offset_bottom = 1357.0
 script = ExtResource("2_36bfw")
@@ -87,12 +85,19 @@ offset_top = 319.0
 offset_right = 2283.0
 offset_bottom = 769.0
 
-[node name="DrawCardButton" type="Button" parent="."]
+[node name="DrawPolicyCardButton" type="Button" parent="."]
 z_index = -1
 offset_left = 48.0
 offset_top = 1097.0
 offset_right = 227.0
 offset_bottom = 1360.0
+
+[node name="DrawTechCardButton" type="Button" parent="."]
+z_index = -1
+offset_left = 47.0
+offset_top = 803.0
+offset_right = 228.0
+offset_bottom = 1069.0
 
 [node name="NextSeasonButton" type="Button" parent="."]
 offset_left = 1676.0
@@ -112,5 +117,6 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [connection signal="body_entered" from="DiscardArea" to="." method="_on_discard_area_body_entered"]
-[connection signal="pressed" from="DrawCardButton" to="." method="_on_draw_card_button_pressed"]
+[connection signal="pressed" from="DrawPolicyCardButton" to="." method="_on_draw_policy_card_button_pressed"]
+[connection signal="pressed" from="DrawTechCardButton" to="." method="_on_draw_tech_card_button_pressed"]
 [connection signal="pressed" from="NextSeasonButton" to="." method="_on_next_season_button_pressed"]

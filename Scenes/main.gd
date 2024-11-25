@@ -5,7 +5,6 @@ var area1_card_count: int = 0
 
 
 @export var player_stats: PlayerStats
-@export var card_pile: CardPile
 
 @onready var hand: Control = $UI/Hand
 @onready var discard_area: Area2D = $DiscardArea
@@ -14,7 +13,14 @@ var area1_card_count: int = 0
 @onready var player_handler: PlayerHandler = $PlayerHandler
 @onready var player_stats_ui: PlayerStatsUI = $Player/PlayerStatsUI
 
+
+@onready var draw_policy_card_button: Button = $DrawPolicyCardButton
+@onready var draw_tech_card_button: Button = $DrawTechCardButton
+
+
+
 @onready var next_season_button: Button = $NextSeasonButton
+
 @onready var season_ui: Control = $SeasonUI
 
 
@@ -26,10 +32,13 @@ func _ready():
 	new_stats.player_stats_changed.connect(player_stats_ui.update_stats)
 	
 	next_season_button.connect("pressed", Callable(self, "_on_next_season_button_pressed"))
+	
+	draw_policy_card_button.connect("pressed", Callable(self, "_on_draw_policy_card_button_pressed"))
+	draw_tech_card_button.connect("pressed", Callable(self, "_on_draw_tech_card_button_pressed"))
+	
 	update_season_ui()
 	
 	discard_area.connect("body_entered", Callable(self, "_on_body_entered"))
-	card_pile.shuffle()
 	
 	game_start(new_stats)
 
@@ -48,10 +57,24 @@ func _on_next_season_button_pressed() -> void:
 	SeasonManager.next_season()
 
 
-func _on_draw_card_button_pressed() -> void:
-	if not card_pile.empty():
-		var card = card_pile.draw_card()
+# Function to draw a policy card
+func _on_draw_policy_card_button_pressed() -> void:
+	if not player_stats.policy_card_draw_pile.empty():
+		var card = player_stats.policy_card_draw_pile.draw_card()
 		hand.add_card(card)
+	else:
+		print("Policy card draw pile is empty.")
+
+# Function to draw a tech card
+func _on_draw_tech_card_button_pressed() -> void:
+	if not player_stats.tech_card_draw_pile.empty():
+		var card = player_stats.tech_card_draw_pile.draw_card()
+		hand.add_card(card)
+	else:
+		print("Tech card draw pile is empty.")
+
+
+
 
 
 func _on_discard_area_body_entered(body):

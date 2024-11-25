@@ -16,9 +16,22 @@ signal player_stats_changed
 @export var policy_card_discard : CardPile
 
 @export var tech_card_deck: CardPile
+@export var tech_card_draw_pile: CardPile
+@export var tech_card_discard: CardPile
 
 
 var funding: int : set = set_funding
+
+# Function to initialize and shuffle the draw piles
+func initialize_card_piles():
+	# Duplicate and shuffle the policy card draw pile
+	policy_card_draw_pile = policy_card_deck.duplicate(true)
+	tech_card_draw_pile = tech_card_deck.duplicate(true)
+
+	policy_card_draw_pile.shuffle()
+	tech_card_draw_pile.shuffle()
+
+	print("PlayerStats: Card piles initialized and shuffled.")
 
 
 func set_funding(value: int):
@@ -42,4 +55,5 @@ func can_play_tech_card(card: Card)-> bool:
 func create_instance() -> Resource:
 	var instance: PlayerStats = self.duplicate()
 	instance.funding = innitial_funding
+	instance.initialize_card_piles()  # Initialize the card piles when creating the instance
 	return instance
