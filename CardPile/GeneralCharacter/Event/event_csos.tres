@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://byugotbfgecrk"]
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://byugotbfgecrk"]
 
 [ext_resource type="Script" path="res://CardPile/card.gd" id="1_2phms"]
+[ext_resource type="Texture2D" uid="uid://7wk6rwq50pxf" path="res://Cards/Event/Event_CSOs.png" id="1_28s4l"]
 
 [resource]
 script = ExtResource("1_2phms")
@@ -12,3 +13,5 @@ favorite_season = 3
 water_quality = -10
 water_quantity = 0
 popularity = -10
+image = ExtResource("1_28s4l")
+tooltip_text = "CSOs are caused by storms that make WWTS unable to handle excessive sewage."

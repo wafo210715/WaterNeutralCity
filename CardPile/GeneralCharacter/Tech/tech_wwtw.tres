@@ -1,13 +1,17 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://dkledq7ui0mys"]
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://dkledq7ui0mys"]
 
 [ext_resource type="Script" path="res://CardPile/card.gd" id="1_a66s0"]
+[ext_resource type="Texture2D" uid="uid://bc2jr4imbj2ct" path="res://Cards/Tech/Tech_WWTW_画板 1.png" id="1_kcbsb"]
 
 [resource]
 script = ExtResource("1_a66s0")
-id = "Waster Water Treatment Works"
+id = "Waste Water Treatment Works"
 type = 1
 target_issue = 0
 funding = -2
 favorite_season = 4
 water_quality = 10
 water_quantity = 10
+popularity = 0
+image = ExtResource("1_kcbsb")
+tooltip_text = "Upgrading the sewage treatment plant can not only speed up the sewage treatment process, but also increase the water storage space and effectively slow down the CSOS."

@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://tcctu00s5ek2"]
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://tcctu00s5ek2"]
 
+[ext_resource type="Texture2D" uid="uid://dbtypman3k585" path="res://Cards/Policy/Policy_Community Infrastructure Levy_画板 1.png" id="1_a8otm"]
 [ext_resource type="Script" path="res://CardPile/card.gd" id="1_hxoef"]
 
 [resource]
@@ -9,5 +10,8 @@ type = 0
 target_issue = 3
 funding = 3
 favorite_season = 4
-water_quality = 10
-water_quantity = 10
+water_quality = 0
+water_quantity = 0
+popularity = 10
+image = ExtResource("1_a8otm")
+tooltip_text = "It is an important tool for local authorities to use to help them deliver the infrastructure needed to support development in their area."

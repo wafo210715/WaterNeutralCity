@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://b08vxlb1j13cs"]
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://b08vxlb1j13cs"]
 
 [ext_resource type="Script" path="res://CardPile/card.gd" id="1_5kdxf"]
+[ext_resource type="Texture2D" uid="uid://dyl5rf2vbj4r8" path="res://Cards/Tech/Tech_Sludge_画板 1.png" id="1_8qqoa"]
 
 [resource]
 script = ExtResource("1_5kdxf")
@@ -11,3 +12,6 @@ funding = -2
 favorite_season = 4
 water_quality = 10
 water_quantity = 10
+popularity = 0
+image = ExtResource("1_8qqoa")
+tooltip_text = "Utilize the nutrients in domestic water, which can be used as fertilizer and transported to farmland after treatment."

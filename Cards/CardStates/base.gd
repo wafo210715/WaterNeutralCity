@@ -5,6 +5,8 @@ func enter():
 		await card_ui.ready
 	card_ui.reparent_requested.emit(card_ui)
 	card_ui.shadow.visible = false
+	card_ui.stats_shadow.visible = false
+	card_ui.card_stats.visible = false
 	# card_ui.pivot_offset = Vector2.ZERO
 	# set_process(true)
 	print("Base")

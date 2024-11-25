@@ -6,5 +6,7 @@
 script = ExtResource("1_4vk5a")
 max_quality = 100
 max_quantity = 100
+max_popularity = 100
 innitial_quality = 20
 innitial_quantity = 20
+innitial_popularity = 20

@@ -2,6 +2,8 @@ extends CardState
 
 func enter():
 	card_ui.shadow.visible = true
+	card_ui.stats_shadow.visible = true
+	card_ui.card_stats.visible = true
 	card_ui.pick_up_card()
 	print("Hover")
  

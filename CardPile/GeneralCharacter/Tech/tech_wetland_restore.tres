@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://b0c2k53pivssr"]
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://b0c2k53pivssr"]
 
+[ext_resource type="Texture2D" uid="uid://cnkrf2qbm3p7c" path="res://Cards/Tech/Tech_Wetland Restoration_画板 1.png" id="1_d7vos"]
 [ext_resource type="Script" path="res://CardPile/card.gd" id="1_smjtr"]
 
 [resource]
@@ -11,3 +12,6 @@ funding = -2
 favorite_season = 4
 water_quality = 20
 water_quantity = 20
+popularity = 0
+image = ExtResource("1_d7vos")
+tooltip_text = "Aquatic plants in wetlands can absorb nutrients from water bodies and prevent eutrophication."

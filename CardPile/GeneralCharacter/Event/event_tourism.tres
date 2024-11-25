@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://ydmln65fuh5y"]
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://ydmln65fuh5y"]
 
 [ext_resource type="Script" path="res://CardPile/card.gd" id="1_fji8h"]
+[ext_resource type="Texture2D" uid="uid://v4ojtia6x4d4" path="res://Cards/Event/Event_Tourism.png" id="1_pfnql"]
 
 [resource]
 script = ExtResource("1_fji8h")
@@ -12,3 +13,5 @@ favorite_season = 1
 water_quality = -20
 water_quantity = -20
 popularity = 0
+image = ExtResource("1_pfnql")
+tooltip_text = "The warm environment attracts many people to coastal cities for vacation. As a result, the amount of domestic water and sewage treatment also increases."

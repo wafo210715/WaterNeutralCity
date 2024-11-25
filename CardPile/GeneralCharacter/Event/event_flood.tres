@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://o5n8fr1y7fx3"]
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://o5n8fr1y7fx3"]
 
 [ext_resource type="Script" path="res://CardPile/card.gd" id="1_5b6yb"]
+[ext_resource type="Texture2D" uid="uid://brsov6ximc8wh" path="res://Cards/Event/Event_Flood.png" id="1_7xin5"]
 
 [resource]
 script = ExtResource("1_5b6yb")
@@ -12,3 +13,5 @@ favorite_season = 0
 water_quality = -10
 water_quantity = -10
 popularity = -10
+image = ExtResource("1_7xin5")
+tooltip_text = "Rivers frozen in winter gradually melt as the temperature rises in spring, and creeks and rivers often overflow from the rush of melting snow and ice."

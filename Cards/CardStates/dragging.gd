@@ -5,6 +5,7 @@ extends CardState
 func enter():
 	# Set the card to follow the mouse
 	card_ui.following_mouse = true
+	card_ui.reset_hover_rotation()
 	set_process(true)  # Enable per-frame updates while dragging
 	print("Dragging")
 
@@ -23,9 +24,6 @@ func exit():
 	# Smoothly reset rotation with a tween to ensure the card has no angle
 	if card_ui.tween_rot and card_ui.tween_rot.is_running():
 		card_ui.tween_rot.kill()
-	card_ui.tween_rot = card_ui.create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
-	card_ui.tween_rot.tween_property(card_ui, "rotation", 0.0, 0.3)
-
 	# Reset scale if needed
 	card_ui.reset_scale()
 
@@ -45,11 +43,14 @@ func on_gui_input(event: InputEvent):
 		card_ui.following_mouse = false
 		set_process(false)
 		
+		# card_ui.rotation = 0.0
+		
 		# Tween back to original position and rotation
 		var tween = card_ui.create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 		tween.tween_property(card_ui, "position", card_ui.original_position, 0.3)
 		tween.tween_property(card_ui, "rotation_degrees", card_ui.original_rotation, 0.3)
-
+		
+		
 		# Transition to Base state once the tween completes
 		tween.finished.connect(func():
 			transition_requested.emit(self, CardState.State.BASE)

@@ -6,10 +6,7 @@
 
 [resource]
 script = ExtResource("1_orglc")
-max_funding = 10
-max_popularity = 100
-innitial_funding = 2
-innitial_popularity = 20
+innitial_funding = 4
 max_policy_card = 1
 max_tech_card = 2
 policy_card_deck = ExtResource("1_8nmo7")

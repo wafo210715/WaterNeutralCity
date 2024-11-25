@@ -11,27 +11,25 @@ func enter():
 	if card_ui.targets.size() > 0:
 		target = card_ui.targets[0]
 		print("Target detected:", target.name)
-
+		
 		if target.name == "DiscardArea":
 			print("Releasing over DiscardArea.")
 			card_ui.destroy()  # Call destroy function to discard the card
 			return
+		
+		elif target.name == "Area1":
+			# Attempt to play the card
+			if card_ui.play():
+				played = true
+				card_ui.reset_rotation()
+				return
+			else:
+				print("Not enough funding, snapping back to hand.")
+				snap_back_to_hand()
+				return
+		
+	snap_back_to_hand()
 
-		elif target.name == "CardDropArea":
-			played = true
-			print("Releasing over CardDropArea.")
-			# Logic for card play effect, if needed
-			return
-
-		elif target is CardUI:
-			print("Swapping with another card.")
-			swap_with_card(target)
-			return
-
-	# If no target was detected, return to Base
-	else:
-		snap_back_to_hand()
-		transition_requested.emit(self, CardState.State.BASE)
 
 func snap_back_to_hand():
 	# Tween to original position and rotation
@@ -44,12 +42,6 @@ func snap_back_to_hand():
 		transition_requested.emit(self, CardState.State.BASE)
 	)
 
-func swap_with_card(other_card: CardUI):
-	# Swap positions with the other card in the hand
-	var temp_position = other_card.position
-	other_card.position = card_ui.position
-	card_ui.position = temp_position
-	print("Swapped card positions.")
 
 func exit():
 	card_ui.targets.clear()

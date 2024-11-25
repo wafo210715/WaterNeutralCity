@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://cqif1q3v56xmq"]
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://cqif1q3v56xmq"]
 
 [ext_resource type="Script" path="res://CardPile/card.gd" id="1_1eps8"]
+[ext_resource type="Texture2D" uid="uid://bl0st233vx0e4" path="res://Cards/Event/Event_Industrial Growth.png" id="1_lju78"]
 
 [resource]
 script = ExtResource("1_1eps8")
@@ -11,4 +12,6 @@ funding = 4
 favorite_season = 4
 water_quality = -20
 water_quantity = -20
-popularity = 10
+popularity = 0
+image = ExtResource("1_lju78")
+tooltip_text = "With the development of technology, the happiness of the people has increased, but this has also led to an increase in water demand and more serious water pollution."

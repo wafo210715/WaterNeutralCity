@@ -1,14 +1,22 @@
-[gd_scene load_steps=21 format=3 uid="uid://id68gffwgqmq"]
+[gd_scene load_steps=29 format=3 uid="uid://id68gffwgqmq"]
 
 [ext_resource type="Shader" path="res://Themes/shaders/dissolve.gdshader" id="1_r1xj6"]
 [ext_resource type="Texture2D" uid="uid://dbtypman3k585" path="res://Cards/Policy/Policy_Community Infrastructure Levy_画板 1.png" id="2_1qabg"]
 [ext_resource type="Script" path="res://Cards/card_ui.gd" id="2_l3ts8"]
+[ext_resource type="Resource" uid="uid://b4fivcic8p4lc" path="res://CardPile/GeneralCharacter/Tech/tech_biobed.tres" id="3_555iw"]
 [ext_resource type="Shader" path="res://Themes/shaders/fake_3D.gdshader" id="4_fenr8"]
 [ext_resource type="Script" path="res://Cards/card_state_machine.gd" id="4_i426q"]
+[ext_resource type="Resource" uid="uid://bq488oaycntco" path="res://CardPile/GeneralCharacter/player.tres" id="4_r5c52"]
 [ext_resource type="Script" path="res://Cards/CardStates/base.gd" id="5_s80rf"]
 [ext_resource type="Script" path="res://Cards/CardStates/hover.gd" id="6_dj5ap"]
+[ext_resource type="Texture2D" uid="uid://6763lfe6yvnb" path="res://Cards/CardStatsBG/Policy-02.png" id="6_vaffb"]
+[ext_resource type="Texture2D" uid="uid://c1c0exp08nxtc" path="res://Icons/quantity.png" id="7_ni5ti"]
+[ext_resource type="Texture2D" uid="uid://8s7y7axjb65m" path="res://Icons/quality.png" id="8_p5igk"]
 [ext_resource type="Script" path="res://Cards/CardStates/dragging.gd" id="8_wrncb"]
+[ext_resource type="Texture2D" uid="uid://bo80l4j6b8p8y" path="res://Icons/good pop.png" id="9_swr08"]
+[ext_resource type="Texture2D" uid="uid://ogkhnl4ugmne" path="res://Icons/bad pop.png" id="10_6y4yl"]
 [ext_resource type="Script" path="res://Cards/CardStates/released.gd" id="10_7grre"]
+[ext_resource type="Texture2D" uid="uid://cr5xi37ist7rq" path="res://Icons/Asset 2.png" id="11_n7ly0"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_i7jhy"]
 
@@ -59,6 +67,8 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_4rrca")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_mpl40")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0unri")
 script = ExtResource("2_l3ts8")
+card = ExtResource("3_555iw")
+player_stats = ExtResource("4_r5c52")
 
 [node name="Shadow" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 0.776471)
@@ -74,6 +84,17 @@ grow_vertical = 2
 texture = ExtResource("2_1qabg")
 expand_mode = 1
 
+[node name="StatsShadow" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0.776471)
+self_modulate = Color(1, 1, 1, 0.270588)
+custom_minimum_size = Vector2(182, 58)
+layout_mode = 0
+offset_top = -45.0
+offset_right = 182.0
+offset_bottom = 13.0
+texture = ExtResource("6_vaffb")
+expand_mode = 1
+
 [node name="CardTexture" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_guncd")
 layout_mode = 1
@@ -85,6 +106,118 @@ grow_vertical = 2
 texture = ExtResource("2_1qabg")
 expand_mode = 1
 
+[node name="CardStats" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(182, 58)
+layout_mode = 0
+offset_top = -70.0
+offset_right = 182.0
+offset_bottom = -12.0
+texture = ExtResource("6_vaffb")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CardStats"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 175.0
+offset_bottom = 54.0
+alignment = 1
+
+[node name="QuantityIcon" type="TextureRect" parent="CardStats/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(17, 30)
+layout_mode = 2
+texture = ExtResource("7_ni5ti")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="QuantityStats" type="Label" parent="CardStats/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "+22"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QualityIcon" type="TextureRect" parent="CardStats/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(17, 49)
+layout_mode = 2
+texture = ExtResource("8_p5igk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="QualityStats" type="Label" parent="CardStats/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.498039, 0.65098, 0.705882, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "+02"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GoodPopIcon" type="TextureRect" parent="CardStats/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 49)
+layout_mode = 2
+texture = ExtResource("9_swr08")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GoodPopStats" type="Label" parent="CardStats/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.564706, 0.768627, 0.243137, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "+5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BadPopIcon" type="TextureRect" parent="CardStats/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 49)
+layout_mode = 2
+texture = ExtResource("10_6y4yl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BadPopStats" type="Label" parent="CardStats/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.941176, 0.364706, 0.164706, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "+5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FundingIcon" type="TextureRect" parent="CardStats/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(15, 49)
+layout_mode = 2
+texture = ExtResource("11_n7ly0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="FundingStats" type="Label" parent="CardStats/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.913725, 0.705882, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "+5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="DestroyArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyArea"]
@@ -93,7 +226,7 @@ shape = SubResource("RectangleShape2D_yrxmu")
 disabled = true
 
 [node name="DropPointDetector" type="Area2D" parent="."]
-collision_mask = 2
+collision_mask = 4
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DropPointDetector"]

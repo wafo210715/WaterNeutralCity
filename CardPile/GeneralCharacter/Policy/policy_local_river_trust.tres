@@ -1,13 +1,17 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://b5idv1btw75my"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://b5idv1btw75my"]
 
-[ext_resource type="Script" path="res://CardPile/card.gd" id="1_jf3mx"]
+[ext_resource type="Texture2D" uid="uid://c0g7r2srnklsk" path="res://Cards/Policy/Policy_Local River Trust_画板 1.png" id="1_dbesv"]
+[ext_resource type="Script" path="res://CardEffect/Policy/local_river_trust.gd" id="2_l5hyi"]
 
 [resource]
-script = ExtResource("1_jf3mx")
+script = ExtResource("2_l5hyi")
 id = "Local River Trust"
 type = 0
 target_issue = 3
 funding = 3
 favorite_season = 3
-water_quality = 10
-water_quantity = 10
+water_quality = 0
+water_quantity = 0
+popularity = 10
+image = ExtResource("1_dbesv")
+tooltip_text = "The Rivers Trust along with its members work to protect, promote and enhance freshwater ecosystems for both people and wildlife."

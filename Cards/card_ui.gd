@@ -4,16 +4,25 @@ extends Button
 signal reparent_requested(which_card_ui: CardUI)
 signal destroyed  # Define a signal to notify when the card is fully destroyed
 
-@export var card: Card
+@export var card: Card : set = _set_card
+@export var player_stats: PlayerStats
 
-@export var angle_x_max: float = 5.0
-@export var angle_y_max: float = 5.0
+
+@export var angle_x_max: float = 15.0
+@export var angle_y_max: float = 15.0
+@export var shadow_offset_max: float = 10.0
+
 @export var max_offset_shadow: float = 50.0
+
 
 @export_category("Oscillator")
 @export var spring: float = 150.0
 @export var damp: float = 10.0
 @export var velocity_multiplier: float = 2.0
+@export var velocity_threshold: float = 70.0
+@export var rotation_decay: float = 0.05
+@export var rotation_threshold: float = 0.001
+
 
 @export var card_drop_area: Area2D
 @export var discard_area: Area2D
@@ -41,8 +50,36 @@ var original_position: Vector2
 var original_rotation: float
 
 
+
+
+
+
 @onready var card_texture: TextureRect = $CardTexture
 @onready var shadow: TextureRect = $Shadow
+@onready var card_stats: TextureRect = $CardStats
+@onready var stats_shadow: TextureRect = $StatsShadow
+
+
+
+
+
+@onready var quantity_icon: TextureRect = %QuantityIcon
+@onready var quantity_stats: Label = %QuantityStats
+
+@onready var quality_icon: TextureRect = %QualityIcon
+@onready var quality_stats: Label = %QualityStats
+
+@onready var good_pop_icon: TextureRect = %GoodPopIcon
+@onready var good_pop_stats: Label = %GoodPopStats
+@onready var bad_pop_icon: TextureRect = %BadPopIcon
+@onready var bad_pop_stats: Label = %BadPopStats
+
+@onready var funding_icon: TextureRect = %FundingIcon
+@onready var funding_stats: Label = %FundingStats
+
+
+
+
 
 
 @onready var collision_shape_2d: CollisionShape2D = $DestroyArea/CollisionShape2D
@@ -53,6 +90,9 @@ var original_rotation: float
 
 
 @onready var targets: Array[Node] = []
+@onready var original_index := self.get_index()
+
+
 
 func _ready():
 	card_state_machine.init(self)
@@ -72,7 +112,7 @@ func pick_up_card():
 	tween_hover.tween_property(self, "scale", Vector2(1.2, 1.2), 0.5)
 
 
-# function for HOVER state 
+# function for HOVER state, can only apply on card texture
 func apply_hover_rotation(mouse_pos: Vector2):
 	# Calculate the lerp values based on the mouse position over the card
 	var lerp_val_x: float = remap(mouse_pos.x, 0.0, size.x, 0, 1)
@@ -87,11 +127,15 @@ func apply_hover_rotation(mouse_pos: Vector2):
 	card_texture.material.set_shader_parameter("y_rot", rot_x)
 
 
+
+
+
 # function for DRAGGING state
 func handle_shadow(delta: float) -> void:
 	var center: Vector2 = get_viewport_rect().size / 2.0
 	var distance: float = global_position.x - center.x
 	shadow.position.x = lerp(0.0, -sign(distance) * max_offset_shadow, abs(distance / center.x))
+	stats_shadow.position.x = lerp(0.0, -sign(distance) * max_offset_shadow, abs(distance / center.x))
 
 
 # function for DRAGGING state
@@ -103,22 +147,24 @@ func follow_mouse(delta: float) -> void:
 
 # function for DRAGGING state
 func rotate_velocity(delta: float) -> void:
-	if not following_mouse: return
-	var center_pos: Vector2 = global_position - (size/2.0)
-	print("Pos: ", center_pos)
-	print("Pos: ", last_pos)
-	# Compute the velocity
+	if not following_mouse: 
+		return
+	
 	velocity = (position - last_pos) / delta
+	if velocity.length() < velocity_threshold:
+		return
+	
 	last_pos = position
 	
-	print("Velocity: ", velocity)
+	# Update oscillator velocity based on the normalized x-component of velocity
 	oscillator_velocity += velocity.normalized().x * velocity_multiplier
 	
-	# Oscillator stuff
+	# Compute the force and update oscillator values
 	var force = -spring * displacement - damp * oscillator_velocity
 	oscillator_velocity += force * delta
 	displacement += oscillator_velocity * delta
 	
+	# Apply the displacement as rotation
 	rotation = displacement
 
 
@@ -141,12 +187,13 @@ func destroy() -> void:
 
 
 
+# reset this when going from hover to dragging
+func reset_hover_rotation():
+	card_texture.material.set_shader_parameter("x_rot", 0.0)
+	card_texture.material.set_shader_parameter("y_rot", 0.0)
 
 
-
-
-
-
+# reset when going from hover to base
 func reset_transform():
 	# Reset rotation
 	if tween_rot and tween_rot.is_running():
@@ -196,6 +243,61 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	card_state_machine.on_mouse_exited()
+
+
+
+func play() -> bool:
+	if not card:
+		return false
+	
+	return card.play(targets, player_stats)
+
+
+# replace information with card resources
+func _set_card(value: Card):
+	if not is_node_ready():
+		await ready
+	
+	card = value
+	card_texture.texture = card.image
+	
+	quantity_icon.visible = card.water_quantity != 0
+	quantity_stats.visible = card.water_quantity != 0
+	if quantity_stats.visible:
+		quantity_stats.text = str(card.water_quantity)
+		
+	quality_icon.visible = card.water_quality != 0
+	quality_stats.visible = card.water_quality != 0
+	if quality_stats.visible:
+		quality_stats.text = str(card.water_quality)
+		
+	if card.popularity > 0:
+		good_pop_icon.visible = true
+		good_pop_stats.visible = true
+		good_pop_stats.text = str(card.popularity)
+		bad_pop_icon.visible = false
+		bad_pop_stats.visible = false
+	
+	if card.popularity < 0:
+		bad_pop_icon.visible = true
+		bad_pop_stats.visible = true
+		bad_pop_stats.text = str(card.popularity)
+		good_pop_icon.visible = false
+		good_pop_stats.visible = false
+	
+	if card.popularity == 0:
+		bad_pop_icon.visible = false
+		bad_pop_stats.visible = false
+		good_pop_icon.visible = false
+		good_pop_stats.visible = false
+	
+	funding_icon.visible = card.funding != 0
+	funding_stats.visible = card.funding != 0
+	if funding_stats.visible:
+		funding_stats.text = str(card.funding)
+
+
+
 
 
 func _on_drop_point_detector_area_entered(area: Area2D) -> void:

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://cs5fy3bftnbud"]
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://cs5fy3bftnbud"]
 
 [ext_resource type="Script" path="res://CardPile/card.gd" id="1_6tnf2"]
+[ext_resource type="Texture2D" uid="uid://roqdjdd2mupb" path="res://Cards/Tech/Tech_Agroforestry_画板 1.png" id="1_6uatc"]
 
 [resource]
 script = ExtResource("1_6tnf2")
@@ -11,3 +12,6 @@ funding = -2
 favorite_season = 4
 water_quality = 20
 water_quantity = 20
+popularity = 0
+image = ExtResource("1_6uatc")
+tooltip_text = "Changing planting patterns to allow tree roots to absorb excess agricultural fertilizers can effectively slow down the loss of nutrients through water systems."

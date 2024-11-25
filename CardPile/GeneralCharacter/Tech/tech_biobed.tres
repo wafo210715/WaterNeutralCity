@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://b4fivcic8p4lc"]
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://b4fivcic8p4lc"]
 
 [ext_resource type="Script" path="res://CardPile/card.gd" id="1_53y7p"]
+[ext_resource type="Texture2D" uid="uid://2ofatgmkg5oo" path="res://Cards/Tech/Tech_Biobed_画板 1.png" id="1_mbfr0"]
 
 [resource]
 script = ExtResource("1_53y7p")
@@ -11,3 +12,6 @@ funding = -2
 favorite_season = 4
 water_quality = 10
 water_quantity = 10
+popularity = 0
+image = ExtResource("1_mbfr0")
+tooltip_text = "This item will contain and collect sprayer and applicator washings and degrade them in a biobed. This will help prevent pesticides from entering drains or water bodies, which will help reduce the risk of water pollution."

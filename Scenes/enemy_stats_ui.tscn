@@ -1,0 +1,125 @@
+[gd_scene load_steps=15 format=3 uid="uid://bcbxpdp1x1t3r"]
+
+[ext_resource type="Texture2D" uid="uid://cfqx5fde70inb" path="res://Bar/Quality/over_30ppi.png" id="1_bwkjf"]
+[ext_resource type="Script" path="res://Scenes/enemy_stats_ui.gd" id="1_shlfs"]
+[ext_resource type="Texture2D" uid="uid://u0jtee18bewl" path="res://Bar/Quality/progres_30ppi.png" id="2_iu8th"]
+[ext_resource type="Texture2D" uid="uid://bydrf24vf8p4a" path="res://Bar/Quality/Asset 1.png" id="3_c10tg"]
+[ext_resource type="Texture2D" uid="uid://dp1xu6re4uykw" path="res://Bar/Quantity/over_30ppi.png" id="4_6umub"]
+[ext_resource type="Texture2D" uid="uid://vej8ixbyt71o" path="res://Bar/Quantity/progress_30ppi.png" id="5_k7acu"]
+[ext_resource type="Texture2D" uid="uid://bwkr02habqfcb" path="res://Bar/Quantity/Asset 1.png" id="6_dmtau"]
+[ext_resource type="Texture2D" uid="uid://ch718rkjcgvxr" path="res://Bar/Popularity/over_30ppi.png" id="7_ap7ks"]
+[ext_resource type="Texture2D" uid="uid://cvlfdms0pqy2c" path="res://Bar/Popularity/progress_30ppi.png" id="8_g3l8t"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oesie"]
+load_path = "res://.godot/imported/Happy.png-d7cac74dc1ae8a3712ec397e9203f2a2.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k6251"]
+load_path = "res://.godot/imported/interesting.png-37c0995bb4a7fc787fa953cafe69a8be.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j021b"]
+load_path = "res://.godot/imported/nah.png-1acd21b3bd9c3f3d6d21d746b1b96dd0.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fnkfs"]
+load_path = "res://.godot/imported/dull.png-43ea51deaafa809c75322efce540aae0.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ab6ko"]
+load_path = "res://.godot/imported/angry.png-0e8a6ac01f27eec7ac8f693a6c2abc81.ctex"
+
+[node name="EnemyStatsUI" type="HBoxContainer"]
+offset_right = 172.0
+offset_bottom = 363.0
+theme_override_constants/separation = 20
+script = ExtResource("1_shlfs")
+
+[node name="Quality" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+step = 10.0
+value = 90.0
+fill_mode = 3
+texture_over = ExtResource("1_bwkjf")
+texture_progress = ExtResource("2_iu8th")
+
+[node name="QualityIcon" type="TextureRect" parent="Quality"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 315.0
+offset_right = 39.0
+offset_bottom = 355.0
+texture = ExtResource("3_c10tg")
+expand_mode = 1
+
+[node name="Quantity" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+step = 10.0
+value = 50.0
+fill_mode = 3
+texture_over = ExtResource("4_6umub")
+texture_progress = ExtResource("5_k7acu")
+
+[node name="QuantityIcon" type="TextureRect" parent="Quantity"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 316.0
+offset_right = 39.0
+offset_bottom = 357.0
+texture = ExtResource("6_dmtau")
+expand_mode = 1
+
+[node name="Popularity" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+step = 10.0
+value = 90.0
+fill_mode = 3
+texture_over = ExtResource("7_ap7ks")
+texture_progress = ExtResource("8_g3l8t")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popularity"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 5.0
+offset_right = -7.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 55
+alignment = 2
+
+[node name="Happy" type="TextureRect" parent="Popularity/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_oesie")
+expand_mode = 5
+
+[node name="Interestin" type="TextureRect" parent="Popularity/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_k6251")
+expand_mode = 5
+
+[node name="Nah" type="TextureRect" parent="Popularity/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_j021b")
+expand_mode = 5
+
+[node name="Unhappy" type="TextureRect" parent="Popularity/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_fnkfs")
+expand_mode = 5
+
+[node name="Angry" type="TextureRect" parent="Popularity/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_ab6ko")
+expand_mode = 5

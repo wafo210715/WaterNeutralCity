@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://y5xrnsoq51xh"]
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://y5xrnsoq51xh"]
 
 [ext_resource type="Script" path="res://CardPile/card.gd" id="1_adkyk"]
+[ext_resource type="Texture2D" uid="uid://c1fgq3opfovah" path="res://Cards/Policy/Policy_CPSG_画板 1.png" id="1_lf480"]
 
 [resource]
 script = ExtResource("1_adkyk")
@@ -9,5 +10,8 @@ type = 0
 target_issue = 3
 funding = 2
 favorite_season = 0
-water_quality = 10
-water_quantity = 10
+water_quality = 0
+water_quantity = 0
+popularity = 10
+image = ExtResource("1_lf480")
+tooltip_text = "The CPSG provides investment towards specific items of equipment which will improve productivity and efficiency for farming and horticultural businesses."

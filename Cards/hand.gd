@@ -6,6 +6,9 @@ const CARD = preload("res://Cards/card_ui.tscn")
 
 var dragged_card: CardUI = null
 
+var cards_played_this_turn := 0
+
+
 @export var hand_curve: Curve
 @export var rotation_curve: Curve
 
@@ -14,11 +17,14 @@ var dragged_card: CardUI = null
 @export var y_min := 0
 @export var y_max := -15
 
+@export var max_cards_in_hand := 4 # Set the maximum number of cards allowed in hand
+
 
 # Called when the node enters the scene tree for the first time.
 # This loop connects a signal (reparent_requested) from each child CardUI node to _on_card_ui_reparent_requested. 
 # This is useful for handling reparenting when cards are moved out of the hand (e.g., during drag-and-drop interactions).
 func _ready() -> void:
+	Events.card_played.connect(_on_card_played)
 	for child in get_children():
 		var card_ui := child as CardUI
 		card_ui.reparent_requested.connect(_on_card_ui_reparent_requested)
@@ -27,6 +33,10 @@ func _ready() -> void:
 
 # add a card as the hand's child
 func add_card():
+	if get_child_count() >= max_cards_in_hand:
+		print("Hand is full, cannot add more cards.")
+		return
+		
 	var new_card = CARD.instantiate()
 	add_child(new_card)
 	new_card.set_original_position_and_rotation()  # Set initial position and rotation
@@ -40,6 +50,9 @@ func _on_card_destroyed():
 	# Defer the update to allow the destroyed card to be fully removed from the scene
 	call_deferred("_update_cards")
 
+
+func _on_card_played(_card: Card) -> void:
+	cards_played_this_turn += 1
 
 
 
@@ -89,3 +102,4 @@ func _update_cards(dragged_card = null):
 func _on_card_ui_reparent_requested(child: CardUI):
 	# child.disabled = true
 	child.reparent(self)
+	
