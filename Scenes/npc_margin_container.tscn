@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3g4hyoya4p4v"]
+
+[ext_resource type="Theme" uid="uid://onsxch270sc4" path="res://Themes/npc bubbles.tres" id="1_1ju3m"]
+
+[node name="NPCMarginContainer" type="MarginContainer"]
+theme_override_constants/margin_right = 64
+
+[node name="NPCMessageTemplate" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("1_1ju3m")
+fit_content = true

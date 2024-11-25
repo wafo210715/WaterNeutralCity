@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgm0277qnow53"]
+
+[ext_resource type="Theme" uid="uid://uiwyi6ckxojd" path="res://Themes/chat bubbles.tres" id="1_7sylp"]
+
+[node name="PlayerMarginContainer" type="MarginContainer"]
+theme_override_constants/margin_left = 50
+
+[node name="PlayerMessageTemplate" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 20)
+layout_direction = 3
+layout_mode = 2
+theme = ExtResource("1_7sylp")
+fit_content = true

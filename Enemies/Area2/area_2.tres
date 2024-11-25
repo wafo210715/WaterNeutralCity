@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://d6hx31sf4xl2"]
+
+[ext_resource type="Script" path="res://Enemies/enemy_stats.gd" id="1_0612o"]
+
+[resource]
+script = ExtResource("1_0612o")
+max_quality = 100
+innitial_quality = 20
+max_quantity = 100
+innitial_quantity = 20
+max_popularity = 100
+innitial_popularity = 20

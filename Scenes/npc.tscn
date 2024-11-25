@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=3 uid="uid://c0qfj85dw6tia"]
+
+[ext_resource type="Script" path="res://Scenes/npc_manager.gd" id="1_w8r16"]
+[ext_resource type="Texture2D" uid="uid://bu32al6somhyd" path="res://Icons/Asset 1.png" id="1_wbnjs"]
+[ext_resource type="Theme" uid="uid://uiwyi6ckxojd" path="res://Themes/chat bubbles.tres" id="2_4gvjr"]
+[ext_resource type="Script" path="res://Scenes/talk_trigger.gd" id="2_pp76p"]
+[ext_resource type="Script" path="res://Scenes/dialogue_box.gd" id="3_pus8t"]
+[ext_resource type="Texture2D" uid="uid://cx7tnf83sow4w" path="res://Icons/Asset 5.png" id="4_bxu41"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_de0ta"]
+size = Vector2(52.75, 80)
+
+[node name="NPC" type="Node2D"]
+
+[node name="NPCManager" type="Node" parent="."]
+script = ExtResource("1_w8r16")
+
+[node name="TalkTrigger" type="Area2D" parent="."]
+position = Vector2(223, 519)
+script = ExtResource("2_pp76p")
+
+[node name="DimmerIcon" type="TextureRect" parent="TalkTrigger"]
+offset_left = -43.0
+offset_top = -51.0
+offset_right = 44.0
+offset_bottom = 51.0
+texture = ExtResource("1_wbnjs")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="BrighterIcon" type="TextureRect" parent="TalkTrigger"]
+visible = false
+offset_left = -43.0
+offset_top = -51.0
+offset_right = 44.0
+offset_bottom = 51.0
+texture = ExtResource("4_bxu41")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TalkTrigger"]
+position = Vector2(-7.375, 12)
+shape = SubResource("RectangleShape2D_de0ta")
+
+[node name="DialogueBox" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_pus8t")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DialogueBox"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 26.0
+offset_right = 423.0
+offset_bottom = 427.0
+
+[node name="ChatHistory" type="VBoxContainer" parent="DialogueBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 4
+
+[node name="ChatInputArea" type="HBoxContainer" parent="DialogueBox"]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 0
+offset_left = 21.0
+offset_top = 430.0
+offset_right = 423.0
+offset_bottom = 485.0
+size_flags_vertical = 10
+theme_override_constants/separation = 4
+
+[node name="QuestionInput" type="TextEdit" parent="DialogueBox/ChatInputArea"]
+custom_minimum_size = Vector2(338, 0)
+layout_mode = 2
+theme = ExtResource("2_4gvjr")
+wrap_mode = 1
+
+[node name="ChatButton" type="Button" parent="DialogueBox/ChatInputArea"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme = ExtResource("2_4gvjr")
+text = "CHAT"
+
+[connection signal="pressed" from="DialogueBox/ChatInputArea/ChatButton" to="DialogueBox" method="_on_chat_button_pressed"]

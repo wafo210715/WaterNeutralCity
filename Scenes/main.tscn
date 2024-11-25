@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b33k26qebuwpu"]
+[gd_scene load_steps=16 format=3 uid="uid://b33k26qebuwpu"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_cqk0h"]
 [ext_resource type="Script" path="res://Cards/hand.gd" id="2_36bfw"]
@@ -10,9 +10,7 @@
 [ext_resource type="Script" path="res://Scenes/player_handler.gd" id="5_wyg3o"]
 [ext_resource type="PackedScene" uid="uid://mv3o0wojyv34" path="res://Scenes/policy_tooltip.tscn" id="6_15x1w"]
 [ext_resource type="PackedScene" uid="uid://cifqpawchfhpb" path="res://TurnManagement/season_ui.tscn" id="10_87ptg"]
-[ext_resource type="Theme" uid="uid://uiwyi6ckxojd" path="res://Themes/chat bubbles.tres" id="11_3v77o"]
-[ext_resource type="Texture2D" uid="uid://bu32al6somhyd" path="res://Icons/Asset 1.png" id="11_i3pr7"]
-[ext_resource type="Theme" uid="uid://onsxch270sc4" path="res://Themes/npc bubbles.tres" id="13_05edw"]
+[ext_resource type="PackedScene" uid="uid://c0qfj85dw6tia" path="res://Scenes/npc.tscn" id="11_yl4ak"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hfe8f"]
 size = Vector2(179, 265)
@@ -28,9 +26,6 @@ point_count = 3
 min_value = -1.0
 _data = [Vector2(0, -0.5), 0.0, 3.0, 0, 0, Vector2(0.5, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 3.0, 0.0, 0, 0]
 point_count = 3
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_de0ta"]
-size = Vector2(52.75, 80)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_cqk0h")
@@ -125,83 +120,7 @@ offset_bottom = 1052.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="NPC" type="Node2D" parent="."]
-
-[node name="NPCManager" type="Node" parent="NPC"]
-
-[node name="TalkTrigger" type="Area2D" parent="NPC"]
-position = Vector2(223, 519)
-
-[node name="TextureRect" type="TextureRect" parent="NPC/TalkTrigger"]
-offset_left = -43.0
-offset_top = -51.0
-offset_right = 44.0
-offset_bottom = 51.0
-texture = ExtResource("11_i3pr7")
-expand_mode = 3
-stretch_mode = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/TalkTrigger"]
-position = Vector2(-7.375, 12)
-shape = SubResource("RectangleShape2D_de0ta")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="NPC"]
-offset_left = 21.0
-offset_top = 26.0
-offset_right = 423.0
-offset_bottom = 427.0
-
-[node name="ChatHistory" type="VBoxContainer" parent="NPC/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 4
-
-[node name="PlayerMarginContainer" type="MarginContainer" parent="NPC/ScrollContainer/ChatHistory"]
-layout_mode = 2
-theme_override_constants/margin_left = 50
-
-[node name="PlayerMessageTemplate" type="RichTextLabel" parent="NPC/ScrollContainer/ChatHistory/PlayerMarginContainer"]
-custom_minimum_size = Vector2(0, 20)
-layout_direction = 3
-layout_mode = 2
-theme = ExtResource("11_3v77o")
-text = "What do you know about area1? is this area short of water? how is the water quality here??"
-fit_content = true
-
-[node name="NPCMarginContainer" type="MarginContainer" parent="NPC/ScrollContainer/ChatHistory"]
-layout_mode = 2
-theme_override_constants/margin_right = 64
-
-[node name="NPCMessageTemplate" type="RichTextLabel" parent="NPC/ScrollContainer/ChatHistory/NPCMarginContainer"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-size_flags_vertical = 8
-theme = ExtResource("13_05edw")
-text = "What do you know about area1? is this area short of water? how is the water quality here??"
-fit_content = true
-
-[node name="ChatInputArea" type="HBoxContainer" parent="NPC"]
-custom_minimum_size = Vector2(0, 55)
-offset_left = 21.0
-offset_top = 430.0
-offset_right = 423.0
-offset_bottom = 485.0
-size_flags_vertical = 10
-theme_override_constants/separation = 4
-
-[node name="QuestionInput" type="TextEdit" parent="NPC/ChatInputArea"]
-custom_minimum_size = Vector2(338, 0)
-layout_mode = 2
-theme = ExtResource("11_3v77o")
-placeholder_text = "What do you know about area1? is this area short of water? how is the water quality here??"
-wrap_mode = 1
-
-[node name="ChatButton" type="Button" parent="NPC/ChatInputArea"]
-custom_minimum_size = Vector2(60, 0)
-layout_mode = 2
-theme = ExtResource("11_3v77o")
-text = "CHAT"
+[node name="NPC" parent="." instance=ExtResource("11_yl4ak")]
 
 [connection signal="body_entered" from="DiscardArea" to="." method="_on_discard_area_body_entered"]
 [connection signal="pressed" from="DrawPolicyCardButton" to="." method="_on_draw_policy_card_button_pressed"]
