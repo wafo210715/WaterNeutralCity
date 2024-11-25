@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://cqif1q3v56xmq"]
+
+[ext_resource type="Script" path="res://CardPile/card.gd" id="1_1eps8"]
+
+[resource]
+script = ExtResource("1_1eps8")
+id = "Industrial Growth"
+type = 2
+target_issue = 2
+funding = 4
+favorite_season = 4
+water_quality = -20
+water_quantity = -20
+popularity = 10

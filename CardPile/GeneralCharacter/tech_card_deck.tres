@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CardPile" load_steps=10 format=3 uid="uid://kqibu8kgufq6"]
+
+[ext_resource type="Script" path="res://CardPile/card.gd" id="1_bg67l"]
+[ext_resource type="Script" path="res://CardPile/card_pile.gd" id="2_4qkar"]
+[ext_resource type="Resource" uid="uid://cs5fy3bftnbud" path="res://CardPile/GeneralCharacter/Tech/tech_agroforestry.tres" id="2_b05t6"]
+[ext_resource type="Resource" uid="uid://b4fivcic8p4lc" path="res://CardPile/GeneralCharacter/Tech/tech_biobed.tres" id="3_qbm6s"]
+[ext_resource type="Resource" uid="uid://cfw21d2us1yxd" path="res://CardPile/GeneralCharacter/Tech/tech_gi_enhancement.tres" id="4_xlncu"]
+[ext_resource type="Resource" uid="uid://b08vxlb1j13cs" path="res://CardPile/GeneralCharacter/Tech/tech_sludge.tres" id="5_hcjma"]
+[ext_resource type="Resource" uid="uid://d1pqqajux5j4a" path="res://CardPile/GeneralCharacter/Tech/tech_water_recycle.tres" id="6_7waqr"]
+[ext_resource type="Resource" uid="uid://b0c2k53pivssr" path="res://CardPile/GeneralCharacter/Tech/tech_wetland_restore.tres" id="7_g6wka"]
+[ext_resource type="Resource" uid="uid://dkledq7ui0mys" path="res://CardPile/GeneralCharacter/Tech/tech_wwtw.tres" id="8_i46ca"]
+
+[resource]
+script = ExtResource("2_4qkar")
+cards = Array[ExtResource("1_bg67l")]([ExtResource("2_b05t6"), ExtResource("2_b05t6"), ExtResource("2_b05t6"), ExtResource("2_b05t6"), ExtResource("2_b05t6"), ExtResource("3_qbm6s"), ExtResource("3_qbm6s"), ExtResource("3_qbm6s"), ExtResource("3_qbm6s"), ExtResource("3_qbm6s"), ExtResource("4_xlncu"), ExtResource("4_xlncu"), ExtResource("4_xlncu"), ExtResource("4_xlncu"), ExtResource("4_xlncu"), ExtResource("4_xlncu"), ExtResource("5_hcjma"), ExtResource("5_hcjma"), ExtResource("5_hcjma"), ExtResource("5_hcjma"), ExtResource("5_hcjma"), ExtResource("6_7waqr"), ExtResource("6_7waqr"), ExtResource("6_7waqr"), ExtResource("6_7waqr"), ExtResource("6_7waqr"), ExtResource("7_g6wka"), ExtResource("7_g6wka"), ExtResource("7_g6wka"), ExtResource("7_g6wka"), ExtResource("7_g6wka"), ExtResource("8_i46ca"), ExtResource("8_i46ca"), ExtResource("8_i46ca"), ExtResource("8_i46ca"), ExtResource("8_i46ca"), ExtResource("2_b05t6"), ExtResource("3_qbm6s"), ExtResource("4_xlncu"), ExtResource("6_7waqr")])

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://tcctu00s5ek2"]
+
+[ext_resource type="Script" path="res://CardPile/card.gd" id="1_hxoef"]
+
+[resource]
+script = ExtResource("1_hxoef")
+id = "Community Infrasructure Levy"
+type = 0
+target_issue = 3
+funding = 3
+favorite_season = 4
+water_quality = 10
+water_quantity = 10

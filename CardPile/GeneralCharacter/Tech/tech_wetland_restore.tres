@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://b0c2k53pivssr"]
+
+[ext_resource type="Script" path="res://CardPile/card.gd" id="1_smjtr"]
+
+[resource]
+script = ExtResource("1_smjtr")
+id = "Wetland Restoration"
+type = 1
+target_issue = 2
+funding = -2
+favorite_season = 4
+water_quality = 20
+water_quantity = 20

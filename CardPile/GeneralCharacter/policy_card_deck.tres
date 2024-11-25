@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardPile" load_steps=7 format=3 uid="uid://cxq4ektwcslgl"]
+
+[ext_resource type="Script" path="res://CardPile/card.gd" id="1_6ioh7"]
+[ext_resource type="Resource" uid="uid://tcctu00s5ek2" path="res://CardPile/GeneralCharacter/Policy/policy_ci_pevy.tres" id="2_vrsvt"]
+[ext_resource type="Resource" uid="uid://y5xrnsoq51xh" path="res://CardPile/GeneralCharacter/Policy/policy_cpsg.tres" id="3_lupcm"]
+[ext_resource type="Resource" uid="uid://b5idv1btw75my" path="res://CardPile/GeneralCharacter/Policy/policy_local_river_trust.tres" id="4_ww65u"]
+[ext_resource type="Resource" uid="uid://x2ud0bhuys4k" path="res://CardPile/GeneralCharacter/Policy/policy_stop_bnb.tres" id="5_oagxa"]
+[ext_resource type="Script" path="res://CardPile/card_pile.gd" id="6_en0lu"]
+
+[resource]
+script = ExtResource("6_en0lu")
+cards = Array[ExtResource("1_6ioh7")]([ExtResource("2_vrsvt"), ExtResource("2_vrsvt"), ExtResource("2_vrsvt"), ExtResource("2_vrsvt"), ExtResource("3_lupcm"), ExtResource("3_lupcm"), ExtResource("3_lupcm"), ExtResource("3_lupcm"), ExtResource("4_ww65u"), ExtResource("4_ww65u"), ExtResource("4_ww65u"), ExtResource("4_ww65u"), ExtResource("5_oagxa"), ExtResource("5_oagxa"), ExtResource("5_oagxa"), ExtResource("5_oagxa")])

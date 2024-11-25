@@ -1,5 +1,7 @@
 extends CardState
 
+
+
 func enter():
 	# Set the card to follow the mouse
 	card_ui.following_mouse = true
@@ -10,6 +12,7 @@ func _process(delta: float) -> void:
 	# Update position and rotation while dragging
 	card_ui.follow_mouse(delta)
 	card_ui.rotate_velocity(delta)
+	card_ui.handle_shadow(delta)
 
 
 func exit():

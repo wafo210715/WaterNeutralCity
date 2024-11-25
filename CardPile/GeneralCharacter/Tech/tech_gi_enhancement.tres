@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://cfw21d2us1yxd"]
+
+[ext_resource type="Script" path="res://CardPile/card.gd" id="1_rr64a"]
+
+[resource]
+script = ExtResource("1_rr64a")
+id = "Green Infrastructure Enhancement"
+type = 1
+target_issue = 2
+funding = -2
+favorite_season = 4
+water_quality = 20
+water_quantity = 20

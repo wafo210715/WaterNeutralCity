@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://ydmln65fuh5y"]
+
+[ext_resource type="Script" path="res://CardPile/card.gd" id="1_fji8h"]
+
+[resource]
+script = ExtResource("1_fji8h")
+id = "Tourism"
+type = 2
+target_issue = 2
+funding = 1
+favorite_season = 1
+water_quality = -20
+water_quantity = -20
+popularity = 0

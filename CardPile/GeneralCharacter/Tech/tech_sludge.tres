@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://b08vxlb1j13cs"]
+
+[ext_resource type="Script" path="res://CardPile/card.gd" id="1_5kdxf"]
+
+[resource]
+script = ExtResource("1_5kdxf")
+id = "Sludge"
+type = 1
+target_issue = 0
+funding = -2
+favorite_season = 4
+water_quality = 10
+water_quantity = 10

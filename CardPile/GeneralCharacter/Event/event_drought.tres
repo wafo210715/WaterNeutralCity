@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://b4gxwbfm18y6t"]
+
+[ext_resource type="Script" path="res://CardPile/card.gd" id="1_o8rem"]
+
+[resource]
+script = ExtResource("1_o8rem")
+id = "Drought"
+type = 2
+target_issue = 1
+funding = 0
+favorite_season = 1
+water_quality = -10
+water_quantity = -10
+popularity = -10

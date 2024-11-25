@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://cs5fy3bftnbud"]
+
+[ext_resource type="Script" path="res://CardPile/card.gd" id="1_6tnf2"]
+
+[resource]
+script = ExtResource("1_6tnf2")
+id = "Agroforestry"
+type = 1
+target_issue = 2
+funding = -2
+favorite_season = 4
+water_quality = 20
+water_quantity = 20

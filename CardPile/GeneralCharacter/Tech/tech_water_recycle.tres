@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://d1pqqajux5j4a"]
+
+[ext_resource type="Script" path="res://CardPile/card.gd" id="1_5qmfm"]
+
+[resource]
+script = ExtResource("1_5qmfm")
+id = "Water Recycle"
+type = 1
+target_issue = 1
+funding = -2
+favorite_season = 4
+water_quality = 10
+water_quantity = 10

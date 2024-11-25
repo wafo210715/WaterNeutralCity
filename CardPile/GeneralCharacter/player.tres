@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=4 format=3 uid="uid://bq488oaycntco"]
+
+[ext_resource type="Resource" uid="uid://cxq4ektwcslgl" path="res://CardPile/GeneralCharacter/policy_card_deck.tres" id="1_8nmo7"]
+[ext_resource type="Script" path="res://CardPile/player_stats.gd" id="1_orglc"]
+[ext_resource type="Resource" uid="uid://kqibu8kgufq6" path="res://CardPile/GeneralCharacter/tech_card_deck.tres" id="3_xpfxs"]
+
+[resource]
+script = ExtResource("1_orglc")
+max_funding = 10
+max_popularity = 100
+innitial_funding = 2
+innitial_popularity = 20
+max_policy_card = 1
+max_tech_card = 2
+policy_card_deck = ExtResource("1_8nmo7")
+tech_card_deck = ExtResource("3_xpfxs")

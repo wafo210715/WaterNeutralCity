@@ -4,8 +4,10 @@ extends Button
 signal reparent_requested(which_card_ui: CardUI)
 signal destroyed  # Define a signal to notify when the card is fully destroyed
 
-@export var angle_x_max: float = 15.0
-@export var angle_y_max: float = 15.0
+@export var card: Card
+
+@export var angle_x_max: float = 5.0
+@export var angle_y_max: float = 5.0
 @export var max_offset_shadow: float = 50.0
 
 @export_category("Oscillator")
@@ -17,6 +19,8 @@ signal destroyed  # Define a signal to notify when the card is fully destroyed
 @export var discard_area: Area2D
 
 const SIZE := Vector2(181,264)
+
+var parent_hand: Hand
 
 
 var displacement: float = 0.0
@@ -57,34 +61,47 @@ func _ready():
 	collision_shape_2d.set_deferred("disabled", true)
 
 
+# function for HOVER state 
+func pick_up_card():
+	# Check if a hover tween is already running and kill it if so
+	if tween_hover and tween_hover.is_running():
+		tween_hover.kill()
+	
+	# Create a new hover tween for scaling up
+	tween_hover = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	tween_hover.tween_property(self, "scale", Vector2(1.2, 1.2), 0.5)
+
+
+# function for HOVER state 
+func apply_hover_rotation(mouse_pos: Vector2):
+	# Calculate the lerp values based on the mouse position over the card
+	var lerp_val_x: float = remap(mouse_pos.x, 0.0, size.x, 0, 1)
+	var lerp_val_y: float = remap(mouse_pos.y, 0.0, size.y, 0, 1)
+
+	# Calculate target rotations for x and y based on the lerp values
+	var rot_x: float = rad_to_deg(lerp_angle(-angle_x_max, angle_x_max, lerp_val_x))
+	var rot_y: float = rad_to_deg(lerp_angle(angle_y_max, -angle_y_max, lerp_val_y))
+
+	# Apply the calculated rotations to the shader parameters
+	card_texture.material.set_shader_parameter("x_rot", rot_y)
+	card_texture.material.set_shader_parameter("y_rot", rot_x)
+
+
+# function for DRAGGING state
 func handle_shadow(delta: float) -> void:
 	var center: Vector2 = get_viewport_rect().size / 2.0
 	var distance: float = global_position.x - center.x
 	shadow.position.x = lerp(0.0, -sign(distance) * max_offset_shadow, abs(distance / center.x))
 
 
-func destroy() -> void:
-	card_texture.use_parent_material = true
-	if tween_destroy and tween_destroy.is_running():
-		tween_destroy.kill()
-	tween_destroy = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween_destroy.tween_property(material, "shader_parameter/dissolve_value", 0.0, 2.0).from(1.0)
-	tween_destroy.parallel().tween_property(shadow, "self_modulate:a", 0.0, 1.0)
-	
-	tween_destroy.finished.connect(func():
-		emit_signal("destroyed")
-		print("CardUI: destroyed")  # Print statement to confirm destruction
-		queue_free()  # Remove the card from the scene tree after destruction
-	)
-
-
+# function for DRAGGING state
 func follow_mouse(delta: float) -> void:
 	if not following_mouse: return
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	global_position = mouse_pos - (size/2.0)
 
 
-
+# function for DRAGGING state
 func rotate_velocity(delta: float) -> void:
 	if not following_mouse: return
 	var center_pos: Vector2 = global_position - (size/2.0)
@@ -103,6 +120,31 @@ func rotate_velocity(delta: float) -> void:
 	displacement += oscillator_velocity * delta
 	
 	rotation = displacement
+
+
+
+
+
+func destroy() -> void:
+	card_texture.use_parent_material = true
+	if tween_destroy and tween_destroy.is_running():
+		tween_destroy.kill()
+	tween_destroy = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween_destroy.tween_property(material, "shader_parameter/dissolve_value", 0.0, 2.0).from(1.0)
+	tween_destroy.parallel().tween_property(shadow, "self_modulate:a", 0.0, 1.0)
+	
+	tween_destroy.finished.connect(func():
+		emit_signal("destroyed")
+		print("CardUI: destroyed")  # Print statement to confirm destruction
+		queue_free()  # Remove the card from the scene tree after destruction
+	)
+
+
+
+
+
+
+
 
 
 func reset_transform():

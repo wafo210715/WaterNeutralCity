@@ -1,0 +1,98 @@
+[gd_scene load_steps=14 format=3 uid="uid://b00n43vvjy6w0"]
+
+[ext_resource type="Texture2D" uid="uid://b0d58oidv8kbe" path="res://Bar/Quality/over.png" id="1_hr5mf"]
+[ext_resource type="Texture2D" uid="uid://ca6noehcg8w8x" path="res://Bar/Quality/progres.png" id="2_bq7hf"]
+[ext_resource type="Texture2D" uid="uid://bydrf24vf8p4a" path="res://Bar/Quality/Asset 1.png" id="3_u8jes"]
+[ext_resource type="Texture2D" uid="uid://by78scjjm2fnx" path="res://Bar/Quantity/over.png" id="4_w0n5r"]
+[ext_resource type="Texture2D" uid="uid://qglatj7m840t" path="res://Bar/Quantity/progress.png" id="5_g0coh"]
+[ext_resource type="Texture2D" uid="uid://bwkr02habqfcb" path="res://Bar/Quantity/Asset 1.png" id="6_mm1yw"]
+[ext_resource type="Texture2D" uid="uid://bvbtm2iti8hjk" path="res://Bar/Popularity/over.png" id="7_ed33q"]
+[ext_resource type="Texture2D" uid="uid://ckey4resxa130" path="res://Bar/Popularity/progress.png" id="8_xux1n"]
+[ext_resource type="Texture2D" uid="uid://bruml4wfcexbu" path="res://Bar/Popularity/Happy.png" id="9_qmp1e"]
+[ext_resource type="Texture2D" uid="uid://da2wg65xx1xlj" path="res://Bar/Popularity/interesting.png" id="10_rqc1m"]
+[ext_resource type="Texture2D" uid="uid://c20y037jn87nh" path="res://Bar/Popularity/nah.png" id="11_rejth"]
+[ext_resource type="Texture2D" uid="uid://b5bi6or0fiotb" path="res://Bar/Popularity/dull.png" id="12_opdhl"]
+[ext_resource type="Texture2D" uid="uid://bvcd447jrosvh" path="res://Bar/Popularity/angry.png" id="13_nm37q"]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+offset_right = 105.0
+offset_bottom = 871.0
+theme_override_constants/separation = 20
+
+[node name="Quality" type="TextureProgressBar" parent="."]
+layout_mode = 2
+step = 10.0
+value = 90.0
+fill_mode = 3
+texture_over = ExtResource("1_hr5mf")
+texture_progress = ExtResource("2_bq7hf")
+
+[node name="QualityIcon" type="TextureRect" parent="Quality"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 753.0
+offset_right = 98.0
+offset_bottom = 862.0
+texture = ExtResource("3_u8jes")
+
+[node name="Quantity" type="TextureProgressBar" parent="."]
+layout_mode = 2
+step = 10.0
+value = 50.0
+fill_mode = 3
+texture_over = ExtResource("4_w0n5r")
+texture_progress = ExtResource("5_g0coh")
+
+[node name="QuantityIcon" type="TextureRect" parent="Quantity"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 752.0
+offset_right = 97.0
+offset_bottom = 862.0
+texture = ExtResource("6_mm1yw")
+
+[node name="Popularity" type="TextureProgressBar" parent="."]
+layout_mode = 2
+step = 10.0
+value = 90.0
+fill_mode = 3
+texture_over = ExtResource("7_ed33q")
+texture_progress = ExtResource("8_xux1n")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popularity"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = -14.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 120
+
+[node name="Happy" type="TextureRect" parent="Popularity/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("9_qmp1e")
+expand_mode = 5
+
+[node name="Interestin" type="TextureRect" parent="Popularity/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_rqc1m")
+expand_mode = 5
+
+[node name="Nah" type="TextureRect" parent="Popularity/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("11_rejth")
+expand_mode = 5
+
+[node name="Unhappy" type="TextureRect" parent="Popularity/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("12_opdhl")
+expand_mode = 5
+
+[node name="Angry" type="TextureRect" parent="Popularity/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("13_nm37q")
+expand_mode = 5

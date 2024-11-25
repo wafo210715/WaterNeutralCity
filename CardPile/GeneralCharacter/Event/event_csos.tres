@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://byugotbfgecrk"]
+
+[ext_resource type="Script" path="res://CardPile/card.gd" id="1_2phms"]
+
+[resource]
+script = ExtResource("1_2phms")
+id = "Combined Sewage Overflows"
+type = 2
+target_issue = 0
+funding = 0
+favorite_season = 3
+water_quality = -10
+water_quantity = 0
+popularity = -10
