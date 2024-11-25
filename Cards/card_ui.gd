@@ -1,0 +1,41 @@
+class_name CardUI
+extends Button
+
+signal reparent_requested(which_card_ui: CardUI)
+
+const SIZE := Vector2(181,264)
+
+@onready var card_texture: TextureRect = $CardTexture
+@onready var shadow: TextureRect = $Shadow
+@onready var drop_point_detector: Area2D = $DropPointDetector
+
+@onready var card_state_machine: CardStateMachine = $CardStateMachine as CardStateMachine
+@onready var targets: Array[Node] = []
+
+func _ready():
+	card_state_machine.init(self)
+
+
+func _input(event: InputEvent):
+	card_state_machine.on_input(event)
+
+
+func _on_gui_input(event: InputEvent):
+	card_state_machine.on_gui_input(event)
+
+
+func _on_mouse_entered():
+	card_state_machine.on_mouse_entered()
+
+
+func _on_mouse_exited():
+	card_state_machine.on_mouse_exited()
+
+
+func _on_drop_point_detector_area_entered(area: Area2D) -> void:
+	if not targets.has(area):
+		targets.append(area)
+
+
+func _on_drop_point_detector_area_exited(area: Area2D) -> void:
+	targets.erase(area)

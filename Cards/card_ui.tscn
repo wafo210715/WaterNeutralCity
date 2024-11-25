@@ -1,0 +1,119 @@
+[gd_scene load_steps=21 format=3 uid="uid://id68gffwgqmq"]
+
+[ext_resource type="Shader" path="res://Themes/shaders/dissolve.gdshader" id="1_r1xj6"]
+[ext_resource type="Texture2D" uid="uid://dbtypman3k585" path="res://Cards/Policy/Policy_Community Infrastructure Levy_画板 1.png" id="2_1qabg"]
+[ext_resource type="Script" path="res://Cards/card_ui.gd" id="2_l3ts8"]
+[ext_resource type="Material" uid="uid://v3336p6jkcgf" path="res://Themes/resources/grayscale_shader_material.tres" id="4_6aio8"]
+[ext_resource type="Script" path="res://Cards/card_state_machine.gd" id="4_i426q"]
+[ext_resource type="Script" path="res://Cards/CardStates/base.gd" id="5_s80rf"]
+[ext_resource type="Script" path="res://Cards/CardStates/hover.gd" id="6_dj5ap"]
+[ext_resource type="Script" path="res://Cards/CardStates/clicked.gd" id="7_6qjgp"]
+[ext_resource type="Script" path="res://Cards/CardStates/dragging.gd" id="8_wrncb"]
+[ext_resource type="Script" path="res://Cards/CardStates/aiming.gd" id="9_2d1qd"]
+[ext_resource type="Script" path="res://Cards/CardStates/released.gd" id="10_7grre"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i7jhy"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_svxdg"]
+noise = SubResource("FastNoiseLite_i7jhy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lhsbq"]
+shader = ExtResource("1_r1xj6")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/burn_size = 0.02
+shader_parameter/burn_color = Color(0.940647, 0.471649, 0, 1)
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_svxdg")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fp4o7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qe2pt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4rrca"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mpl40"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0unri"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_32h4j"]
+size = Vector2(181, 264)
+
+[node name="CardUI" type="Button"]
+material = SubResource("ShaderMaterial_lhsbq")
+custom_minimum_size = Vector2(181, 264)
+offset_right = 8.0
+offset_bottom = 8.0
+pivot_offset = Vector2(90, 132)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fp4o7")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_qe2pt")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_4rrca")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_mpl40")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0unri")
+script = ExtResource("2_l3ts8")
+
+[node name="Shadow" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0.776471)
+self_modulate = Color(1, 1, 1, 0.270588)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1qabg")
+expand_mode = 1
+
+[node name="CardTexture" type="TextureRect" parent="."]
+material = ExtResource("4_6aio8")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1qabg")
+expand_mode = 1
+
+[node name="DropPointDetector" type="Area2D" parent="."]
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DropPointDetector"]
+position = Vector2(90.5, 132)
+shape = SubResource("RectangleShape2D_32h4j")
+disabled = true
+debug_color = Color(0, 0.6, 0.701961, 0.227451)
+
+[node name="CardStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_i426q")
+initial_state = NodePath("Base")
+
+[node name="Base" type="Node" parent="CardStateMachine"]
+script = ExtResource("5_s80rf")
+
+[node name="Hover" type="Node" parent="CardStateMachine"]
+script = ExtResource("6_dj5ap")
+state = 1
+
+[node name="Clicked" type="Node" parent="CardStateMachine"]
+script = ExtResource("7_6qjgp")
+state = 2
+
+[node name="Dragging" type="Node" parent="CardStateMachine"]
+script = ExtResource("8_wrncb")
+state = 3
+
+[node name="Aiming" type="Node" parent="CardStateMachine"]
+script = ExtResource("9_2d1qd")
+state = 4
+
+[node name="Released" type="Node" parent="CardStateMachine"]
+script = ExtResource("10_7grre")
+state = 5
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="area_entered" from="DropPointDetector" to="." method="_on_drop_point_detector_area_entered"]
+[connection signal="area_exited" from="DropPointDetector" to="." method="_on_drop_point_detector_area_exited"]
