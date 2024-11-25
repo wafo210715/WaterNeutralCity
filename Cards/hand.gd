@@ -17,7 +17,8 @@ var cards_played_this_turn := 0
 @export var y_min := 0
 @export var y_max := -15
 
-@export var max_cards_in_hand := 4 # Set the maximum number of cards allowed in hand
+
+
 
 @export var player_stats : PlayerStats
 
@@ -30,28 +31,46 @@ func _ready() -> void:
 	Events.card_played.connect(_on_card_played)
 
 
-# add a card as the hand's child
+
+# Add a card as the hand's child
 func add_card(card: Card) -> void:
-	# Count only cards that are not marked as `used`
-	var active_card_count = 0
+	var active_policy_count = 0
+	var active_tech_count = 0
+
+	# Count the number of active (not used) policy and tech cards in hand
 	for child in get_children():
 		if child is CardUI and not child.used:
-			active_card_count += 1
-	
-	
-	if active_card_count >= max_cards_in_hand:
-		print("Hand is full, cannot add more cards.")
-		return
+			if child.card.type == Card.Type.POLICY:
+				active_policy_count += 1
+			elif child.card.type == Card.Type.TECH:
+				active_tech_count += 1
+
+	# Check if we have reached the limits for policy or tech cards
+	if card.type == Card.Type.POLICY: 
+		if TurnManager.policy_cards_drawn_this_round >= TurnManager.max_policy_cards_in_hand:
+			print("Hand is full for policy cards, cannot add more policy cards.")
+			return
+		TurnManager.policy_cards_drawn_this_round += 1
 		
+	elif card.type == Card.Type.TECH:
+		if TurnManager.tech_cards_drawn_this_round >= TurnManager.max_tech_cards_in_hand:
+			print("Hand is full for tech cards, cannot add more tech cards.")
+			return
+		TurnManager.tech_cards_drawn_this_round += 1
+
+	# Instantiate and add the card to the hand
 	var new_card_ui = card_ui.instantiate()
 	add_child(new_card_ui)
 	new_card_ui.set_original_position_and_rotation()  # Set initial position and rotation
 	new_card_ui.reparent_requested.connect(_on_card_ui_reparent_requested)
 	new_card_ui.card = card
-	# new_card_ui.parent = self
 	new_card_ui.player_stats = player_stats
-	new_card_ui.connect("destroyed", Callable(self, "_on_card_destroyed")) # Connect to destroyed signal for layout update
+	new_card_ui.connect("destroyed", Callable(self, "_on_card_destroyed"))  # Connect to destroyed signal
 	_update_cards()
+
+
+
+
 
 
 # Update layout and position after a card is destroyed
@@ -63,6 +82,22 @@ func _on_card_destroyed():
 
 func _on_card_played(_card: Card) -> void:
 	cards_played_this_turn += 1
+
+
+# Returns the number of unused policy and tech cards in hand
+func get_unused_card_counts() -> Dictionary:
+	var unused_policy_count = 0
+	var unused_tech_count = 0
+
+	# Iterate through all children (cards) in the hand
+	for child in get_children():
+		if child is CardUI and not child.used:
+			if child.card.type == Card.Type.POLICY:
+				unused_policy_count += 1
+			elif child.card.type == Card.Type.TECH:
+				unused_tech_count += 1
+
+	return {"policy": unused_policy_count, "tech": unused_tech_count}
 
 
 

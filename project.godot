@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="game_version_19"
+config/name="game_version_20"
 run/main_scene="res://Scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Events="*res://Global/events.gd"
 SeasonManager="*res://TurnManagement/season_manager.gd"
+TurnManager="*res://TurnManagement/turn_manager.gd"
 
 [display]
 

@@ -29,6 +29,23 @@ func enter():
 		
 		elif target.name == "Area1":
 			print("Attempting to play card:", card_ui.name)
+			
+			# Check play limits in TurnManager
+			if card_ui.card.type == Card.Type.POLICY:
+				if TurnManager.policy_cards_played_this_round >= TurnManager.max_policy_cards_playable:
+					print("Policy card play limit reached.")
+					snap_back_to_hand()
+					return
+				TurnManager.policy_cards_played_this_round += 1
+				
+			if card_ui.card.type == Card.Type.TECH:
+				if TurnManager.tech_cards_played_this_round >= TurnManager.max_tech_cards_playable:
+					print("Tech card play limit reached.")
+					snap_back_to_hand()
+					return
+				TurnManager.tech_cards_played_this_round += 1
+			
+			# Play the card and update the play counters
 			if card_ui.play():
 				print("Card played successfully:", card_ui.name)
 				played = true

@@ -53,6 +53,17 @@ func update_season_ui() -> void:
 
 
 func _on_next_season_button_pressed() -> void:
+	var unused_counts = hand.get_unused_card_counts()
+	var unused_policy_count = unused_counts["policy"]
+	var unused_tech_count = unused_counts["tech"]
+
+	# Check if the player has more than 1 unused policy or tech card
+	if unused_policy_count > 1 or unused_tech_count > 1:
+		print("You have more than 1 unused policy card or more than 1 unused tech card. Please discard extra cards.")
+		return
+
+	# If the condition is met, reset the turn and proceed to the next season
+	TurnManager.reset_turn()
 	# Call the next_season function in SeasonManager when the button is pressed
 	SeasonManager.next_season()
 
