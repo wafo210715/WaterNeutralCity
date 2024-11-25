@@ -1,6 +1,6 @@
 extends CardState
 
-
+var current_target: Node = null  # Keep track of the currently hovered target area
 
 func enter():
 	# Disable input on all other cards while dragging
@@ -21,6 +21,21 @@ func _process(delta: float) -> void:
 	card_ui.rotate_velocity(delta)
 	card_ui.handle_shadow(delta)
 	
+	# Check for hovering over a target area
+	if card_ui.targets.size() > 0:
+		var target = card_ui.targets[0]
+		if target != current_target:
+			# New target detected, start simulation
+			current_target = target
+			Events.simulation_started.emit(card_ui.card, current_target)
+			card_ui.simulate()  # Call the simulate function in card_ui.gd
+			print("Simulation started for target:", current_target.name)
+	elif current_target != null:
+		# No valid target, end simulation
+		Events.simulation_ended.emit()
+		print("Simulation ended for target:", current_target.name)
+		current_target = null
+
 
 
 func exit():
@@ -35,6 +50,12 @@ func exit():
 		card_ui.tween_rot.kill()
 	# Reset scale if needed
 	card_ui.reset_scale()
+	
+	# End simulation if it is still active
+	if current_target != null:
+		Events.simulation_ended.emit()
+		print("Simulation ended for target:", current_target.name)
+		current_target = null
 
 
 

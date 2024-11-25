@@ -51,8 +51,30 @@ func play(targets: Array[Node], player_stats: PlayerStats) -> bool:
 	return true
 
 
-
-
-
 func apply_effects(_targets: Array[Node]):
+	pass
+
+
+# Simulate the effects of the card on an array of targets
+func simulate_effects(targets: Array[Node]):
+	print("Card: Simulate effects called for card ID:", id)
+
+	if targets.size() > 0:
+		var tree := targets[0].get_tree()  # Access the scene tree
+		var area1_nodes = tree.get_nodes_in_group("area1")  # Find nodes in "area1" group
+		
+		if area1_nodes.size() > 0:
+			print("Simulating effects on area1 nodes for card ID:", id)
+			print("Simulating for targets:", targets)
+			print("Targets in area1 group:", area1_nodes)
+
+			simulate_individual_effects(area1_nodes)  # Simulate effects on area1 nodes
+
+	simulate_individual_effects(targets)  # Simulate effects on general targets
+	print("Simulation successful for card ID:", id, "Targets:", targets)
+
+
+
+# To be overridden for specific card simulation behavior
+func simulate_individual_effects(_targets: Array[Node]):
 	pass

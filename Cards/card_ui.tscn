@@ -229,7 +229,6 @@ disabled = true
 
 [node name="DropPointDetector" type="Area2D" parent="."]
 collision_mask = 4
-monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DropPointDetector"]
 position = Vector2(90.5, 132)

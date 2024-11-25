@@ -10,3 +10,10 @@ func execute(targets: Array[Node]):
 			continue
 		if target is Area1:
 			target.popularity_changed(amount)
+
+func simulate(targets: Array[Node]):
+	for target in targets:
+		if not target:
+			continue
+		if target is Area1:
+			target.simulate_popularity(amount)  # UI-only simulation

@@ -253,6 +253,9 @@ func _on_gui_input(event: InputEvent):
 	card_state_machine.on_gui_input(event)
 
 
+
+
+
 func _on_mouse_entered():
 	card_state_machine.on_mouse_entered()
 
@@ -271,6 +274,20 @@ func play() -> bool:
 	var result = card.play(targets, player_stats)
 	print("CardUI play result for", name, ":", result)
 	return result
+
+
+func simulate():
+	if not card:
+		print("Error: Card data is missing for:", name)
+		return
+
+	if targets.size() == 0:
+		print("CardUI: No targets available for simulation.")
+		return
+
+	# Pass targets to simulate_effects
+	print("CardUI: Simulating effects for card:", name, "on targets:", targets)
+	card.simulate_effects(targets)
 
 
 
