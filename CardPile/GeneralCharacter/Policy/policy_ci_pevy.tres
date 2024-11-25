@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://tcctu00s5ek2"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://tcctu00s5ek2"]
 
+[ext_resource type="Script" path="res://CardEffect/Policy/ci_levy.gd" id="1_4recs"]
 [ext_resource type="Texture2D" uid="uid://dbtypman3k585" path="res://Cards/Policy/Policy_Community Infrastructure Levy_画板 1.png" id="1_a8otm"]
-[ext_resource type="Script" path="res://CardPile/card.gd" id="1_hxoef"]
 
 [resource]
-script = ExtResource("1_hxoef")
+script = ExtResource("1_4recs")
 id = "Community Infrasructure Levy"
 type = 0
 target_issue = 3

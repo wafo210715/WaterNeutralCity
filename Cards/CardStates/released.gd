@@ -15,6 +15,8 @@ func enter():
 	if card_ui.targets.size() > 0:
 		Events.tooltip_hide_requested.emit()
 		card_ui.card_stats.visible = false
+		card_ui.card_stats_tech.visible = false
+		card_ui.h_box_container.visible = false
 		card_ui.stats_shadow.visible = false
 		card_ui.shadow.visible = false
 		

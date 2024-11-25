@@ -9,10 +9,18 @@ func enter():
 		previous_hovered_card.shadow.visible = false
 		previous_hovered_card.stats_shadow.visible = false
 		previous_hovered_card.card_stats.visible = false
+		previous_hovered_card.card_stats_tech.visible = false
+		previous_hovered_card.h_box_container.visible = false
 
 	card_ui.shadow.visible = true
 	card_ui.stats_shadow.visible = true
-	card_ui.card_stats.visible = true
+	card_ui.h_box_container.visible = true
+	if card_ui.card.type == Card.Type.POLICY:
+		card_ui.card_stats.visible = true
+		card_ui.card_stats_tech.visible = false
+	elif card_ui.card.type == Card.Type.TECH:
+		card_ui.card_stats.visible = false
+		card_ui.card_stats_tech.visible = true
 
 	card_ui.pick_up_card()
 	card_ui.z_index = 100  # Bring the hovered card to the front

@@ -58,7 +58,9 @@ var used: bool = false  # Flag to track if the card has been played
 @onready var card_texture: TextureRect = $CardTexture
 @onready var shadow: TextureRect = $Shadow
 @onready var card_stats: TextureRect = $CardStats
+@onready var card_stats_tech: TextureRect = $CardStatsTech
 @onready var stats_shadow: TextureRect = $StatsShadow
+@onready var h_box_container: HBoxContainer = $HBoxContainer
 
 
 

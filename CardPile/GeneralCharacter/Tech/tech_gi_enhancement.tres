@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://cfw21d2us1yxd"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cfw21d2us1yxd"]
 
 [ext_resource type="Texture2D" uid="uid://c0vt3v2xunp8l" path="res://Cards/Tech/Tech_Green Infrastructure Enhancement_画板 1.png" id="1_dir08"]
-[ext_resource type="Script" path="res://CardPile/card.gd" id="1_rr64a"]
+[ext_resource type="Script" path="res://CardEffect/Tech/gi_enhancement.gd" id="1_kyjjh"]
 
 [resource]
-script = ExtResource("1_rr64a")
+script = ExtResource("1_kyjjh")
 id = "Green Infrastructure Enhancement"
 type = 1
 target_issue = 2

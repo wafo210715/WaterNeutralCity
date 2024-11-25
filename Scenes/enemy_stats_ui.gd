@@ -13,57 +13,68 @@ extends HBoxContainer
 @onready var unhappy: TextureRect = %Unhappy
 @onready var angry: TextureRect = %Angry
 
-# Temporary simulation changes
+# Track permanent and simulated changes
+var permanent_quality: int = 0
+var permanent_quantity: int = 0
+var permanent_popularity: int = 0
+
 var quality_simulated: int = 0
 var quantity_simulated: int = 0
 var popularity_simulated: int = 0
 
 
+# Update permanent stats
 func update_stats(stats: EnemyStats):
-	quality.value = stats.quality
-	quantity.value = stats.quantity
-	popularity.value = stats.popularity
-	
-	angry.visible = stats.popularity > 0
-	unhappy.visible = stats.popularity > 20
-	nah.visible = stats.popularity >40
-	interestin.visible = stats.popularity >60
-	happy.visible = stats.popularity > 80
+	permanent_quality = stats.quality
+	permanent_quantity = stats.quantity
+	permanent_popularity = stats.popularity
 
+	_apply_stats_to_ui()
+	print("Permanent stats updated: Quality:", permanent_quality, "Quantity:", permanent_quantity, "Popularity:", permanent_popularity)
+
+
+# Simulate quality change
 func simulate_quality(amount: int):
 	quality_simulated += amount
-	quality.value = clamp(quality.value + amount, 0, quality.max_value)
-	print("Simulating quality. Current value:", quality.value)
+	_apply_stats_to_ui()
+	print("Simulating quality. Current simulated value:", quality_simulated)
 
+# Simulate quantity change
 func simulate_quantity(amount: int):
 	quantity_simulated += amount
-	quantity.value = clamp(quantity.value + amount, 0, quantity.max_value)
-	print("Simulating quantity. Current value:", quantity.value)
+	_apply_stats_to_ui()
+	print("Simulating quantity. Current simulated value:", quantity_simulated)
 
-# Temporarily simulate popularity change
+# Simulate popularity change
 func simulate_popularity(amount: int):
 	popularity_simulated += amount
-	popularity.value = clamp(popularity.value + amount, 0, popularity.max_value)
-	print("Simulating popularity. Current value:", popularity.value)
+	_apply_stats_to_ui()
+	print("Simulating popularity. Current simulated value:", popularity_simulated)
 
-	# Update icons based on simulated popularity
+
+# Reset only the simulated changes
+func reset_simulation():
+	quality_simulated = 0
+	quantity_simulated = 0
+	popularity_simulated = 0
+	_apply_stats_to_ui()
+	print("Simulation reset. Stats UI back to permanent values.")
+
+
+# Apply both permanent and simulated stats to the UI
+func _apply_stats_to_ui():
+	quality.value = permanent_quality + quality_simulated
+	quantity.value = permanent_quantity + quantity_simulated
+	popularity.value = permanent_popularity + popularity_simulated
+
+	# Update icons based on the final value (permanent + simulated)
+	_update_icons()
+
+
+# Update icons based on popularity thresholds
+func _update_icons():
 	angry.visible = popularity.value > 0
 	unhappy.visible = popularity.value > 20
 	nah.visible = popularity.value > 40
 	interestin.visible = popularity.value > 60
 	happy.visible = popularity.value > 80
-
-func reset_simulation():
-	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
-
-	tween.tween_property(quality, "value", quality.value - quality_simulated, 0.5)
-	tween.tween_property(quantity, "value", quantity.value - quantity_simulated, 0.5)
-	tween.tween_property(popularity, "value", popularity.value - popularity_simulated, 0.5)
-
-	# Reset simulation counters after tween completes
-	tween.finished.connect(func():
-		quality_simulated = 0
-		quantity_simulated = 0
-		popularity_simulated = 0
-		print("Simulation UI reset completed.")
-	)

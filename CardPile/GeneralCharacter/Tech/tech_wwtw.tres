@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://dkledq7ui0mys"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dkledq7ui0mys"]
 
-[ext_resource type="Script" path="res://CardPile/card.gd" id="1_a66s0"]
+[ext_resource type="Script" path="res://CardEffect/Tech/wwtw.gd" id="1_38ewq"]
 [ext_resource type="Texture2D" uid="uid://bc2jr4imbj2ct" path="res://Cards/Tech/Tech_WWTW_画板 1.png" id="1_kcbsb"]
 
 [resource]
-script = ExtResource("1_a66s0")
+script = ExtResource("1_38ewq")
 id = "Waste Water Treatment Works"
 type = 1
 target_issue = 0

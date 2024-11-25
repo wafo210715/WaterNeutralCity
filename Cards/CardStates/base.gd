@@ -7,6 +7,8 @@ func enter():
 	card_ui.shadow.visible = false
 	card_ui.stats_shadow.visible = false
 	card_ui.card_stats.visible = false
+	card_ui.card_stats_tech.visible = false
+	card_ui.h_box_container.visible = false
 	# card_ui.pivot_offset = Vector2.ZERO
 	# set_process(true)
 	# Events.tooltip_hide_requested.emit()

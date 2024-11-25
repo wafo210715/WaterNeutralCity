@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://b08vxlb1j13cs"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://b08vxlb1j13cs"]
 
-[ext_resource type="Script" path="res://CardPile/card.gd" id="1_5kdxf"]
 [ext_resource type="Texture2D" uid="uid://dyl5rf2vbj4r8" path="res://Cards/Tech/Tech_Sludge_画板 1.png" id="1_8qqoa"]
+[ext_resource type="Script" path="res://CardEffect/Tech/sludge.gd" id="1_wc74y"]
 
 [resource]
-script = ExtResource("1_5kdxf")
+script = ExtResource("1_wc74y")
 id = "Sludge"
 type = 1
 target_issue = 0

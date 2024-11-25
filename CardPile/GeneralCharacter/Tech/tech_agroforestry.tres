@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://cs5fy3bftnbud"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cs5fy3bftnbud"]
 
-[ext_resource type="Script" path="res://CardPile/card.gd" id="1_6tnf2"]
 [ext_resource type="Texture2D" uid="uid://roqdjdd2mupb" path="res://Cards/Tech/Tech_Agroforestry_画板 1.png" id="1_6uatc"]
+[ext_resource type="Script" path="res://CardEffect/Tech/agroforestry.gd" id="2_crsyo"]
 
 [resource]
-script = ExtResource("1_6tnf2")
+script = ExtResource("2_crsyo")
 id = "Agroforestry"
 type = 1
 target_issue = 2

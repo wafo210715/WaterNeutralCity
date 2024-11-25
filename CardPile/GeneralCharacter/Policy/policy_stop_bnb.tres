@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://x2ud0bhuys4k"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://x2ud0bhuys4k"]
 
-[ext_resource type="Script" path="res://CardPile/card.gd" id="1_gbkpy"]
+[ext_resource type="Script" path="res://CardEffect/Policy/stop_bnb.gd" id="1_huehy"]
 [ext_resource type="Texture2D" uid="uid://cu64nskgdisds" path="res://Cards/Policy/Policy_Stop BnB_画板 1.png" id="1_yokhl"]
 
 [resource]
-script = ExtResource("1_gbkpy")
+script = ExtResource("1_huehy")
 id = "Stop BnB"
 type = 0
 target_issue = 3
