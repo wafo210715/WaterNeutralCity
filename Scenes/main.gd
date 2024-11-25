@@ -10,19 +10,30 @@ extends Node2D
 @onready var ui: UI = $UI
 @onready var player_handler: PlayerHandler = $PlayerHandler
 
+@onready var player: Player = $Player
+@onready var enemy_area_1: Area1 = $EnemyArea1
+
+
 
 
 func _ready():
 	var new_stats: PlayerStats = player_stats.create_instance()
 	ui.player_stats = new_stats
+	player.player_stats = new_stats
 	discard_area.connect("body_entered", Callable(self, "_on_body_entered"))
 	card_pile.shuffle()
 	
 	game_start(new_stats)
+	
+	enemy_area_1.connect("card_snapped_to_slot", Callable(self, "_on_card_snapped_to_slot"))
 
 
 func game_start(stats: PlayerStats) -> void:
 	player_handler.game_start(stats)
+
+
+func _on_card_snapped_to_slot(card_ui: CardUI):
+	print("Card snapped to enemy area slot:", card_ui.name)
 
 
 

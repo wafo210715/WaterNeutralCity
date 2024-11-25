@@ -24,6 +24,10 @@ expand_mode = 1
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area1"]
 polygon = PackedVector2Array(598, 86, 585, 113, 558, 133, 567, 169, 550, 184, 577, 222, 487, 292, 487, 326, 563, 365, 638, 398, 649, 420, 740, 418, 839, 442, 931, 445, 1027, 487, 1097, 485, 1194, 454, 1200, 435, 1259, 405, 1283, 426, 1319, 401, 1358, 405, 1355, 390, 1266, 361, 1224, 350, 1191, 349, 1145, 320, 1109, 261, 1080, 254, 1036, 201, 986, 179, 958, 177, 926, 156, 908, 156, 887, 131, 854, 130, 837, 165, 783, 183, 713, 212, 697, 185, 706, 162, 696, 145, 667, 137, 643, 98, 628, 90)
 
+[node name="CardSlotArea1" type="Area2D" parent="."]
+z_index = 2
+position = Vector2(1106, 165)
+
 [node name="EnemyStatsUI" parent="." instance=ExtResource("2_lfoi4")]
 offset_left = 811.0
 offset_top = 32.0

@@ -39,8 +39,9 @@ func play(targets: Array[Node], player_stats: PlayerStats) -> bool:
 	player_stats.funding += funding
 	
 	
-	var tree := targets[0].get_tree()
-	var area1_nodes = tree.get_nodes_in_group("area1")
+	# var tree := targets[0].get_tree()
+	# var area1_nodes = tree.get_nodes_in_group("area1")
+	var area1_nodes = targets.filter(func(n): return n.name == "Area1")
 	if area1_nodes.size() > 0:
 		apply_effects(area1_nodes)
 	

@@ -51,6 +51,7 @@ var original_position: Vector2
 var original_rotation: float
 
 
+var used: bool = false
 
 
 

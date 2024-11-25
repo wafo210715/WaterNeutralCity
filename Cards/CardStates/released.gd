@@ -27,6 +27,14 @@ func enter():
 			if card_ui.play():
 				played = true
 				card_ui.reset_rotation()
+				
+				# Get the parent node of `Area2D` (which is `Area1`)
+				var area_node = target.get_parent()
+				if area_node.has_method("snap_card_to_slot"):
+					area_node.snap_card_to_slot(card_ui)  # Call `snap_card_to_slot` on the parent node
+				else:
+					print("Error: Target does not have 'snap_card_to_slot' method.")
+					
 				return
 			else:
 				print("Not enough funding, snapping back to hand.")

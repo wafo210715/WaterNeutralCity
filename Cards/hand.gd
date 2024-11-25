@@ -72,8 +72,8 @@ func _update_cards(dragged_card = null):
 
 	# Center the cards
 	var offset: float = (size.x - all_cards_size) / 2.0
-
 	var card_index = 0
+	
 	for card in get_children():
 		# Skip the dragged card
 		if card == dragged_card:
