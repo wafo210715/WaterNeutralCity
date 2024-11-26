@@ -9,13 +9,13 @@ func execute(targets: Array[Node]):
 		if not target:
 			continue
 		if target is Area1:
-			target.quantity_changed(amount)
+			target.quantity_changed(amount * 2)
 		elif target is Area2:
 			target.quantity_changed(amount)
 		elif target is Area3:
 			target.quantity_changed(amount)
 		elif target is Area4:
-			target.quantity_changed(amount)
+			target.quantity_changed(amount * 0.5)
 		elif target is Area5:
 			target.quantity_changed(amount)
 
@@ -25,12 +25,12 @@ func simulate(targets: Array[Node]):
 		if not target:
 			continue
 		if target is Area1:
-			target.simulate_quantity(amount)  # UI-only simulation
+			target.simulate_quantity(amount * 2)  # UI-only simulation
 		elif target is Area2:
 			target.simulate_quantity(amount)
 		elif target is Area3:
 			target.simulate_quantity(amount)
 		elif target is Area4:
-			target.simulate_quantity(amount)
+			target.simulate_quantity(amount * 0.5)
 		elif target is Area5:
 			target.simulate_quantity(amount)

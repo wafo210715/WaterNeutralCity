@@ -12,6 +12,6 @@ funding = 2
 favorite_season = 0
 water_quality = 0
 water_quantity = 0
-popularity = 10
+popularity = 5
 image = ExtResource("1_lf480")
 tooltip_text = "The CPSG provides investment towards specific items of equipment which will improve productivity and efficiency for farming and horticultural businesses."

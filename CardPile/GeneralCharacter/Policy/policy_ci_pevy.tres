@@ -12,6 +12,6 @@ funding = 3
 favorite_season = 4
 water_quality = 0
 water_quantity = 0
-popularity = 10
+popularity = 5
 image = ExtResource("1_a8otm")
 tooltip_text = "It is an important tool for local authorities to use to help them deliver the infrastructure needed to support development in their area."

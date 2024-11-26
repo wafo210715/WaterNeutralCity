@@ -16,8 +16,8 @@ var tween: Tween
 func _ready():
 	print("EnemyStatsUI for Area5:", self, "Instance:", enemy_stats_ui)
 	
-	Events.connect("simulation_started", Callable(self, "_on_simulation_started"))
-	Events.connect("simulation_ended", Callable(self, "_on_simulation_ended"))
+	Events.connect("simulation_started_5", Callable(self, "_on_simulation_started_5"))
+	Events.connect("simulation_ended_5", Callable(self, "_on_simulation_ended_5"))
 
 
 
@@ -75,13 +75,15 @@ func reset_simulation():
 	enemy_stats_ui.reset_simulation()
 
 
-func _on_simulation_started(card, target):
+func _on_simulation_started_5(card, target):
+	enemy_stats_ui.visible = true
 	if target == self:  # Ensure this Area1 is the target of the simulation
 		print("Simulation started for card:", card.id, "on Area5")
 		card.simulate_effects([self])  # Call simulate_effects for this area
 
-func _on_simulation_ended():
+func _on_simulation_ended_5():
 	reset_simulation()
+	enemy_stats_ui.visible = false
 
 
 

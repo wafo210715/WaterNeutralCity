@@ -36,7 +36,7 @@ script = ExtResource("1_oi5w4")
 [node name="Quality" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-step = 10.0
+step = 5.0
 value = 90.0
 fill_mode = 3
 texture_over = ExtResource("2_q2dkh")
@@ -54,7 +54,7 @@ expand_mode = 1
 [node name="Quantity" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-step = 10.0
+step = 5.0
 value = 50.0
 fill_mode = 3
 texture_over = ExtResource("5_safo0")
@@ -72,7 +72,7 @@ expand_mode = 1
 [node name="Popularity" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-step = 10.0
+step = 5.0
 value = 90.0
 fill_mode = 3
 texture_over = ExtResource("8_f6mfq")

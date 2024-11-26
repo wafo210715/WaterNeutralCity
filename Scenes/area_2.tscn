@@ -30,7 +30,6 @@ position = Vector2(328.25, 192.5)
 shape = SubResource("RectangleShape2D_ii6cy")
 
 [node name="EnemyStatsUI" parent="." instance=ExtResource("4_yin5p")]
-visible = true
 
 [connection signal="mouse_entered" from="Node2D/Area2" to="." method="_on_area_2_mouse_entered"]
 [connection signal="mouse_exited" from="Node2D/Area2" to="." method="_on_area_2_mouse_exited"]

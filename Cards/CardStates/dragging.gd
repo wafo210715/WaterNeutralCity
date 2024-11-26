@@ -27,24 +27,43 @@ func _process(delta: float) -> void:
 		if target != current_target:
 			# New target detected, start simulation
 			current_target = target
-			Events.simulation_started.emit(card_ui.card, current_target)
-			if target.name == "Area1":
-				card_ui.simulate()  # Call the simulate function in card_ui.gd
-			elif target.name == "Area2":
-				card_ui.simulate2()
-			elif target.name == "Area3":
-				card_ui.simulate3()
-			elif target.name == "Area4":
-				card_ui.simulate4()
-			elif target.name == "Area5":
-				card_ui.simulate5()
+			
+			# Emit the correct simulation_started_* signal based on the target
+			match target.name:
+				"Area1":
+					Events.simulation_started.emit(card_ui.card, current_target)
+					card_ui.simulate()
+				"Area2":
+					Events.simulation_started_2.emit(card_ui.card, current_target)
+					card_ui.simulate2()
+				"Area3":
+					Events.simulation_started_3.emit(card_ui.card, current_target)
+					card_ui.simulate3()
+				"Area4":
+					Events.simulation_started_4.emit(card_ui.card, current_target)
+					card_ui.simulate4()
+				"Area5":
+					Events.simulation_started_5.emit(card_ui.card, current_target)
+					card_ui.simulate5()
 			
 			print("Simulation started for target:", current_target.name)
 	elif current_target != null:
 		# No valid target, end simulation
-		Events.simulation_ended.emit()
+		match current_target.name:
+			"Area1":
+				Events.simulation_ended.emit()
+			"Area2":
+				Events.simulation_ended_2.emit()
+			"Area3":
+				Events.simulation_ended_3.emit()
+			"Area4":
+				Events.simulation_ended_4.emit()
+			"Area5":
+				Events.simulation_ended_5.emit()
+		
 		print("Simulation ended for target:", current_target.name)
 		current_target = null
+
 
 
 

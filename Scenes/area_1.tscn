@@ -30,6 +30,7 @@ position = Vector2(406.75, 232.5)
 shape = SubResource("RectangleShape2D_w4wio")
 
 [node name="EnemyStatsUI" parent="." instance=ExtResource("2_lfoi4")]
+visible = false
 offset_left = -86.0
 offset_top = -253.0
 offset_right = 86.0

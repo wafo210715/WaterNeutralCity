@@ -12,6 +12,6 @@ funding = 3
 favorite_season = 3
 water_quality = 0
 water_quantity = 0
-popularity = 10
+popularity = 5
 image = ExtResource("1_dbesv")
 tooltip_text = "The Rivers Trust along with its members work to protect, promote and enhance freshwater ecosystems for both people and wildlife."
