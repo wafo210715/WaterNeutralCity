@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwc0dg053v3oj"]
+
+[ext_resource type="Script" path="res://Scenes/enemy_area_2.gd" id="1_cqe3b"]
+[ext_resource type="Resource" uid="uid://d6hx31sf4xl2" path="res://Enemies/Area2/area_2.tres" id="2_0dwk0"]
+[ext_resource type="Texture2D" uid="uid://c670xoks341xs" path="res://Enemies/Area2/area2_cut.png" id="2_nidyf"]
+[ext_resource type="PackedScene" uid="uid://cvq3dnvrdxcak" path="res://Enemies/Area2/enemy_stats_ui.tscn" id="4_yin5p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ii6cy"]
+size = Vector2(395.5, 199)
+
+[node name="EnemyArea2" type="Node2D"]
+script = ExtResource("1_cqe3b")
+enemy_stats = ExtResource("2_0dwk0")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Area2" type="Area2D" parent="Node2D"]
+position = Vector2(-311, -188)
+collision_layer = 4
+
+[node name="TextureRect" type="TextureRect" parent="Node2D/Area2"]
+offset_right = 623.0
+offset_bottom = 378.0
+pivot_offset = Vector2(311, 189)
+texture = ExtResource("2_nidyf")
+expand_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2"]
+position = Vector2(328.25, 192.5)
+shape = SubResource("RectangleShape2D_ii6cy")
+
+[node name="EnemyStatsUI" parent="." instance=ExtResource("4_yin5p")]
+visible = true
+
+[connection signal="mouse_entered" from="Node2D/Area2" to="." method="_on_area_2_mouse_entered"]
+[connection signal="mouse_exited" from="Node2D/Area2" to="." method="_on_area_2_mouse_exited"]

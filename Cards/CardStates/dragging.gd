@@ -28,7 +28,11 @@ func _process(delta: float) -> void:
 			# New target detected, start simulation
 			current_target = target
 			Events.simulation_started.emit(card_ui.card, current_target)
-			card_ui.simulate()  # Call the simulate function in card_ui.gd
+			if target.name == "Area1":
+				card_ui.simulate()  # Call the simulate function in card_ui.gd
+			elif target.name == "Area2":
+				card_ui.simulate2()
+			
 			print("Simulation started for target:", current_target.name)
 	elif current_target != null:
 		# No valid target, end simulation

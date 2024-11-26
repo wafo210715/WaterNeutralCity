@@ -2,6 +2,7 @@ class_name Main
 extends Node2D
 
 var area1_card_count: int = 0
+var area2_card_count: int = 0
 
 
 @export var player_stats: PlayerStats

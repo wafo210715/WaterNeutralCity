@@ -1,16 +1,14 @@
-class_name Area1
+class_name Area2
 extends Node2D
 
 @export var enemy_stats: EnemyStats : set = set_enemy_stats
 
 
-@onready var area_1: Area2D = $Node2D/Area1
+@onready var area_2: Area2D = $Node2D/Area2
+
 
 @onready var node_2d: Node2D = $Node2D
-
-
 @onready var enemy_stats_ui: EnemyStatsUI = $EnemyStatsUI
-
 
 var tween: Tween
 
@@ -28,14 +26,13 @@ func _ready():
 
 
 
-
-
 func set_enemy_stats(value: EnemyStats) -> void:
 	if enemy_stats:
 		enemy_stats.enemy_stats_changed.disconnect(update_stats)
 	enemy_stats = value.create_instance()
 	enemy_stats.enemy_stats_changed.connect(update_stats)
 	update_enemy()
+
 
 
 
@@ -84,7 +81,7 @@ func reset_simulation():
 
 func _on_simulation_started(card, target):
 	if target == self:  # Ensure this Area1 is the target of the simulation
-		print("Simulation started for card:", card.id, "on Area1")
+		print("Simulation started for card:", card.id, "on Area2")
 		card.simulate_effects([self])  # Call simulate_effects for this area
 
 func _on_simulation_ended():
@@ -92,13 +89,13 @@ func _on_simulation_ended():
 
 
 
-func _on_area_1_mouse_entered() -> void:
+func _on_area_2_mouse_entered() -> void:
 	enemy_stats_ui.visible = true
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 	tween.tween_property(node_2d, "scale", Vector2(1.3, 1.3), 0.5)
 
 
-func _on_area_1_mouse_exited() -> void:
+func _on_area_2_mouse_exited() -> void:
 	enemy_stats_ui.visible = true
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 	tween.tween_property(node_2d, "scale", Vector2(1.0, 1.0), 0.5)

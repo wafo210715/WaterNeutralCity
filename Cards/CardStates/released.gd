@@ -61,6 +61,38 @@ func enter():
 				snap_back_to_hand()
 				return
 		
+		elif target.name == "Area2":
+			print("Attempting to play card:", card_ui.name)
+			
+			# Check play limits in TurnManager
+			if card_ui.card.type == Card.Type.POLICY:
+				if TurnManager.policy_cards_played_this_round >= TurnManager.max_policy_cards_playable:
+					print("Policy card play limit reached.")
+					snap_back_to_hand()
+					return
+				TurnManager.policy_cards_played_this_round += 1
+				
+			if card_ui.card.type == Card.Type.TECH:
+				if TurnManager.tech_cards_played_this_round >= TurnManager.max_tech_cards_playable:
+					print("Tech card play limit reached.")
+					snap_back_to_hand()
+					return
+				TurnManager.tech_cards_played_this_round += 1
+			
+			# Play the card and update the play counters
+			if card_ui.play2():
+				print("Card played successfully:", card_ui.name)
+				played = true
+				card_ui.reset_rotation()
+				snap_to_slot_area2()
+				card_ui.used = true  # Synchronize the `used` flag in `CardUI.gd`
+				print("Card snapped to slot after play:", card_ui.position)
+				return
+			else:
+				print("Card play failed (insufficient funding):", card_ui.name)
+				snap_back_to_hand()
+				return
+		
 	snap_back_to_hand()
 
 
@@ -90,6 +122,18 @@ func snap_to_slot_area1():
 	print("Card snapped to position for Area1:", card_ui.position)
 
 
+func snap_to_slot_area2():
+	var base_position = Vector2(630, -900)
+	var main_node = get_tree().root.get_node("Main")
+	var y_offset = 35 * main_node.area2_card_count  # Access the counter from Main.gd
+	
+	card_ui.position = base_position + Vector2(0, y_offset)
+	card_ui.z_index = main_node.area2_card_count  # Set z_index based on the count
+	card_ui.used = true
+	
+	main_node.area2_card_count += 1
+	print("Card marked as used:", card_ui.used)
+	print("Card snapped to position for Area2:", card_ui.position)
 
 
 func exit():
