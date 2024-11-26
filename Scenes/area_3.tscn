@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://g5h0cpoiuny5" path="res://Enemies/Area3/enemy_stats_ui.tscn" id="2_f8s4f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ii6cy"]
-size = Vector2(175.75, 154)
+size = Vector2(218, 208)
 
 [node name="Area3" type="Node2D"]
 script = ExtResource("1_gm3s3")
@@ -26,11 +26,14 @@ texture = ExtResource("1_x83rj")
 expand_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area3"]
-position = Vector2(168.125, 122)
+position = Vector2(211, 149)
 shape = SubResource("RectangleShape2D_ii6cy")
 
 [node name="EnemyStatsUI" parent="." instance=ExtResource("2_f8s4f")]
 visible = false
+
+[node name="CardSlot" type="Node2D" parent="."]
+position = Vector2(-290, -345)
 
 [connection signal="mouse_entered" from="Node2D/Area3" to="." method="_on_area_3_mouse_entered"]
 [connection signal="mouse_exited" from="Node2D/Area3" to="." method="_on_area_3_mouse_exited"]

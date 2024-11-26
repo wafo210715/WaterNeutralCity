@@ -71,20 +71,35 @@ func exit():
 	var all_cards = card_ui.get_parent().get_children() as Array
 	for card in all_cards:
 		card.mouse_filter = Control.MOUSE_FILTER_PASS
+	
 	# Stop following the mouse when exiting the Dragging state
 	card_ui.following_mouse = false
 	set_process(false)
+	
 	# Smoothly reset rotation with a tween to ensure the card has no angle
 	if card_ui.tween_rot and card_ui.tween_rot.is_running():
 		card_ui.tween_rot.kill()
+	
 	# Reset scale if needed
 	card_ui.reset_scale()
 	
 	# End simulation if it is still active
 	if current_target != null:
-		Events.simulation_ended.emit()
+		match current_target.name:
+			"Area1":
+				Events.simulation_ended.emit()
+			"Area2":
+				Events.simulation_ended_2.emit()
+			"Area3":
+				Events.simulation_ended_3.emit()
+			"Area4":
+				Events.simulation_ended_4.emit()
+			"Area5":
+				Events.simulation_ended_5.emit()
+		
 		print("Simulation ended for target:", current_target.name)
 		current_target = null
+
 
 
 

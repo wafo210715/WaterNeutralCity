@@ -36,5 +36,8 @@ offset_top = -286.0
 offset_right = 59.0
 offset_bottom = 77.0
 
+[node name="CardSlot" type="Node2D" parent="."]
+position = Vector2(90, -285)
+
 [connection signal="mouse_entered" from="Node2D/Area5" to="." method="_on_area_5_mouse_entered"]
 [connection signal="mouse_exited" from="Node2D/Area5" to="." method="_on_area_5_mouse_exited"]

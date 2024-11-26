@@ -135,25 +135,6 @@ offset_right = 226.0
 offset_bottom = -16.0
 alignment = 1
 
-[node name="QuantityIcon" type="TextureRect" parent="HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(17, 30)
-layout_mode = 2
-texture = ExtResource("7_ni5ti")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="QuantityStats" type="Label" parent="HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "+22"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="QualityIcon" type="TextureRect" parent="HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(17, 49)
@@ -170,6 +151,25 @@ theme_override_colors/font_color = Color(0.498039, 0.65098, 0.705882, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "+02"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuantityIcon" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(17, 30)
+layout_mode = 2
+texture = ExtResource("7_ni5ti")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="QuantityStats" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "+22"
 horizontal_alignment = 1
 vertical_alignment = 1
 

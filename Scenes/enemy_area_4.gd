@@ -9,6 +9,7 @@ extends Node2D
 
 @onready var node_2d: Node2D = $Node2D
 @onready var enemy_stats_ui_4: EnemyStatsUI = %EnemyStatsUI4
+@onready var card_slot: Node2D = $CardSlot
 
 
 
@@ -20,6 +21,8 @@ func _ready():
 	
 	Events.connect("simulation_started_4", Callable(self, "_on_simulation_started_4"))
 	Events.connect("simulation_ended_4", Callable(self, "_on_simulation_ended_4"))
+	
+	card_slot.visible = false
 
 
 
@@ -79,6 +82,7 @@ func reset_simulation():
 
 func _on_simulation_started_4(card, target):
 	enemy_stats_ui_4.visible = true
+	card_slot.visible = true
 	if target == self:  # Ensure this Area1 is the target of the simulation
 		print("Simulation started for card:", card.id, "on Area4")
 		card.simulate_effects([self])  # Call simulate_effects for this area
@@ -86,16 +90,19 @@ func _on_simulation_started_4(card, target):
 func _on_simulation_ended_4():
 	reset_simulation()
 	enemy_stats_ui_4.visible = false
+	card_slot.visible = false
 
 
 
 func _on_area_4_mouse_entered() -> void:
+	card_slot.visible = true
 	enemy_stats_ui_4.visible = true
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 	tween.tween_property(node_2d, "scale", Vector2(1.3, 1.3), 0.5)
 
 
 func _on_area_4_mouse_exited() -> void:
+	card_slot.visible = false
 	enemy_stats_ui_4.visible = false
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 	tween.tween_property(node_2d, "scale", Vector2(1.0, 1.0), 0.5)

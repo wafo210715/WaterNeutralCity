@@ -205,73 +205,140 @@ func snap_back_to_hand():
 
 
 func snap_to_slot_area1():
-	var base_position = Vector2(720, -1060)
 	var main_node = get_tree().root.get_node("Main")
-	var y_offset = 35 * main_node.area1_card_count  # Access the counter from Main.gd
-	
+	var area1 = main_node.get_node("Area1")  # Access Area1 node
+	var card_slot = area1.get_node("CardSlot")  # Access CardSlot node
+
+	# Ensure the card_ui is removed from its current parent
+	if card_ui.get_parent():
+		card_ui.get_parent().remove_child(card_ui)
+
+	# Reparent the card_ui to the CardSlot node
+	card_slot.add_child(card_ui)
+
+	# Set position and update stats
+	var base_position = Vector2(0, 0)
+	var y_offset = 35 * main_node.area1_card_count  # Offset based on stacking
 	card_ui.position = base_position + Vector2(0, y_offset)
-	card_ui.z_index = main_node.area1_card_count  # Set z_index based on the count
+	card_ui.z_index = main_node.area1_card_count  # Adjust z_index
 	card_ui.used = true
-	
+
+	# Increment stacking counter
 	main_node.area1_card_count += 1
-	print("Card marked as used:", card_ui.used)
+
 	print("Card snapped to position for Area1:", card_ui.position)
+	print("Parent of card_ui:", card_ui.get_parent().name)  # Verify parent
+
+
+
+
 
 
 func snap_to_slot_area2():
-	var base_position = Vector2(630, -900)
 	var main_node = get_tree().root.get_node("Main")
-	var y_offset = 35 * main_node.area2_card_count  # Access the counter from Main.gd
-	
+	var area2 = main_node.get_node("Area2")  # Access Area1 node
+	var card_slot = area2.get_node("CardSlot")  # Access CardSlot node
+
+	# Ensure the card_ui is removed from its current parent
+	if card_ui.get_parent():
+		card_ui.get_parent().remove_child(card_ui)
+
+	# Reparent the card_ui to the CardSlot node
+	card_slot.add_child(card_ui)
+
+	# Set position and update stats
+	var base_position = Vector2(0, 0)
+	var y_offset = 35 * main_node.area2_card_count  # Offset based on stacking
 	card_ui.position = base_position + Vector2(0, y_offset)
-	card_ui.z_index = main_node.area2_card_count  # Set z_index based on the count
+	card_ui.z_index = main_node.area2_card_count  # Adjust z_index
 	card_ui.used = true
-	
+
+	# Increment stacking counter
 	main_node.area2_card_count += 1
-	print("Card marked as used:", card_ui.used)
+
 	print("Card snapped to position for Area2:", card_ui.position)
+	print("Parent of card_ui:", card_ui.get_parent().name)  # Verify parent
+
 
 
 func snap_to_slot_area3():
-	var base_position = Vector2(450, -665)
 	var main_node = get_tree().root.get_node("Main")
-	var y_offset = 35 * main_node.area3_card_count  # Access the counter from Main.gd
-	
+	var area3 = main_node.get_node("Area3")  # Access Area1 node
+	var card_slot = area3.get_node("CardSlot")  # Access CardSlot node
+
+	# Ensure the card_ui is removed from its current parent
+	if card_ui.get_parent():
+		card_ui.get_parent().remove_child(card_ui)
+
+	# Reparent the card_ui to the CardSlot node
+	card_slot.add_child(card_ui)
+
+	# Set position and update stats
+	var base_position = Vector2(0, 0)
+	var y_offset = 35 * main_node.area3_card_count  # Offset based on stacking
 	card_ui.position = base_position + Vector2(0, y_offset)
-	card_ui.z_index = main_node.area3_card_count  # Set z_index based on the count
+	card_ui.z_index = main_node.area3_card_count  # Adjust z_index
 	card_ui.used = true
-	
+
+	# Increment stacking counter
 	main_node.area3_card_count += 1
-	print("Card marked as used:", card_ui.used)
+
 	print("Card snapped to position for Area3:", card_ui.position)
+	print("Parent of card_ui:", card_ui.get_parent().name)  # Verify parent
+
 
 
 func snap_to_slot_area4():
-	var base_position = Vector2(740, -615)
 	var main_node = get_tree().root.get_node("Main")
-	var y_offset = 35 * main_node.area4_card_count  # Access the counter from Main.gd
-	
+	var area4 = main_node.get_node("Area4")  # Access Area1 node
+	var card_slot = area4.get_node("CardSlot")  # Access CardSlot node
+
+	# Ensure the card_ui is removed from its current parent
+	if card_ui.get_parent():
+		card_ui.get_parent().remove_child(card_ui)
+
+	# Reparent the card_ui to the CardSlot node
+	card_slot.add_child(card_ui)
+
+	# Set position and update stats
+	var base_position = Vector2(0, 0)
+	var y_offset = 35 * main_node.area4_card_count  # Offset based on stacking
 	card_ui.position = base_position + Vector2(0, y_offset)
-	card_ui.z_index = main_node.area4_card_count  # Set z_index based on the count
+	card_ui.z_index = main_node.area4_card_count  # Adjust z_index
 	card_ui.used = true
-	
+
+	# Increment stacking counter
 	main_node.area4_card_count += 1
-	print("Card marked as used:", card_ui.used)
+
 	print("Card snapped to position for Area4:", card_ui.position)
+	print("Parent of card_ui:", card_ui.get_parent().name)  # Verify parent
+
 
 
 func snap_to_slot_area5():
-	var base_position = Vector2(1030, -790)
 	var main_node = get_tree().root.get_node("Main")
-	var y_offset = 35 * main_node.area5_card_count  # Access the counter from Main.gd
-	
+	var area5 = main_node.get_node("Area5")  # Access Area1 node
+	var card_slot = area5.get_node("CardSlot")  # Access CardSlot node
+
+	# Ensure the card_ui is removed from its current parent
+	if card_ui.get_parent():
+		card_ui.get_parent().remove_child(card_ui)
+
+	# Reparent the card_ui to the CardSlot node
+	card_slot.add_child(card_ui)
+
+	# Set position and update stats
+	var base_position = Vector2(0, 0)
+	var y_offset = 35 * main_node.area5_card_count  # Offset based on stacking
 	card_ui.position = base_position + Vector2(0, y_offset)
-	card_ui.z_index = main_node.area5_card_count  # Set z_index based on the count
+	card_ui.z_index = main_node.area5_card_count  # Adjust z_index
 	card_ui.used = true
-	
+
+	# Increment stacking counter
 	main_node.area5_card_count += 1
-	print("Card marked as used:", card_ui.used)
-	print("Card snapped to position for Area5:", card_ui.position)
+
+	print("Card snapped to position for Area4:", card_ui.position)
+	print("Parent of card_ui:", card_ui.get_parent().name)  # Verify parent
 
 
 func exit():
