@@ -12,3 +12,5 @@ signal player_turn_ended
 
 signal simulation_started(card: Card, target: Node)
 signal simulation_ended()
+signal simulation_started_3(card: Card, target: Node)
+signal simulation_ended_3()

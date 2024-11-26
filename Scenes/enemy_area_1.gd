@@ -17,11 +17,7 @@ var tween: Tween
 
 func _ready():
 	print("EnemyStatsUI for Area1:", self, "Instance:", enemy_stats_ui)
-	await  get_tree().create_timer(2).timeout
-	quality_changed(10)
-	quantity_changed(20)
-	popularity_changed(30)
-	
+
 	Events.connect("simulation_started", Callable(self, "_on_simulation_started"))
 	Events.connect("simulation_ended", Callable(self, "_on_simulation_ended"))
 

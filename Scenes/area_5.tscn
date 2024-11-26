@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bo4mjgdplkasb"]
+
+[ext_resource type="Script" path="res://Scenes/enemy_area_5.gd" id="1_srotc"]
+[ext_resource type="Texture2D" uid="uid://i00t1lx45bb4" path="res://Enemies/Area5/area5_cut.png" id="1_vhepv"]
+[ext_resource type="Resource" uid="uid://dlnxkrqu66kf6" path="res://Enemies/Area5/area_5.tres" id="2_acsyx"]
+[ext_resource type="PackedScene" uid="uid://g5h0cpoiuny5" path="res://Enemies/Area3/enemy_stats_ui.tscn" id="4_5kqte"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ii6cy"]
+size = Vector2(280.875, 326)
+
+[node name="Area5" type="Node2D"]
+script = ExtResource("1_srotc")
+enemy_stats = ExtResource("2_acsyx")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Area5" type="Area2D" parent="Node2D"]
+position = Vector2(-213, -235)
+collision_layer = 4
+
+[node name="TextureRect" type="TextureRect" parent="Node2D/Area5"]
+offset_right = 426.0
+offset_bottom = 470.0
+pivot_offset = Vector2(213, 235)
+texture = ExtResource("1_vhepv")
+expand_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area5"]
+position = Vector2(214, 251)
+shape = SubResource("RectangleShape2D_ii6cy")
+
+[node name="EnemyStatsUI" parent="." instance=ExtResource("4_5kqte")]
+offset_left = -113.0
+offset_top = -286.0
+offset_right = 59.0
+offset_bottom = 77.0
+
+[connection signal="mouse_entered" from="Node2D/Area5" to="." method="_on_area_5_mouse_entered"]
+[connection signal="mouse_exited" from="Node2D/Area5" to="." method="_on_area_5_mouse_exited"]

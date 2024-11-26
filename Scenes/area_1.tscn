@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w4wio"]
 size = Vector2(390.5, 187)
 
-[node name="EnemyArea1" type="Node2D"]
+[node name="Area1" type="Node2D"]
 script = ExtResource("1_6tfag")
 enemy_stats = ExtResource("2_bgoow")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b33k26qebuwpu"]
+[gd_scene load_steps=20 format=3 uid="uid://b33k26qebuwpu"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_cqk0h"]
 [ext_resource type="Script" path="res://Cards/hand.gd" id="2_36bfw"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://dwc0dg053v3oj" path="res://Scenes/area_2.tscn" id="5_74odn"]
 [ext_resource type="Script" path="res://Scenes/player_handler.gd" id="5_wyg3o"]
 [ext_resource type="PackedScene" uid="uid://mv3o0wojyv34" path="res://Scenes/policy_tooltip.tscn" id="6_15x1w"]
+[ext_resource type="PackedScene" uid="uid://b2uiwd3p3fiik" path="res://Scenes/area_3.tscn" id="6_iapi0"]
+[ext_resource type="PackedScene" uid="uid://b01c20p3npvbd" path="res://Scenes/area_4.tscn" id="7_gnexx"]
+[ext_resource type="PackedScene" uid="uid://bo4mjgdplkasb" path="res://Scenes/area_5.tscn" id="7_yqur8"]
 [ext_resource type="PackedScene" uid="uid://cifqpawchfhpb" path="res://TurnManagement/season_ui.tscn" id="10_87ptg"]
 [ext_resource type="PackedScene" uid="uid://c0qfj85dw6tia" path="res://Scenes/npc.tscn" id="11_yl4ak"]
 
@@ -62,6 +65,15 @@ position = Vector2(909, 287)
 
 [node name="Area2" parent="." groups=["area2"] instance=ExtResource("5_74odn")]
 position = Vector2(814, 551)
+
+[node name="Area3" parent="." groups=["area3"] instance=ExtResource("6_iapi0")]
+position = Vector2(640.5, 780.1)
+
+[node name="Area5" parent="." groups=["area5"] instance=ExtResource("7_yqur8")]
+position = Vector2(1250, 595)
+
+[node name="Area4" parent="." groups=["area4"] instance=ExtResource("7_gnexx")]
+position = Vector2(900, 784)
 
 [node name="Player" parent="." instance=ExtResource("4_6bwaq")]
 position = Vector2(1514, 40)

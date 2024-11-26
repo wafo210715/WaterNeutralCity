@@ -288,6 +288,39 @@ func play2() -> bool:
 	return result
 
 
+func play3() -> bool:
+	print("CardUI: Attempting to play card:", name)
+	if not card:
+		print("Error: Card data is missing for:", name)
+		return false
+
+	var result = card.play3(targets, player_stats)
+	print("CardUI play result for", name, ":", result)
+	return result
+
+
+func play4() -> bool:
+	print("CardUI: Attempting to play card:", name)
+	if not card:
+		print("Error: Card data is missing for:", name)
+		return false
+
+	var result = card.play4(targets, player_stats)
+	print("CardUI play result for", name, ":", result)
+	return result
+
+
+func play5() -> bool:
+	print("CardUI: Attempting to play card:", name)
+	if not card:
+		print("Error: Card data is missing for:", name)
+		return false
+
+	var result = card.play5(targets, player_stats)
+	print("CardUI play result for", name, ":", result)
+	return result
+
+
 func simulate():
 	if not card:
 		print("Error: Card data is missing for:", name)
@@ -314,6 +347,48 @@ func simulate2():
 	# Pass targets to simulate_effects
 	print("CardUI: Simulating effects for card:", name, "on targets:", targets)
 	card.simulate_effects2(targets)
+
+
+func simulate3():
+	if not card:
+		print("Error: Card data is missing for:", name)
+		return
+
+	if targets.size() == 0:
+		print("CardUI: No targets available for simulation.")
+		return
+
+	# Pass targets to simulate_effects
+	print("CardUI: Simulating effects for card:", name, "on targets:", targets)
+	card.simulate_effects3(targets)
+
+
+func simulate4():
+	if not card:
+		print("Error: Card data is missing for:", name)
+		return
+
+	if targets.size() == 0:
+		print("CardUI: No targets available for simulation.")
+		return
+
+	# Pass targets to simulate_effects
+	print("CardUI: Simulating effects for card:", name, "on targets:", targets)
+	card.simulate_effects4(targets)
+
+
+func simulate5():
+	if not card:
+		print("Error: Card data is missing for:", name)
+		return
+
+	if targets.size() == 0:
+		print("CardUI: No targets available for simulation.")
+		return
+
+	# Pass targets to simulate_effects
+	print("CardUI: Simulating effects for card:", name, "on targets:", targets)
+	card.simulate_effects5(targets)
 
 
 # replace information with card resources

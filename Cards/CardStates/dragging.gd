@@ -32,6 +32,12 @@ func _process(delta: float) -> void:
 				card_ui.simulate()  # Call the simulate function in card_ui.gd
 			elif target.name == "Area2":
 				card_ui.simulate2()
+			elif target.name == "Area3":
+				card_ui.simulate3()
+			elif target.name == "Area4":
+				card_ui.simulate4()
+			elif target.name == "Area5":
+				card_ui.simulate5()
 			
 			print("Simulation started for target:", current_target.name)
 	elif current_target != null:
