@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://csgjhpq32lxm"]
+[gd_scene load_steps=6 format=3 uid="uid://csgjhpq32lxm"]
 
 [ext_resource type="Script" path="res://Scenes/enemy_area_1.gd" id="1_6tfag"]
 [ext_resource type="Texture2D" uid="uid://0xvygx0eath1" path="res://Enemies/Area1/area1_cut.png" id="1_xyyoe"]
 [ext_resource type="Resource" uid="uid://bkyi3kl30q0i4" path="res://Enemies/Area1/area_1.tres" id="2_bgoow"]
 [ext_resource type="PackedScene" uid="uid://bcbxpdp1x1t3r" path="res://Scenes/enemy_stats_ui.tscn" id="2_lfoi4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w4wio"]
+size = Vector2(390.5, 187)
 
 [node name="EnemyArea1" type="Node2D"]
 script = ExtResource("1_6tfag")
@@ -22,9 +25,9 @@ pivot_offset = Vector2(465, 218)
 texture = ExtResource("1_xyyoe")
 expand_mode = 1
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D/Area1"]
-position = Vector2(-448, -63)
-polygon = PackedVector2Array(598, 86, 585, 113, 558, 133, 567, 169, 550, 184, 577, 222, 487, 292, 487, 326, 563, 365, 638, 398, 649, 420, 740, 418, 839, 442, 931, 445, 1027, 487, 1097, 485, 1194, 454, 1200, 435, 1259, 405, 1283, 426, 1319, 401, 1358, 405, 1355, 390, 1266, 361, 1224, 350, 1191, 349, 1145, 320, 1109, 261, 1080, 254, 1036, 201, 986, 179, 958, 177, 926, 156, 908, 156, 887, 131, 854, 130, 837, 165, 783, 183, 713, 212, 697, 185, 706, 162, 696, 145, 667, 137, 643, 98, 628, 90)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area1"]
+position = Vector2(406.75, 232.5)
+shape = SubResource("RectangleShape2D_w4wio")
 
 [node name="EnemyStatsUI" parent="." instance=ExtResource("2_lfoi4")]
 offset_left = -86.0

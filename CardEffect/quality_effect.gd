@@ -10,6 +10,8 @@ func execute(targets: Array[Node]):
 			continue
 		if target is Area1:
 			target.quality_changed(amount)
+		elif target is Area2:
+			target.quantity_changed(amount)
 
 
 func simulate(targets: Array[Node]):
@@ -18,3 +20,5 @@ func simulate(targets: Array[Node]):
 			continue
 		if target is Area1:
 			target.simulate_quality(amount)  # UI-only simulation
+		elif target is Area2:
+			target.simulate_quality(amount)

@@ -22,6 +22,7 @@ var quality_simulated: int = 0
 var quantity_simulated: int = 0
 var popularity_simulated: int = 0
 
+var stats: EnemyStats = null  # Linked stats instance
 
 # Update permanent stats
 func update_stats(stats: EnemyStats):

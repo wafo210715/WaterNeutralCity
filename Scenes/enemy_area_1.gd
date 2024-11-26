@@ -16,6 +16,7 @@ var tween: Tween
 
 
 func _ready():
+	print("EnemyStatsUI for Area1:", self, "Instance:", enemy_stats_ui)
 	await  get_tree().create_timer(2).timeout
 	quality_changed(10)
 	quantity_changed(20)
@@ -30,11 +31,10 @@ func _ready():
 
 
 func set_enemy_stats(value: EnemyStats) -> void:
+	if enemy_stats:
+		enemy_stats.enemy_stats_changed.disconnect(update_stats)
 	enemy_stats = value.create_instance()
-	
-	if not enemy_stats.enemy_stats_changed.is_connected(update_stats):
-		enemy_stats.enemy_stats_changed.connect(update_stats)
-	
+	enemy_stats.enemy_stats_changed.connect(update_stats)
 	update_enemy()
 
 

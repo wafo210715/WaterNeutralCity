@@ -29,6 +29,7 @@ func issue_is_water_quantity() -> bool:
 
 
 
+
 func play(targets: Array[Node], player_stats: PlayerStats) -> bool:
 	print("Card: Play function called for card ID:", id)
 	Events.card_played.emit(self)
@@ -45,8 +46,16 @@ func play(targets: Array[Node], player_stats: PlayerStats) -> bool:
 	if area1_nodes.size() > 0:
 		print("Applying effects to area1 nodes for card ID:", id)
 		apply_effects(area1_nodes)
+	
+	# Handle area2 nodes
+	var area2_nodes = tree.get_nodes_in_group("area2")
+	if area2_nodes.size() > 0:
+		print("Applying effects to area2 nodes for card ID:", id)
+		apply_effects(area2_nodes)
 
 	apply_effects(targets)
+
+	
 	print("Play successful for card ID:", id, "Targets:", targets)
 	return true
 
@@ -69,6 +78,14 @@ func simulate_effects(targets: Array[Node]):
 			print("Targets in area1 group:", area1_nodes)
 
 			simulate_individual_effects(area1_nodes)  # Simulate effects on area1 nodes
+			
+		# Handle area2 nodes
+		var area2_nodes = tree.get_nodes_in_group("area2")  # Find nodes in "area2" group
+		if area2_nodes.size() > 0:
+			print("Simulating effects on area2 nodes for card ID:", id)
+			print("Simulating for targets:", targets)
+			print("Targets in area2 group:", area2_nodes)
+			simulate_individual_effects(area2_nodes)  # Simulate effects on area2 nodes
 
 	simulate_individual_effects(targets)  # Simulate effects on general targets
 	print("Simulation successful for card ID:", id, "Targets:", targets)

@@ -16,8 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://bo80l4j6b8p8y" path="res://Icons/good pop.png" id="9_swr08"]
 [ext_resource type="Texture2D" uid="uid://ogkhnl4ugmne" path="res://Icons/bad pop.png" id="10_6y4yl"]
 [ext_resource type="Script" path="res://Cards/CardStates/released.gd" id="10_7grre"]
-[ext_resource type="Texture2D" uid="uid://cr5xi37ist7rq" path="res://Icons/Asset 2.png" id="11_n7ly0"]
 [ext_resource type="Texture2D" uid="uid://buki8x03sq2cn" path="res://Cards/CardStatsBG/Tech-02.png" id="13_5k7je"]
+[ext_resource type="Texture2D" uid="uid://qmuasmip0hq2" path="res://Icons/funding.png" id="13_c2ytk"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_i7jhy"]
 
@@ -215,7 +215,7 @@ vertical_alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(15, 49)
 layout_mode = 2
-texture = ExtResource("11_n7ly0")
+texture = ExtResource("13_c2ytk")
 expand_mode = 1
 stretch_mode = 5
 
