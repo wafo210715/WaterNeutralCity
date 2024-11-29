@@ -24,12 +24,11 @@ var funding: int : set = set_funding
 
 # Function to initialize and shuffle the draw piles
 func initialize_card_piles():
-	# Duplicate and shuffle the policy card draw pile
-	policy_card_draw_pile = policy_card_deck.duplicate(true)
-	tech_card_draw_pile = tech_card_deck.duplicate(true)
-
 	policy_card_draw_pile.shuffle()
 	tech_card_draw_pile.shuffle()
+	
+	print("Shuffled Policy Deck:", policy_card_draw_pile.cards)
+	print("Shuffled Tech Deck:", tech_card_draw_pile.cards)
 
 	print("PlayerStats: Card piles initialized and shuffled.")
 
