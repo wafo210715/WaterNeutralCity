@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardPile" load_steps=8 format=3 uid="uid://c85a2i1fueju2"]
+
+[ext_resource type="Script" path="res://CardPile/card.gd" id="1_3ggv3"]
+[ext_resource type="Resource" uid="uid://byugotbfgecrk" path="res://CardPile/GeneralCharacter/Event/event_csos.tres" id="2_8siiv"]
+[ext_resource type="Script" path="res://CardPile/card_pile.gd" id="2_r3mqv"]
+[ext_resource type="Resource" uid="uid://b4gxwbfm18y6t" path="res://CardPile/GeneralCharacter/Event/event_drought.tres" id="3_odko1"]
+[ext_resource type="Resource" uid="uid://o5n8fr1y7fx3" path="res://CardPile/GeneralCharacter/Event/event_flood.tres" id="4_54ni0"]
+[ext_resource type="Resource" uid="uid://cqif1q3v56xmq" path="res://CardPile/GeneralCharacter/Event/event_industrial_growth.tres" id="5_6ptn6"]
+[ext_resource type="Resource" uid="uid://ydmln65fuh5y" path="res://CardPile/GeneralCharacter/Event/event_tourism.tres" id="6_0rsii"]
+
+[resource]
+script = ExtResource("2_r3mqv")
+cards = Array[ExtResource("1_3ggv3")]([ExtResource("2_8siiv"), ExtResource("3_odko1"), ExtResource("4_54ni0"), ExtResource("5_6ptn6"), ExtResource("6_0rsii"), ExtResource("6_0rsii"), ExtResource("5_6ptn6"), ExtResource("4_54ni0"), ExtResource("3_odko1"), ExtResource("2_8siiv"), ExtResource("3_odko1"), ExtResource("4_54ni0"), ExtResource("5_6ptn6"), ExtResource("3_odko1"), ExtResource("2_8siiv"), ExtResource("6_0rsii"), ExtResource("5_6ptn6"), ExtResource("3_odko1"), ExtResource("2_8siiv"), ExtResource("4_54ni0")])

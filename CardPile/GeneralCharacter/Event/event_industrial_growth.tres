@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://cqif1q3v56xmq"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cqif1q3v56xmq"]
 
-[ext_resource type="Script" path="res://CardPile/card.gd" id="1_1eps8"]
 [ext_resource type="Texture2D" uid="uid://bl0st233vx0e4" path="res://Cards/Event/Event_Industrial Growth.png" id="1_lju78"]
+[ext_resource type="Script" path="res://CardEffect/Event/industrial_growth.gd" id="2_6ja2i"]
 
 [resource]
-script = ExtResource("1_1eps8")
+script = ExtResource("2_6ja2i")
 id = "Industrial Growth"
 type = 2
 target_issue = 2

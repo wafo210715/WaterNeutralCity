@@ -26,8 +26,6 @@ func set_quality(value: int):
 	enemy_stats_changed.emit()
 
 func quality_changed(amount: int):
-	if amount <= 0:
-		return
 	self.quality += amount
 
 
@@ -37,8 +35,6 @@ func set_quantity(value: int):
 	enemy_stats_changed.emit()
 
 func quantity_changed(amount: int):
-	if amount <= 0:
-		return
 	self.quantity += amount
 
 
@@ -47,8 +43,6 @@ func set_popularity(value: int):
 	enemy_stats_changed.emit()
 
 func popularity_changed(amount: int):
-	if amount <= 0:
-		return
 	self.popularity += amount
 
 

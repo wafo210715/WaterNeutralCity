@@ -1,14 +1,14 @@
-[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://b4gxwbfm18y6t"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://b4gxwbfm18y6t"]
 
 [ext_resource type="Texture2D" uid="uid://dx4fcgisio6is" path="res://Cards/Event/Event_Drought.png" id="1_2x14f"]
-[ext_resource type="Script" path="res://CardPile/card.gd" id="1_o8rem"]
+[ext_resource type="Script" path="res://CardEffect/Event/drought.gd" id="2_celag"]
 
 [resource]
-script = ExtResource("1_o8rem")
+script = ExtResource("2_celag")
 id = "Drought"
 type = 2
 target_issue = 1
-funding = 0
+funding = -1
 favorite_season = 1
 water_quality = -10
 water_quantity = -10

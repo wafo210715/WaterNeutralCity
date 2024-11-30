@@ -5,6 +5,7 @@ var amount := 0
 
 # set the card number to 5 in their resources, then multiple by 2 here according to target
 func execute(targets: Array[Node]):
+	print("Executing PopularityEffect with amount:", amount)  # Debug statement
 	for target in targets:
 		if not target:
 			continue

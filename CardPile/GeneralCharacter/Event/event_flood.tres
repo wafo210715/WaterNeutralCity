@@ -1,14 +1,14 @@
-[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://o5n8fr1y7fx3"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://o5n8fr1y7fx3"]
 
-[ext_resource type="Script" path="res://CardPile/card.gd" id="1_5b6yb"]
 [ext_resource type="Texture2D" uid="uid://brsov6ximc8wh" path="res://Cards/Event/Event_Flood.png" id="1_7xin5"]
+[ext_resource type="Script" path="res://CardEffect/Event/flood.gd" id="2_gdytj"]
 
 [resource]
-script = ExtResource("1_5b6yb")
+script = ExtResource("2_gdytj")
 id = "Flood"
 type = 2
 target_issue = 0
-funding = 0
+funding = -1
 favorite_season = 0
 water_quality = -10
 water_quantity = -10

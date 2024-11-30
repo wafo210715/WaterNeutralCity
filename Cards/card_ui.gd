@@ -267,6 +267,8 @@ func _on_mouse_exited():
 
 
 
+
+
 func play() -> bool:
 	print("CardUI: Attempting to play card:", name)
 	if not card:

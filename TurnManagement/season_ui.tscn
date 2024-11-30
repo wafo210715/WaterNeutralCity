@@ -1,8 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://cifqpawchfhpb"]
+[gd_scene load_steps=21 format=3 uid="uid://cifqpawchfhpb"]
 
 [ext_resource type="Script" path="res://TurnManagement/season_ui.gd" id="1_cwgkr"]
 [ext_resource type="Texture2D" uid="uid://da78w2pr5srlj" path="res://TurnManagement/over_72ppi.png" id="1_qy2rj"]
+[ext_resource type="Resource" uid="uid://byugotbfgecrk" path="res://CardPile/GeneralCharacter/Event/event_csos.tres" id="2_0wnet"]
 [ext_resource type="Texture2D" uid="uid://ke8gws5kwpqd" path="res://TurnManagement/progress_72ppi.png" id="2_t6352"]
+[ext_resource type="Resource" uid="uid://b4gxwbfm18y6t" path="res://CardPile/GeneralCharacter/Event/event_drought.tres" id="3_56cyb"]
+[ext_resource type="Resource" uid="uid://o5n8fr1y7fx3" path="res://CardPile/GeneralCharacter/Event/event_flood.tres" id="4_nlywh"]
+[ext_resource type="Texture2D" uid="uid://7wk6rwq50pxf" path="res://Cards/Event/Event_CSOs.png" id="4_yo8jh"]
+[ext_resource type="Texture2D" uid="uid://bapullsjeyqmx" path="res://Cards/CardStatsBG/Event-02.png" id="5_icgu6"]
+[ext_resource type="Resource" uid="uid://cqif1q3v56xmq" path="res://CardPile/GeneralCharacter/Event/event_industrial_growth.tres" id="5_l71a8"]
+[ext_resource type="Resource" uid="uid://ydmln65fuh5y" path="res://CardPile/GeneralCharacter/Event/event_tourism.tres" id="6_84r5u"]
+[ext_resource type="Texture2D" uid="uid://8s7y7axjb65m" path="res://Icons/quality.png" id="6_ia8rs"]
+[ext_resource type="Texture2D" uid="uid://c1c0exp08nxtc" path="res://Icons/quantity.png" id="7_fw28h"]
+[ext_resource type="Texture2D" uid="uid://ogkhnl4ugmne" path="res://Icons/bad pop.png" id="9_uixbu"]
+[ext_resource type="Texture2D" uid="uid://qmuasmip0hq2" path="res://Icons/funding.png" id="10_34uln"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rnonl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0aj2q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wb7k6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wf77b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0cgli"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3gvb"]
+size = Vector2(181, 264)
 
 [node name="SeasonUI" type="Control"]
 layout_mode = 3
@@ -13,6 +37,7 @@ offset_bottom = 0.599991
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cwgkr")
+event_card_resources = [ExtResource("2_0wnet"), ExtResource("3_56cyb"), ExtResource("4_nlywh"), ExtResource("5_l71a8"), ExtResource("6_84r5u")]
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 layout_mode = 0
@@ -48,3 +73,123 @@ theme_override_font_sizes/font_size = 22
 text = "Autumn"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="EventCardButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 315.0
+offset_right = 206.0
+offset_bottom = 579.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rnonl")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_0aj2q")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wb7k6")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_wf77b")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0cgli")
+
+[node name="EventCardUI" type="TextureRect" parent="EventCardButton"]
+layout_mode = 0
+offset_right = 181.0
+offset_bottom = 264.0
+texture = ExtResource("4_yo8jh")
+expand_mode = 1
+
+[node name="EventEffectBG" type="TextureRect" parent="EventCardButton"]
+layout_mode = 0
+offset_top = -70.0
+offset_right = 182.0
+offset_bottom = -12.0
+texture = ExtResource("5_icgu6")
+expand_mode = 1
+
+[node name="EventCardArea" type="Area2D" parent="EventCardButton"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EventCardButton/EventCardArea"]
+position = Vector2(90.5, 132)
+shape = SubResource("RectangleShape2D_s3gvb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EventCardButton"]
+layout_mode = 0
+offset_left = -42.0
+offset_top = -65.0
+offset_right = 226.0
+offset_bottom = -16.0
+alignment = 1
+
+[node name="QualityIcon" type="TextureRect" parent="EventCardButton/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(17, 49)
+layout_mode = 2
+texture = ExtResource("6_ia8rs")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="QualityStats" type="Label" parent="EventCardButton/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.498039, 0.65098, 0.705882, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "+02"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuantityIcon" type="TextureRect" parent="EventCardButton/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(17, 30)
+layout_mode = 2
+texture = ExtResource("7_fw28h")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="QuantityStats" type="Label" parent="EventCardButton/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "+22"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PopularityIcon" type="TextureRect" parent="EventCardButton/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 49)
+layout_mode = 2
+texture = ExtResource("9_uixbu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PopularityStats" type="Label" parent="EventCardButton/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.941176, 0.364706, 0.164706, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "+5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FundingIcon" type="TextureRect" parent="EventCardButton/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(15, 49)
+layout_mode = 2
+texture = ExtResource("10_34uln")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="FundingStats" type="Label" parent="EventCardButton/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.913725, 0.705882, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "+5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="EventCardButton/EventCardArea" to="." method="_on_event_card_area_mouse_entered"]
+[connection signal="mouse_exited" from="EventCardButton/EventCardArea" to="." method="_on_event_card_area_mouse_exited"]

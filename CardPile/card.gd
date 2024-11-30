@@ -142,6 +142,19 @@ func play5(targets: Array[Node], player_stats: PlayerStats) -> bool:
 	return true
 
 
+func event_happen(targets: Array[Node], player_stats: PlayerStats):
+	Events.card_played.emit(self)
+	print("event_happen called with targets:", targets)  # Debug statement
+	if funding != null:
+		player_stats.funding += funding
+	else:
+		print("Warning: Funding is Nil. Using default value of 0.")
+		# Use a default value if funding is not set
+		player_stats.funding += 0
+	
+	apply_effects(targets)
+
+
 func apply_effects(_targets: Array[Node]):
 	pass
 

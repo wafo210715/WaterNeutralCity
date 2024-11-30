@@ -1,14 +1,14 @@
-[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://byugotbfgecrk"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://byugotbfgecrk"]
 
-[ext_resource type="Script" path="res://CardPile/card.gd" id="1_2phms"]
 [ext_resource type="Texture2D" uid="uid://7wk6rwq50pxf" path="res://Cards/Event/Event_CSOs.png" id="1_28s4l"]
+[ext_resource type="Script" path="res://CardEffect/Event/csos.gd" id="2_s7e1k"]
 
 [resource]
-script = ExtResource("1_2phms")
+script = ExtResource("2_s7e1k")
 id = "Combined Sewage Overflows"
 type = 2
 target_issue = 0
-funding = 0
+funding = -1
 favorite_season = 3
 water_quality = -10
 water_quantity = 0

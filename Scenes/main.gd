@@ -21,6 +21,11 @@ var area5_card_count: int = 0
 @onready var draw_policy_card_button: Button = $DrawPolicyCardButton
 @onready var draw_tech_card_button: Button = $DrawTechCardButton
 
+@onready var area_1: Area1 = $Area1
+@onready var area_2: Area2 = $Area2
+@onready var area_3: Area3 = $Area3
+@onready var area_5: Area5 = $Area5
+@onready var area_4: Area4 = $Area4
 
 
 @onready var next_season_button: Button = $NextSeasonButton
@@ -31,6 +36,7 @@ var area5_card_count: int = 0
 func _ready():
 	var new_stats: PlayerStats = player_stats.create_instance()
 	ui.player_stats = new_stats
+	season_ui.player_stats = new_stats
 	
 	# Connect the player_stats_changed signal to the update function in UI
 	new_stats.player_stats_changed.connect(player_stats_ui.update_stats)
