@@ -21,7 +21,7 @@ func enter():
 		card_ui.shadow.visible = false
 		
 		target = card_ui.targets[0]
-		print("Target detected:", target.name)
+		#print("Target detected:", target.name)
 		
 		if target.name == "DiscardArea":
 			print("Releasing over DiscardArea.")

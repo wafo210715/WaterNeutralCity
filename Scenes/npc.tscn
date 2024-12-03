@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0qfj85dw6tia"]
+[gd_scene load_steps=9 format=3 uid="uid://c0qfj85dw6tia"]
 
 [ext_resource type="Script" path="res://Scenes/npc_manager.gd" id="1_w8r16"]
 [ext_resource type="Texture2D" uid="uid://bu32al6somhyd" path="res://Icons/Asset 1.png" id="1_wbnjs"]
@@ -10,10 +10,15 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_de0ta"]
 size = Vector2(52.75, 80)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ovdqh"]
+size = Vector2(402, 55)
+
 [node name="NPC" type="Node2D"]
+position = Vector2(0, 245)
 
 [node name="NPCManager" type="Node" parent="."]
 script = ExtResource("1_w8r16")
+dialogue_rules = "The city is divided into five water catchment areas, each with unique water-related challenges. Area 1, located in northern Chichester, includes Tilmore Brook, Sky Park Farm, Criddell Stream, Bepton, Hollycombe Home Farm, Midhurst, Ridlington Farm, Petworth, and Byworth. This area faces extensive water abstraction for southern areas and drought, with exposed riverbeds. It has a lower population density and farmland with low productivity. Policies and technology for water preservation (quantity) are prioritized here. Area 2, south of Area 1, includes West Dean, East Dean, Adsdean, Densworth Farm, Chichester city center, Goodwood Motor Circuit, River Ems, and River Lavant. It has significant farmland and industrial activity, and is one of the most populated regions in the city. Rivers flow south to Area 3, which requires policies/technology for water and nutrient preservation. Area 3, Chichester Harbour, includes Southbourne, Bosham, Thornham Marina, Northney Marina, Warblington Castle Farm, Northney Farm, Chichester Marina, Sparkes Marina, and West Wittering. The harbour is a rare still-water body, facing eutrophication from nutrient runoff and water shortages due to abstraction. Policies to enhance wastewater treatment and focus on habitat protection are crucial here. Area 4, the coastal region, includes Hale Farm, Easter Wittering, Selsey, Pagham, South Mundham, Bognor Regis, and Fontwell. The area faces seasonal flooding and complex land use between tourism and local housing, with valuable farmland. Policies and technology that increase farmland yield while improving water quality and quantity are preferred. Area 5, the coastal wetland, includes Littlehampton, Angmering, Arundel city center, Long Furlong Farm, Droke Farm, Amberley, Storrington, River Stor, and Arun Valley. This area faces seasonal tidal flooding, seawater intrusion, and an endangered wetland habitat (Arun Valley). Freshwater infiltration to counteract seawater intrusion is urgently needed, and improving water treatment is a priority here. Policy cards include Community Infrastructure Levy (+3 Funding, +5 Popularity), Countryside Productive Small Grant (+2 Funding, +5 Popularity), Local River Trust (+3 Funding, +5 Popularity), and Stop Airbnb (-1 Funding, +5 Water Quantity). Technology cards include Agroforestry (+10 Water Quality & Quantity), Farmland Biobed (+5 Water Quality & Quantity), Green Infrastructure Enhancement (+10 Water Quality & Quantity), Sludge Utilization (+5 Water Quality & Quantity), Water Recycle (+5 Water Quality & Quantity), Wetland Restoration (+10 Water Quality & Quantity), and Wastewater Treatment Works (+5 Water Quality & Quantity)."
 
 [node name="TalkTrigger" type="Area2D" parent="."]
 position = Vector2(223, 519)
@@ -53,7 +58,7 @@ script = ExtResource("3_pus8t")
 [node name="ScrollContainer" type="ScrollContainer" parent="DialogueBox"]
 layout_mode = 0
 offset_left = 21.0
-offset_top = 26.0
+offset_top = -234.0
 offset_right = 423.0
 offset_bottom = 427.0
 
@@ -84,5 +89,12 @@ custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 theme = ExtResource("2_4gvjr")
 text = "CHAT"
+
+[node name="Area2D" type="Area2D" parent="DialogueBox/ChatInputArea"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueBox/ChatInputArea/Area2D"]
+position = Vector2(201, 27.5)
+shape = SubResource("RectangleShape2D_ovdqh")
 
 [connection signal="pressed" from="DialogueBox/ChatInputArea/ChatButton" to="DialogueBox" method="_on_chat_button_pressed"]

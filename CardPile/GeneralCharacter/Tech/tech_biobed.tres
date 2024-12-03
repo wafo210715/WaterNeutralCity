@@ -14,4 +14,4 @@ water_quality = 5
 water_quantity = 5
 popularity = 0
 image = ExtResource("1_mbfr0")
-tooltip_text = "This item will contain and collect sprayer and applicator washings and degrade them in a biobed. This will help prevent pesticides from entering drains or water bodies, which will help reduce the risk of water pollution."
+tooltip_text = "A farmland biobed collects and treats sprayer washings, preventing pesticide runoff into water bodies. It helps reduce water pollution from agricultural chemicals, particularly in areas with extensive farming. This card is most effective in Areas 1, 2, and 4, where farming is prevalent."

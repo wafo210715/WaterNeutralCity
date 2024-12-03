@@ -14,4 +14,4 @@ water_quality = -10
 water_quantity = 0
 popularity = -10
 image = ExtResource("1_28s4l")
-tooltip_text = "CSOs are caused by storms that make WWTS unable to handle excessive sewage."
+tooltip_text = "CSOs occur when heavy rainfall overwhelms sewage systems, causing untreated wastewater to flow into water bodies. This negatively impacts water quality by introducing contaminants and nutrients. It can happen anywhere, but is more severe in Areas 2 and 3."

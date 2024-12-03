@@ -12,15 +12,19 @@ func enter():
 	# card_ui.pivot_offset = Vector2.ZERO
 	# set_process(true)
 	# Events.tooltip_hide_requested.emit()
-	print("Base")
+	# print("Base")
 
 func exit():
 	# set_process(false)
-	print("Leave Base")
+	# print("Leave Base")
+	pass
 
 
 func on_mouse_entered():
-	Events.card_tooltip_requested.emit(card_ui.card.id, card_ui.card.tooltip_text)
+	if card_ui.card.type == Card.Type.POLICY:
+		Events.card_tooltip_requested.emit(card_ui.card.id, card_ui.card.tooltip_text)
+	if card_ui.card.type == Card.Type.TECH:
+		Events.techcard_tooltip_requested.emit(card_ui.card.id, card_ui.card.tooltip_text)
 	transition_requested.emit(self, CardState.State.HOVER)
 
 

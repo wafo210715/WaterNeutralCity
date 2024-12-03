@@ -3,7 +3,7 @@ extends CardState
 var previous_hovered_card: CardUI = null
 
 func enter():
-	print("Entering Hover State.")
+	#print("Entering Hover State.")
 	if previous_hovered_card and previous_hovered_card != card_ui:
 		previous_hovered_card.z_index = 0
 		previous_hovered_card.shadow.visible = false
@@ -25,14 +25,15 @@ func enter():
 	card_ui.pick_up_card()
 	card_ui.z_index = 100  # Bring the hovered card to the front
 	previous_hovered_card = card_ui
-	print("Card picked up. Setting z_index to 100 for:", card_ui.name)
+	#print("Card picked up. Setting z_index to 100 for:", card_ui.name)
 
 func exit():
 	if card_ui.z_index != 0:
-		print("Exited HoverState. Resetting z_index to 0 for:", card_ui.name)
+		#print("Exited HoverState. Resetting z_index to 0 for:", card_ui.name)
 		card_ui.z_index = 0
 	else:
-		print("Exited HoverState. z_index already set to 0 for:", card_ui.name)
+		#print("Exited HoverState. z_index already set to 0 for:", card_ui.name)
+		pass
 
 
 
@@ -40,7 +41,7 @@ func on_mouse_exited():
 	Events.tooltip_hide_requested.emit()
 	transition_requested.emit(self, CardState.State.BASE)
 	if card_ui.z_index != 0:
-		print("Mouse exited. Resetting z_index to 0 for:", card_ui.name)
+		#print("Mouse exited. Resetting z_index to 0 for:", card_ui.name)
 		card_ui.z_index = 0
 	card_ui.reset_transform()
 

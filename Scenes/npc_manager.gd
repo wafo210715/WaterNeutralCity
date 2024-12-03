@@ -30,7 +30,7 @@ func dialogue_request(player_dialogue):
 	var prompt = player_dialogue
 	
 	if len(messages) == 0:
-		prompt = dialogue_rules + player_dialogue + "answer in 100 words."
+		prompt = dialogue_rules + player_dialogue + "explain player about water quality and quantity situation in relation with cards rather then giving straight answer and answer in 100 words."
 	
 	messages.append({
 		"role": "user",

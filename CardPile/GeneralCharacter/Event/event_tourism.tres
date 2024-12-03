@@ -14,4 +14,4 @@ water_quality = -20
 water_quantity = -20
 popularity = 0
 image = ExtResource("1_pfnql")
-tooltip_text = "The warm environment attracts many people to coastal cities for vacation. As a result, the amount of domestic water and sewage treatment also increases."
+tooltip_text = "Tourism refers to an influx of visitors that can place stress on local resources. It affects water quantity by increasing demand and water quality by introducing pollutants from waste and infrastructure. This is most prominent in Areas 4 and 3, where tourism peaks seasonally."

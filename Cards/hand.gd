@@ -10,7 +10,7 @@ var cards_played_this_turn := 0
 
 # Starting positions for animations
 var policy_card_start_position: Vector2 = Vector2(-150, -5)  # Example position for policy cards
-var tech_card_start_position: Vector2 = Vector2(-150, -300)    # Example position for tech cards
+var tech_card_start_position: Vector2 = Vector2(1320, -5)    # Example position for tech cards
 
 
 
@@ -42,9 +42,9 @@ func animate_card_to_position(card: CardUI, new_position: Vector2, speed: float 
 	var tween = card.create_tween()
 	tween.tween_property(card, "position", new_position, speed)
 	tween.finished.connect(func():
-		print("Tween finished for card:", card.name)
+		#print("Tween finished for card:", card.name)
 		card.position = new_position
-		print("Card position updated to:", card.position)
+		#print("Card position updated to:", card.position)
 	)
 
 
@@ -96,7 +96,7 @@ func add_card(card: Card) -> void:
 	new_card_ui.connect("destroyed", Callable(self, "_on_card_destroyed"))
 
 	# Ensure the card's position is set before updating and animating
-	print("New card added at starting position:", new_card_ui.position)
+	#print("New card added at starting position:", new_card_ui.position)
 
 	# Update the layout and animate the card to the target position
 	_update_cards()
@@ -109,7 +109,7 @@ func add_card(card: Card) -> void:
 
 # Update layout and position after a card is destroyed
 func _on_card_destroyed():
-	print("Hand: Card destroyed, updating layout")  # Print statement in Hand
+	#print("Hand: Card destroyed, updating layout")  # Print statement in Hand
 	# Defer the update to allow the destroyed card to be fully removed from the scene
 	call_deferred("_update_cards")
 
@@ -164,7 +164,7 @@ func _update_cards(dragged_card = null):
 			var final_y: float = (y_min + y_max) * y_multiplier
 			var final_position = Vector2(final_x, final_y)
 
-			print("Animating card:", card.name, "to position:", final_position)
+			#print("Animating card:", card.name, "to position:", final_position)
 			animate_card_to_position(card, final_position)
 
 			card.rotation_degrees = max_rotation_degrees * rot_multiplier

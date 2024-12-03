@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cifqpawchfhpb"]
+[gd_scene load_steps=22 format=3 uid="uid://cifqpawchfhpb"]
 
 [ext_resource type="Script" path="res://TurnManagement/season_ui.gd" id="1_cwgkr"]
 [ext_resource type="Texture2D" uid="uid://da78w2pr5srlj" path="res://TurnManagement/over_72ppi.png" id="1_qy2rj"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://ydmln65fuh5y" path="res://CardPile/GeneralCharacter/Event/event_tourism.tres" id="6_84r5u"]
 [ext_resource type="Texture2D" uid="uid://8s7y7axjb65m" path="res://Icons/quality.png" id="6_ia8rs"]
 [ext_resource type="Texture2D" uid="uid://c1c0exp08nxtc" path="res://Icons/quantity.png" id="7_fw28h"]
+[ext_resource type="Texture2D" uid="uid://dijyy7atfk2nw" path="res://Cards/Event/Event_画板 1-03.png" id="9_d4w3k"]
 [ext_resource type="Texture2D" uid="uid://ogkhnl4ugmne" path="res://Icons/bad pop.png" id="9_uixbu"]
 [ext_resource type="Texture2D" uid="uid://qmuasmip0hq2" path="res://Icons/funding.png" id="10_34uln"]
 
@@ -86,6 +87,13 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_wb7k6")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_wf77b")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0cgli")
 
+[node name="EventCardBG" type="TextureRect" parent="EventCardButton"]
+layout_mode = 0
+offset_right = 181.0
+offset_bottom = 264.0
+texture = ExtResource("9_d4w3k")
+expand_mode = 1
+
 [node name="EventCardUI" type="TextureRect" parent="EventCardButton"]
 layout_mode = 0
 offset_right = 181.0
@@ -94,6 +102,7 @@ texture = ExtResource("4_yo8jh")
 expand_mode = 1
 
 [node name="EventEffectBG" type="TextureRect" parent="EventCardButton"]
+visible = false
 layout_mode = 0
 offset_top = -70.0
 offset_right = 182.0
@@ -102,12 +111,14 @@ texture = ExtResource("5_icgu6")
 expand_mode = 1
 
 [node name="EventCardArea" type="Area2D" parent="EventCardButton"]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EventCardButton/EventCardArea"]
 position = Vector2(90.5, 132)
 shape = SubResource("RectangleShape2D_s3gvb")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="EventCardButton"]
+visible = false
 layout_mode = 0
 offset_left = -42.0
 offset_top = -65.0
@@ -190,6 +201,17 @@ theme_override_font_sizes/font_size = 22
 text = "+5"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="EventTarget" type="Label" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 580.0
+offset_right = 205.0
+offset_bottom = 603.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Safe! No Season Event!"
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [connection signal="mouse_entered" from="EventCardButton/EventCardArea" to="." method="_on_event_card_area_mouse_entered"]
 [connection signal="mouse_exited" from="EventCardButton/EventCardArea" to="." method="_on_event_card_area_mouse_exited"]

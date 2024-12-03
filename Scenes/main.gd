@@ -9,6 +9,7 @@ var area5_card_count: int = 0
 
 
 @export var player_stats: PlayerStats
+@export var music : AudioStream
 
 @onready var hand: Control = $UI/Hand
 @onready var discard_area: Area2D = $DiscardArea
@@ -54,6 +55,7 @@ func _ready():
 
 
 func game_start(stats: PlayerStats) -> void:
+	MusicPlayer.play(music, true)
 	player_handler.game_start(stats)
 
 

@@ -4,6 +4,8 @@ extends Control
 @onready var season_text: Label = $VBoxContainer/SeasonText
 @onready var texture_progress_bar: TextureProgressBar = $TextureProgressBar
 
+
+@onready var event_card_bg: TextureRect = $EventCardButton/EventCardBG
 @onready var event_card_button: Button = $EventCardButton
 @onready var event_card_ui: TextureRect = $EventCardButton/EventCardUI
 @onready var event_effect_bg: TextureRect = $EventCardButton/EventEffectBG
@@ -18,6 +20,7 @@ extends Control
 @onready var funding_icon: TextureRect = %FundingIcon
 @onready var funding_stats: Label = %FundingStats
 
+@onready var event_target: Label = $EventTarget
 
 @export var event_card_resources: Array = []  # An array to hold your 5 event card resources
 @export var player_stats : PlayerStats
@@ -28,7 +31,7 @@ extends Control
 @onready var area_5: Area5 = $"../Area5"
 @onready var area_4: Area4 = $"../Area4"
 
-
+var event_card: Card = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,6 +40,10 @@ func _ready() -> void:
 	event_card_ui.visible = false
 	event_effect_bg.visible = false
 	h_box_container.visible = false
+	
+	# Connect the mouse entered and exited signals to their respective functions
+	event_card_ui.connect("mouse_entered", Callable(self, "_on_event_card_area_mouse_entered"))
+	event_card_ui.connect("mouse_exited", Callable(self, "_on_event_card_area_mouse_exited"))
 
 
 func _on_season_changed(current_season: int, current_year: int):
@@ -65,13 +72,52 @@ func _on_season_changed(current_season: int, current_year: int):
 	if random_number <= probability:
 		# Randomly choose an event card (policy, tech, etc.)
 		var selected_card = choose_event_card()
+		event_card = selected_card
+		event_card_ui.texture = selected_card.image
+		event_card_ui.visible = true
+		if selected_card.funding == 0:
+			funding_icon.visible = false
+			funding_stats.visible = false
+		else:
+			funding_icon.visible = true
+			funding_stats.visible = true
+			funding_stats.text = str(selected_card.funding)
+		
+		if selected_card.water_quality == 0:
+			quality_icon.visible = false
+			quality_stats.visible = false
+		else:
+			quality_icon.visible = true
+			quality_stats.visible = true
+			quality_stats.text = str(selected_card.water_quality)
+		
+		if selected_card.water_quantity == 0:
+			quantity_icon.visible = false
+			quantity_stats.visible = false
+		else:
+			quantity_icon.visible = true
+			quantity_stats.visible = true
+			quantity_stats.text = str(selected_card.water_quantity)
+		
+		if selected_card.popularity == 0:
+			popularity_icon.visible = false
+			popularity_stats.visible = false
+		else:
+			popularity_icon.visible = true
+			popularity_stats.visible = true
+			popularity_stats.text = str(selected_card.popularity)
 		
 		# Randomly select a target area (area1, area2, area3, etc.)
 		var target_area = choose_random_target_area()
 		print("Selected target area:", target_area.name)  # Debug statement
+		event_target.text = "Oops! " + str(probability*100) + "% chance of Season Event and it happened in "  + target_area.name
 		
 		# Apply the effects to the selected area and player stats
 		selected_card.event_happen([target_area], player_stats)
+	else:
+		event_card_ui.visible = false
+		event_target.text = str(probability*100) + "% chance of Season Event"
+		print("Safe! No season event this season.")
 
 
 # Probability calculation function
@@ -115,10 +161,12 @@ func choose_random_target_area() -> Node:
 
 
 func _on_event_card_area_mouse_entered() -> void:
+	Events.eventcard_tooltip_requested.emit(event_card.id, event_card.tooltip_text)
 	h_box_container.visible = true
 	event_effect_bg.visible = true
 
 
 func _on_event_card_area_mouse_exited() -> void:
+	Events.tooltip_hide_requested.emit()
 	h_box_container.visible = false
 	event_effect_bg.visible = false

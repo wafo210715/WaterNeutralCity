@@ -14,4 +14,4 @@ water_quality = 10
 water_quantity = 10
 popularity = 0
 image = ExtResource("1_d7vos")
-tooltip_text = "Aquatic plants in wetlands can absorb nutrients from water bodies and prevent eutrophication."
+tooltip_text = "Wetland restoration involves reintroducing aquatic plants to absorb excess nutrients from water bodies. This helps prevent eutrophication and improves water quality. Ideal for coastal and wetland areas like Areas 3 and 5, where water quality issues are significant."

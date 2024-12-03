@@ -30,11 +30,11 @@ func show_tooltip(text: String, description: String) -> void:
 	card_name.text = text
 	card_description.text = description
 
-	var target_position = original_position - Vector2(380, 0)
+	var target_position = original_position + Vector2(380, 0)
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 	tween.tween_property(self, "position", target_position, 0.5).finished.connect(func():
 		state = TooltipState.SHOWN
-		print("Tooltip shown.")
+		#print("Tooltip shown.")
 	)
 
 func hide_tooltip() -> void:
@@ -50,5 +50,5 @@ func hide_tooltip() -> void:
 	tween.tween_property(self, "position", original_position, 0.5).finished.connect(func():
 		margin_container.visible = false
 		state = TooltipState.HIDDEN
-		print("Tooltip hidden.")
+		#print("Tooltip hidden.")
 	)

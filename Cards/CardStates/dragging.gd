@@ -97,7 +97,7 @@ func exit():
 			"Area5":
 				Events.simulation_ended_5.emit()
 		
-		print("Simulation ended for target:", current_target.name)
+		#print("Simulation ended for target:", current_target.name)
 		current_target = null
 
 

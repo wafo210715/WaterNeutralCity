@@ -14,4 +14,4 @@ water_quality = 5
 water_quantity = 5
 popularity = 0
 image = ExtResource("1_nyet2")
-tooltip_text = "Adding a recycled water system to a property can help reduce the pressure on abstracting local water bodies."
+tooltip_text = "Water recycle systems treat and reuse water within properties to reduce demand on local water sources. This addresses Drought and water scarcity by conserving water and easing the pressure on water bodies. Best used in areas facing water shortages, like Areas 2, 3 and 4."

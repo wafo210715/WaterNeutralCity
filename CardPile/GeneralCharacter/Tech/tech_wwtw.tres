@@ -14,4 +14,4 @@ water_quality = 5
 water_quantity = 5
 popularity = 0
 image = ExtResource("1_kcbsb")
-tooltip_text = "Upgrading the sewage treatment plant can not only speed up the sewage treatment process, but also increase the water storage space and effectively slow down the CSOS."
+tooltip_text = "Upgrading wastewater treatment plants speeds up sewage treatment and increases water storage capacity. It helps address Combined Sewage Overflows (CSOs) and improves water quality. Suitable for urban and industrial areas, especially in Areas 2 and 3, facing CSOs."

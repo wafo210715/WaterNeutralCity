@@ -14,4 +14,4 @@ water_quality = 5
 water_quantity = 5
 popularity = 0
 image = ExtResource("1_8qqoa")
-tooltip_text = "Utilize the nutrients in domestic water, which can be used as fertilizer and transported to farmland after treatment."
+tooltip_text = "Sludge utilization involves treating and repurposing domestic water sludge as fertilizer for farmland. This reduces waste and supports sustainable agriculture while improving water quality. It’s suitable for areas with both agricultural land and WWTW, like Area 2, 3, and 4, where water quality is a concern."

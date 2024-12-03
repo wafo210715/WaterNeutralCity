@@ -14,4 +14,4 @@ water_quality = -20
 water_quantity = -20
 popularity = 0
 image = ExtResource("1_lju78")
-tooltip_text = "With the development of technology, the happiness of the people has increased, but this has also led to an increase in water demand and more serious water pollution."
+tooltip_text = "Industrial growth involves the expansion of factories, production, and infrastructure, increasing water usage and pollution. It stresses water quality and quantity by demanding more water and increasing waste output."
