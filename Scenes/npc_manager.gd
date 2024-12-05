@@ -11,6 +11,15 @@ var headers = [
 var model : String = "glm-4"
 var messages = []
 var request : HTTPRequest
+var area_stats = {
+	"Area1": preload("res://Scenes/enemy_area_1.gd").new(),
+	"Area2": preload("res://Scenes/enemy_area_2.gd").new(),
+	"Area3": preload("res://Scenes/enemy_area_3.gd").new(),
+	"Area4": preload("res://Scenes/enemy_area_4.gd").new(),
+	"Area5": preload("res://Scenes/enemy_area_5.gd").new(),
+}
+
+
 
 @onready var dialogue_box: Control = $"../DialogueBox"
 @export_multiline var dialogue_rules : String
@@ -30,7 +39,29 @@ func dialogue_request(player_dialogue):
 	var prompt = player_dialogue
 	
 	if len(messages) == 0:
-		prompt = dialogue_rules + player_dialogue + "explain player about water quality and quantity situation in relation with cards rather then giving straight answer and answer in 100 words."
+		# Collect stats from all areas
+		var stats_summary = ""
+		var group_prefix = "area"
+		
+		for i in range(1, 6):  # Looping through all areas
+			var group_name = "%s%d" % [group_prefix, i]
+			var area_nodes = get_tree().get_nodes_in_group(group_name)
+			
+			# Assuming one node per group contains the stats
+			if area_nodes.size() > 0:
+				var area = area_nodes[0]
+				if area.has_method("get_enemy_stats"):
+					var stats = area.get_enemy_stats()
+					
+					stats_summary += "%s - Quality: %d, Quantity: %d, Popularity: %d\n" % [
+						group_name,
+						stats.quality,
+						stats.quantity,
+						stats.popularity
+					]
+		
+		# Add the stats summary to the dialogue prompt
+		prompt = "%s\n\n%s\n%s" % [dialogue_rules, stats_summary, player_dialogue] + "Make the response as 20 words."
 	
 	messages.append({
 		"role": "user",

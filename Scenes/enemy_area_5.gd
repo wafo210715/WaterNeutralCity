@@ -91,6 +91,9 @@ func _on_simulation_ended_5():
 	card_slot.visible = false
 
 
+func get_enemy_stats() -> EnemyStats:
+	return enemy_stats
+
 
 func _on_area_5_mouse_entered() -> void:
 	enemy_stats_ui.visible = true
