@@ -29,7 +29,7 @@ expand_mode = 1
 position = Vector2(226.75, 158.75)
 shape = SubResource("RectangleShape2D_ii6cy")
 
-[node name="EnemyStatsUI4" parent="." instance=ExtResource("4_1ay37")]
+[node name="EnemyStatsUI" parent="." instance=ExtResource("4_1ay37")]
 unique_name_in_owner = true
 visible = false
 offset_left = -55.0
