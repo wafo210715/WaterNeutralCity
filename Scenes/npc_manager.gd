@@ -11,6 +11,15 @@ var headers = [
 var model : String = "glm-4"
 var messages = []
 var request : HTTPRequest
+var area_stats = {
+	"Area1": preload("res://Scenes/enemy_area_1.gd").new(),
+	"Area2": preload("res://Scenes/enemy_area_2.gd").new(),
+	"Area3": preload("res://Scenes/enemy_area_3.gd").new(),
+	"Area4": preload("res://Scenes/enemy_area_4.gd").new(),
+	"Area5": preload("res://Scenes/enemy_area_5.gd").new(),
+}
+
+
 
 @onready var dialogue_box: Control = $"../DialogueBox"
 @export_multiline var dialogue_rules : String
@@ -27,16 +36,38 @@ func _ready():
 
 
 func dialogue_request(player_dialogue):
-	var prompt = player_dialogue
+	# Always update the stats summary
+	var stats_summary = ""
+	var group_prefix = "area"
 	
-	if len(messages) == 0:
-		prompt = dialogue_rules + player_dialogue + ". explain player about water quality and quantity situation in relation with cards rather then giving straight answer and answer in 100 words."
+	for i in range(1, 6):  # Looping through all areas
+		var group_name = "%s%d" % [group_prefix, i]
+		var area_nodes = get_tree().get_nodes_in_group(group_name)
+		
+		# Assuming one node per group contains the stats
+		if area_nodes.size() > 0:
+			var area = area_nodes[0]
+			if area.has_node("EnemyStatsUI"):
+				var stats_ui = area.get_node("EnemyStatsUI") as EnemyStatsUI
+				if stats_ui:
+					stats_summary += "%s - Quality: %d, Quantity: %d, Popularity: %d\n" % [
+						group_name,
+						stats_ui.quality.value,
+						stats_ui.quantity.value,
+						stats_ui.popularity.value
+					]
 	
+	# Add the stats summary to the dialogue prompt
+	var prompt = "%s\n\n%s\n%s" % [dialogue_rules, stats_summary, player_dialogue] + "You can only react with emotion in 20 words. If you feel your reaction is not enough to guide the player, you can not react but answer player's question in 40 words."
+	
+	# Append the message if it's not already present
 	messages.append({
 		"role": "user",
 		"content": prompt
 	})
 	
+	print(stats_summary)  # Print updated stats summary to verify
+
 	on_player_talk.emit()
 	
 	var body = JSON.stringify({
@@ -50,6 +81,7 @@ func dialogue_request(player_dialogue):
 	
 	if send_request != OK:
 		print("Error sending request")
+
 
 
 

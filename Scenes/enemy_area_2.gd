@@ -91,6 +91,9 @@ func _on_simulation_ended_2():
 	enemy_stats_ui.visible = false
 
 
+func get_enemy_stats() -> EnemyStats:
+	return enemy_stats
+
 
 func _on_area_2_mouse_entered() -> void:
 	enemy_stats_ui.visible = true
