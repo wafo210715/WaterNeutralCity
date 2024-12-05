@@ -72,6 +72,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_0unri")
 script = ExtResource("2_l3ts8")
 card = ExtResource("3_s0s40")
 player_stats = ExtResource("4_r5c52")
+spring = 200.0
 
 [node name="Shadow" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 0.776471)

@@ -13,6 +13,11 @@ extends HBoxContainer
 @onready var unhappy: TextureRect = %Unhappy
 @onready var angry: TextureRect = %Angry
 
+@onready var quality_stats: Label = $Quality/QualityStats
+@onready var quantity_stats: Label = $Quantity/QuantityStats
+@onready var popularity_stats: Label = $Popularity/PopularityStats
+
+
 # Track permanent and simulated changes
 var permanent_quality: int = 0
 var permanent_quantity: int = 0
@@ -24,11 +29,18 @@ var popularity_simulated: int = 0
 
 var stats: EnemyStats = null  # Linked stats instance
 
+
+
 # Update permanent stats
 func update_stats(stats: EnemyStats):
 	permanent_quality = stats.quality
 	permanent_quantity = stats.quantity
 	permanent_popularity = stats.popularity
+	quality_stats.text = str(permanent_quality)
+	quantity_stats.text = str(permanent_quantity)
+	popularity_stats.text = str(permanent_popularity)
+
+	
 
 	_apply_stats_to_ui()
 	print("Permanent stats updated: Quality:", permanent_quality, "Quantity:", permanent_quantity, "Popularity:", permanent_popularity)
@@ -67,6 +79,19 @@ func _apply_stats_to_ui():
 	quality.value = permanent_quality + quality_simulated
 	quantity.value = permanent_quantity + quantity_simulated
 	popularity.value = permanent_popularity + popularity_simulated
+	if quality_simulated > 0:
+		quality_stats.text = str(permanent_quality) + "+" + str(quality_simulated)
+	else:
+		quality_stats.text = str(permanent_quality)
+	if quantity_simulated > 0:
+		quantity_stats.text = str(permanent_quantity) + "+" + str(quantity_simulated)
+	else:
+		quantity_stats.text = str(permanent_quantity)
+	if popularity_simulated > 0:
+		popularity_stats.text = str(permanent_popularity) + "+" + str(popularity_simulated)
+	else:
+		popularity_stats.text = str(permanent_popularity)
+
 
 	# Update icons based on the final value (permanent + simulated)
 	_update_icons()

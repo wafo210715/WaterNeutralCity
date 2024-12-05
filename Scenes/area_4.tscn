@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/enemy_area_4.gd" id="1_w384q"]
 [ext_resource type="Texture2D" uid="uid://dpav11gj6pvn8" path="res://Enemies/Area4/area4_cut.png" id="2_ffy25"]
 [ext_resource type="Resource" uid="uid://d01bo8x3vgdor" path="res://Enemies/Area4/area_4.tres" id="2_khe3w"]
-[ext_resource type="PackedScene" uid="uid://n6ocdl0vqm8j" path="res://Enemies/Area4/enemy_stats_ui_4.tscn" id="4_y1y6q"]
+[ext_resource type="PackedScene" uid="uid://bcbxpdp1x1t3r" path="res://Scenes/enemy_stats_ui.tscn" id="4_1ay37"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ii6cy"]
 size = Vector2(241.5, 242.5)
@@ -29,8 +29,13 @@ expand_mode = 1
 position = Vector2(226.75, 158.75)
 shape = SubResource("RectangleShape2D_ii6cy")
 
-[node name="EnemyStatsUI4" parent="." instance=ExtResource("4_y1y6q")]
+[node name="EnemyStatsUI4" parent="." instance=ExtResource("4_1ay37")]
 unique_name_in_owner = true
+visible = false
+offset_left = -55.0
+offset_top = -297.0
+offset_right = 117.0
+offset_bottom = 66.0
 
 [node name="CardSlot" type="Node2D" parent="."]
 position = Vector2(140, -295)

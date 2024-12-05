@@ -34,7 +34,6 @@ script = ExtResource("1_shlfs")
 [node name="Quality" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-step = 5.0
 value = 90.0
 fill_mode = 3
 texture_over = ExtResource("1_bwkjf")
@@ -49,10 +48,22 @@ offset_bottom = 355.0
 texture = ExtResource("3_c10tg")
 expand_mode = 1
 
+[node name="QualityStats" type="Label" parent="Quality"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -41.0
+offset_right = 43.0
+offset_bottom = 1.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "80"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
 [node name="Quantity" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-step = 5.0
 value = 50.0
 fill_mode = 3
 texture_over = ExtResource("4_6umub")
@@ -67,6 +78,19 @@ offset_bottom = 357.0
 texture = ExtResource("6_dmtau")
 expand_mode = 1
 
+[node name="QuantityStats" type="Label" parent="Quantity"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -41.0
+offset_right = 43.0
+offset_bottom = 1.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 25
+text = "80"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
 [node name="Popularity" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
@@ -75,6 +99,19 @@ value = 90.0
 fill_mode = 3
 texture_over = ExtResource("7_ap7ks")
 texture_progress = ExtResource("8_g3l8t")
+
+[node name="PopularityStats" type="Label" parent="Popularity"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -41.0
+offset_right = 43.0
+offset_bottom = 1.0
+theme_override_colors/font_color = Color(0.883669, 0.331995, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "80"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Popularity"]
 layout_mode = 1
