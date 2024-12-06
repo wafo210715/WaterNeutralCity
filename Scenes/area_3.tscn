@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2uiwd3p3fiik"]
+[gd_scene load_steps=7 format=3 uid="uid://b2uiwd3p3fiik"]
 
 [ext_resource type="Script" path="res://Scenes/enemy_area_3.gd" id="1_gm3s3"]
 [ext_resource type="Texture2D" uid="uid://c5qxv44ccf7fg" path="res://Enemies/Area3/area3_cut.png" id="1_x83rj"]
 [ext_resource type="Resource" uid="uid://co8mdggtmj2kt" path="res://Enemies/Area3/area_3.tres" id="2_1wmf8"]
 [ext_resource type="PackedScene" uid="uid://bcbxpdp1x1t3r" path="res://Scenes/enemy_stats_ui.tscn" id="4_fugqi"]
+[ext_resource type="Texture2D" uid="uid://dmmm05raaim5e" path="res://Icons/area3.png" id="4_nwxpl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ii6cy"]
-size = Vector2(218, 208)
+size = Vector2(218, 177)
 
 [node name="Area3" type="Node2D"]
 script = ExtResource("1_gm3s3")
@@ -18,7 +19,7 @@ enemy_stats = ExtResource("2_1wmf8")
 position = Vector2(-199, -128)
 collision_layer = 4
 
-[node name="TextureRect" type="TextureRect" parent="Node2D/Area3"]
+[node name="BG" type="TextureRect" parent="Node2D/Area3"]
 offset_right = 398.0
 offset_bottom = 257.0
 pivot_offset = Vector2(199, 128)
@@ -26,18 +27,25 @@ texture = ExtResource("1_x83rj")
 expand_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area3"]
-position = Vector2(211, 149)
+position = Vector2(186, 161)
 shape = SubResource("RectangleShape2D_ii6cy")
+
+[node name="Logo" type="TextureRect" parent="Node2D/Area3"]
+offset_left = 102.0
+offset_top = 148.0
+offset_right = 233.0
+offset_bottom = 194.0
+texture = ExtResource("4_nwxpl")
 
 [node name="EnemyStatsUI" parent="." instance=ExtResource("4_fugqi")]
 visible = false
-offset_left = -86.0
-offset_top = -347.0
-offset_right = 86.0
-offset_bottom = 16.0
+offset_left = -150.0
+offset_top = -346.0
+offset_right = 72.0
+offset_bottom = 17.0
 
 [node name="CardSlot" type="Node2D" parent="."]
-position = Vector2(-290, -345)
+position = Vector2(-360, -350)
 
 [connection signal="mouse_entered" from="Node2D/Area3" to="." method="_on_area_3_mouse_entered"]
 [connection signal="mouse_exited" from="Node2D/Area3" to="." method="_on_area_3_mouse_exited"]

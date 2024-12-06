@@ -27,8 +27,8 @@ func initialize_card_piles():
 	policy_card_draw_pile.shuffle()
 	tech_card_draw_pile.shuffle()
 	
-	print("Shuffled Policy Deck:", policy_card_draw_pile.cards)
-	print("Shuffled Tech Deck:", tech_card_draw_pile.cards)
+	# print("Shuffled Policy Deck:", policy_card_draw_pile.cards)
+	# print("Shuffled Tech Deck:", tech_card_draw_pile.cards)
 
 	print("PlayerStats: Card piles initialized and shuffled.")
 

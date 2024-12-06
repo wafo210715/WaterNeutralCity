@@ -10,6 +10,8 @@ extends Node2D
 @onready var node_2d: Node2D = $Node2D
 @onready var enemy_stats_ui: EnemyStatsUI = $EnemyStatsUI
 @onready var card_slot: Node2D = $CardSlot
+@onready var logo: TextureRect = $Node2D/Area2/Logo
+@onready var bg: TextureRect = $Node2D/Area2/BG
 
 var tween: Tween
 
@@ -21,6 +23,9 @@ func _ready():
 	Events.connect("simulation_ended_2", Callable(self, "_on_simulation_ended_2"))
 	
 	card_slot.visible = false
+	logo.z_index = 1
+	enemy_stats_ui.z_index = 1
+	card_slot.z_index = 1
 
 
 
@@ -100,6 +105,7 @@ func _on_area_2_mouse_entered() -> void:
 	card_slot.visible = true
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 	tween.tween_property(node_2d, "scale", Vector2(1.3, 1.3), 0.5)
+	bg.z_index = 1
 
 
 func _on_area_2_mouse_exited() -> void:
@@ -107,3 +113,4 @@ func _on_area_2_mouse_exited() -> void:
 	card_slot.visible = false
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 	tween.tween_property(node_2d, "scale", Vector2(1.0, 1.0), 0.5)
+	bg.z_index = 0

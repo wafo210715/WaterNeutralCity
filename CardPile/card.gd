@@ -122,11 +122,10 @@ func play4(targets: Array[Node], player_stats: PlayerStats) -> bool:
 func play5(targets: Array[Node], player_stats: PlayerStats) -> bool:
 	# print("Card: Play function called for card ID:", id)
 	Events.card_played.emit(self)
-
 	if player_stats.funding + funding < 0:
 		# print("Insufficient funding for card ID:", id)
 		return false
-
+	
 	player_stats.funding += funding
 	# print("Funding updated for card ID:", id, "New funding:", player_stats.funding)
 

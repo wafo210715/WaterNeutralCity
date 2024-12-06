@@ -9,6 +9,7 @@ extends Node2D
 @onready var node_2d: Node2D = $Node2D
 @onready var enemy_stats_ui: EnemyStatsUI = $EnemyStatsUI
 @onready var card_slot: Node2D = $CardSlot
+@onready var logo: TextureRect = $Node2D/Area5/Logo
 
 
 var tween: Tween
@@ -21,6 +22,7 @@ func _ready():
 	Events.connect("simulation_ended_5", Callable(self, "_on_simulation_ended_5"))
 	
 	card_slot.visible = false
+	logo.z_index = 1
 
 
 

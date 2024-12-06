@@ -67,6 +67,7 @@ func dialogue_request(player_dialogue):
 	})
 	
 	print(stats_summary)  # Print updated stats summary to verify
+	print(player_dialogue)
 
 	on_player_talk.emit()
 	
@@ -100,5 +101,6 @@ func _on_request_completed(result, response_code, headers, body):
 		})
 	
 		on_npc_talk.emit(message)
+		print(message)
 	else:
 		print("Error: Unexpected response format")
