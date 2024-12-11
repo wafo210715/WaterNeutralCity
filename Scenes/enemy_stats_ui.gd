@@ -50,19 +50,19 @@ func update_stats(stats: EnemyStats):
 func simulate_quality(amount: int):
 	quality_simulated += amount
 	_apply_stats_to_ui()
-	print("Simulating quality. Current simulated value:", quality_simulated)
+	# print("Simulating quality. Current simulated value:", quality_simulated)
 
 # Simulate quantity change
 func simulate_quantity(amount: int):
 	quantity_simulated += amount
 	_apply_stats_to_ui()
-	print("Simulating quantity. Current simulated value:", quantity_simulated)
+	# print("Simulating quantity. Current simulated value:", quantity_simulated)
 
 # Simulate popularity change
 func simulate_popularity(amount: int):
 	popularity_simulated += amount
 	_apply_stats_to_ui()
-	print("Simulating popularity. Current simulated value:", popularity_simulated)
+	# print("Simulating popularity. Current simulated value:", popularity_simulated)
 
 
 # Reset only the simulated changes
@@ -71,7 +71,7 @@ func reset_simulation():
 	quantity_simulated = 0
 	popularity_simulated = 0
 	_apply_stats_to_ui()
-	print("Simulation reset. Stats UI back to permanent values.")
+	# print("Simulation reset. Stats UI back to permanent values.")
 
 
 # Apply both permanent and simulated stats to the UI

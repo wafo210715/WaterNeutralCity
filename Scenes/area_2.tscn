@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwc0dg053v3oj"]
+[gd_scene load_steps=7 format=3 uid="uid://dwc0dg053v3oj"]
 
 [ext_resource type="Script" path="res://Scenes/enemy_area_2.gd" id="1_cqe3b"]
 [ext_resource type="Resource" uid="uid://d6hx31sf4xl2" path="res://Enemies/Area2/area_2.tres" id="2_0dwk0"]
 [ext_resource type="Texture2D" uid="uid://c670xoks341xs" path="res://Enemies/Area2/area2_cut.png" id="2_nidyf"]
 [ext_resource type="PackedScene" uid="uid://bcbxpdp1x1t3r" path="res://Scenes/enemy_stats_ui.tscn" id="4_2vgob"]
+[ext_resource type="Texture2D" uid="uid://c6tpl61yk3ki0" path="res://Icons/area2.png" id="4_72tws"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ii6cy"]
 size = Vector2(433, 199)
@@ -18,7 +19,7 @@ enemy_stats = ExtResource("2_0dwk0")
 position = Vector2(-311, -188)
 collision_layer = 4
 
-[node name="TextureRect" type="TextureRect" parent="Node2D/Area2"]
+[node name="BG" type="TextureRect" parent="Node2D/Area2"]
 offset_right = 623.0
 offset_bottom = 378.0
 pivot_offset = Vector2(311, 189)
@@ -29,15 +30,22 @@ expand_mode = 1
 position = Vector2(309.5, 192.5)
 shape = SubResource("RectangleShape2D_ii6cy")
 
+[node name="Logo" type="TextureRect" parent="Node2D/Area2"]
+offset_left = 204.0
+offset_top = 203.0
+offset_right = 335.0
+offset_bottom = 249.0
+texture = ExtResource("4_72tws")
+
 [node name="EnemyStatsUI" parent="." instance=ExtResource("4_2vgob")]
 visible = false
-offset_left = -87.0
-offset_top = -348.0
-offset_right = 85.0
-offset_bottom = 15.0
+offset_left = -169.0
+offset_top = -350.0
+offset_right = 53.0
+offset_bottom = 13.0
 
 [node name="CardSlot" type="Node2D" parent="."]
-position = Vector2(-290, -345)
+position = Vector2(-380, -350)
 
 [connection signal="mouse_entered" from="Node2D/Area2" to="." method="_on_area_2_mouse_entered"]
 [connection signal="mouse_exited" from="Node2D/Area2" to="." method="_on_area_2_mouse_exited"]

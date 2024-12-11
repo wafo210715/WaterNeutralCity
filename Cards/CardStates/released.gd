@@ -30,27 +30,30 @@ func enter():
 			return
 		
 		elif target.name == "Area1":
-			print("Attempting to play card:", card_ui.name)
+			# print("Attempting to play card:", card_ui.name)
 			
 			# Check play limits in TurnManager
 			if card_ui.card.type == Card.Type.POLICY:
 				if TurnManager.policy_cards_played_this_round >= TurnManager.max_policy_cards_playable:
-					print("Policy card play limit reached.")
+					# print("Policy card play limit reached.")
 					snap_back_to_hand()
 					return
-				TurnManager.policy_cards_played_this_round += 1
+				
 				
 			if card_ui.card.type == Card.Type.TECH:
 				if TurnManager.tech_cards_played_this_round >= TurnManager.max_tech_cards_playable:
-					print("Tech card play limit reached.")
+					# print("Tech card play limit reached.")
 					snap_back_to_hand()
 					return
-				TurnManager.tech_cards_played_this_round += 1
 			
 			# Play the card and update the play counters
 			if card_ui.play():
-				print("Card played successfully:", card_ui.name)
+				# print("Card played successfully:", card_ui.name)
 				played = true
+				if card_ui.card.type == Card.Type.POLICY:
+					TurnManager.policy_cards_played_this_round += 1
+				if card_ui.card.type == Card.Type.TECH:
+					TurnManager.tech_cards_played_this_round += 1
 				card_ui.reset_rotation()
 				snap_to_slot_area1()
 				card_ui.used = true  # Synchronize the `used` flag in `CardUI.gd`
@@ -59,10 +62,12 @@ func enter():
 			else:
 				print("Card play failed (insufficient funding):", card_ui.name)
 				snap_back_to_hand()
+				played = false
+				card_ui.used = false
 				return
 		
 		elif target.name == "Area2":
-			print("Attempting to play card:", card_ui.name)
+			# print("Attempting to play card:", card_ui.name)
 			
 			# Check play limits in TurnManager
 			if card_ui.card.type == Card.Type.POLICY:
@@ -70,19 +75,21 @@ func enter():
 					print("Policy card play limit reached.")
 					snap_back_to_hand()
 					return
-				TurnManager.policy_cards_played_this_round += 1
 				
 			if card_ui.card.type == Card.Type.TECH:
 				if TurnManager.tech_cards_played_this_round >= TurnManager.max_tech_cards_playable:
 					print("Tech card play limit reached.")
 					snap_back_to_hand()
 					return
-				TurnManager.tech_cards_played_this_round += 1
 			
 			# Play the card and update the play counters
 			if card_ui.play2():
-				print("Card played successfully:", card_ui.name)
+				# print("Card played successfully:", card_ui.name)
 				played = true
+				if card_ui.card.type == Card.Type.POLICY:
+					TurnManager.policy_cards_played_this_round += 1
+				if card_ui.card.type == Card.Type.TECH:
+					TurnManager.tech_cards_played_this_round += 1
 				card_ui.reset_rotation()
 				snap_to_slot_area2()
 				card_ui.used = true  # Synchronize the `used` flag in `CardUI.gd`
@@ -91,10 +98,12 @@ func enter():
 			else:
 				print("Card play failed (insufficient funding):", card_ui.name)
 				snap_back_to_hand()
+				played = false
+				card_ui.used = false
 				return
 			
 		elif target.name == "Area3":
-			print("Attempting to play card:", card_ui.name)
+			# print("Attempting to play card:", card_ui.name)
 			
 			# Check play limits in TurnManager
 			if card_ui.card.type == Card.Type.POLICY:
@@ -102,19 +111,21 @@ func enter():
 					print("Policy card play limit reached.")
 					snap_back_to_hand()
 					return
-				TurnManager.policy_cards_played_this_round += 1
 				
 			if card_ui.card.type == Card.Type.TECH:
 				if TurnManager.tech_cards_played_this_round >= TurnManager.max_tech_cards_playable:
 					print("Tech card play limit reached.")
 					snap_back_to_hand()
 					return
-				TurnManager.tech_cards_played_this_round += 1
 			
 			# Play the card and update the play counters
 			if card_ui.play3():
-				print("Card played successfully:", card_ui.name)
+				# print("Card played successfully:", card_ui.name)
 				played = true
+				if card_ui.card.type == Card.Type.POLICY:
+					TurnManager.policy_cards_played_this_round += 1
+				if card_ui.card.type == Card.Type.TECH:
+					TurnManager.tech_cards_played_this_round += 1
 				card_ui.reset_rotation()
 				snap_to_slot_area3()
 				card_ui.used = true  # Synchronize the `used` flag in `CardUI.gd`
@@ -123,10 +134,12 @@ func enter():
 			else:
 				print("Card play failed (insufficient funding):", card_ui.name)
 				snap_back_to_hand()
+				played = false
+				card_ui.used = false
 				return
 				
 		elif target.name == "Area4":
-			print("Attempting to play card:", card_ui.name)
+			# print("Attempting to play card:", card_ui.name)
 			
 			# Check play limits in TurnManager
 			if card_ui.card.type == Card.Type.POLICY:
@@ -134,19 +147,21 @@ func enter():
 					print("Policy card play limit reached.")
 					snap_back_to_hand()
 					return
-				TurnManager.policy_cards_played_this_round += 1
 				
 			if card_ui.card.type == Card.Type.TECH:
 				if TurnManager.tech_cards_played_this_round >= TurnManager.max_tech_cards_playable:
 					print("Tech card play limit reached.")
 					snap_back_to_hand()
 					return
-				TurnManager.tech_cards_played_this_round += 1
 			
 			# Play the card and update the play counters
 			if card_ui.play4():
-				print("Card played successfully:", card_ui.name)
+				# print("Card played successfully:", card_ui.name)
 				played = true
+				if card_ui.card.type == Card.Type.POLICY:
+					TurnManager.policy_cards_played_this_round += 1
+				if card_ui.card.type == Card.Type.TECH:
+					TurnManager.tech_cards_played_this_round += 1
 				card_ui.reset_rotation()
 				snap_to_slot_area4()
 				card_ui.used = true  # Synchronize the `used` flag in `CardUI.gd`
@@ -155,10 +170,12 @@ func enter():
 			else:
 				print("Card play failed (insufficient funding):", card_ui.name)
 				snap_back_to_hand()
+				played = false
+				card_ui.used = false
 				return
 				
 		elif target.name == "Area5":
-			print("Attempting to play card:", card_ui.name)
+			# print("Attempting to play card:", card_ui.name)
 			
 			# Check play limits in TurnManager
 			if card_ui.card.type == Card.Type.POLICY:
@@ -166,19 +183,21 @@ func enter():
 					print("Policy card play limit reached.")
 					snap_back_to_hand()
 					return
-				TurnManager.policy_cards_played_this_round += 1
 				
 			if card_ui.card.type == Card.Type.TECH:
 				if TurnManager.tech_cards_played_this_round >= TurnManager.max_tech_cards_playable:
 					print("Tech card play limit reached.")
 					snap_back_to_hand()
 					return
-				TurnManager.tech_cards_played_this_round += 1
 			
 			# Play the card and update the play counters
 			if card_ui.play5():
-				print("Card played successfully:", card_ui.name)
+				# print("Card played successfully:", card_ui.name)
 				played = true
+				if card_ui.card.type == Card.Type.POLICY:
+					TurnManager.policy_cards_played_this_round += 1
+				if card_ui.card.type == Card.Type.TECH:
+					TurnManager.tech_cards_played_this_round += 1
 				card_ui.reset_rotation()
 				snap_to_slot_area5()
 				card_ui.used = true  # Synchronize the `used` flag in `CardUI.gd`
@@ -187,6 +206,8 @@ func enter():
 			else:
 				print("Card play failed (insufficient funding):", card_ui.name)
 				snap_back_to_hand()
+				played = false
+				card_ui.used = false
 				return
 		
 	snap_back_to_hand()
@@ -227,7 +248,7 @@ func snap_to_slot_area1():
 	main_node.area1_card_count += 1
 
 	print("Card snapped to position for Area1:", card_ui.position)
-	print("Parent of card_ui:", card_ui.get_parent().name)  # Verify parent
+	# print("Parent of card_ui:", card_ui.get_parent().name)  # Verify parent
 
 
 
