@@ -67,19 +67,19 @@ func popularity_changed(amount: int):
 
 
 func simulate_quality(amount: int):
-	print("Simulating quality change:", amount)
+	# print("Simulating quality change:", amount)
 	enemy_stats_ui.simulate_quality(amount)
 
 func simulate_quantity(amount: int):
-	print("Simulating quantity change:", amount)
+	# print("Simulating quantity change:", amount)
 	enemy_stats_ui.simulate_quantity(amount)
 
 func simulate_popularity(amount: int):
-	print("Simulating popularity change:", amount)
+	# print("Simulating popularity change:", amount)
 	enemy_stats_ui.simulate_popularity(amount)
 
 func reset_simulation():
-	print("Resetting simulation UI.")
+	# print("Resetting simulation UI.")
 	enemy_stats_ui.reset_simulation()
 
 
@@ -87,7 +87,7 @@ func _on_simulation_started_2(card, target):
 	card_slot.visible = true
 	enemy_stats_ui.visible = true
 	if target == self:  # Ensure this Area1 is the target of the simulation
-		print("Simulation started for card:", card.id, "on Area2")
+		# print("Simulation started for card:", card.id, "on Area2")
 		card.simulate_effects([self])  # Call simulate_effects for this area
 
 func _on_simulation_ended_2():

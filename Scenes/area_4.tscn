@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dqvqtt6ly17b5" path="res://Icons/area4.png" id="4_pk7ug"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ii6cy"]
-size = Vector2(261.5, 242.5)
+size = Vector2(224.5, 154)
 
 [node name="Area4" type="Node2D"]
 script = ExtResource("1_w384q")
@@ -27,7 +27,7 @@ texture = ExtResource("2_ffy25")
 expand_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area4"]
-position = Vector2(216.75, 158.75)
+position = Vector2(235.25, 203)
 shape = SubResource("RectangleShape2D_ii6cy")
 
 [node name="Logo" type="TextureRect" parent="Node2D/Area4"]

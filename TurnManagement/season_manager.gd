@@ -5,7 +5,7 @@ signal season_changed(current_season: int, current_year: int)
 enum Season { SPRING = 1, SUMMER, AUTUMN, WINTER }
 var current_season: Season = Season.SPRING
 var current_year: int = 1
-var max_years: int = 5
+var max_years: int = 4
 
 
 func next_season():

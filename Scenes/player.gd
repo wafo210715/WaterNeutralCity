@@ -7,8 +7,9 @@ extends Node2D
 
 
 func _ready():
-	await  get_tree().create_timer(2).timeout
-	funding_changed(2)
+	# await  get_tree().create_timer(2).timeout
+	# funding_changed(2)
+	pass
 
 
 func set_player_stats(value: PlayerStats):

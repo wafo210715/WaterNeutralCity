@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bcbxpdp1x1t3r" path="res://Scenes/enemy_stats_ui.tscn" id="4_thncy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ii6cy"]
-size = Vector2(280.875, 326)
+size = Vector2(241.438, 326)
 
 [node name="Area5" type="Node2D"]
 script = ExtResource("1_srotc")
@@ -27,7 +27,7 @@ texture = ExtResource("1_vhepv")
 expand_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area5"]
-position = Vector2(214, 251)
+position = Vector2(233.719, 251)
 shape = SubResource("RectangleShape2D_ii6cy")
 
 [node name="Logo" type="TextureRect" parent="Node2D/Area5"]

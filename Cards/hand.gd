@@ -38,7 +38,7 @@ func _ready() -> void:
 
 
 
-func animate_card_to_position(card: CardUI, new_position: Vector2, speed: float = 0.5):
+func animate_card_to_position(card: CardUI, new_position: Vector2, speed: float = 0.4):
 	var tween = card.create_tween()
 	tween.tween_property(card, "position", new_position, speed)
 	tween.finished.connect(func():

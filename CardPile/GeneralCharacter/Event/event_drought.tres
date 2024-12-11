@@ -14,4 +14,4 @@ water_quality = -10
 water_quantity = -10
 popularity = -10
 image = ExtResource("1_2x14f")
-tooltip_text = "Drought occurs when prolonged dry conditions reduce available water supply. It impacts both water quantity and quality by depleting water reserves and concentrating pollutants. Droughts are more likely in areas with high water demand and low rainfall, such as Area 1 and Area 5."
+tooltip_text = "Drought impacts both water quantity and quality by depleting water reserves and concentrating pollutants. Droughts are more likely in areas with high water demand and low rainfall, such as Area 1 and Area 5."

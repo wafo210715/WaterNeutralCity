@@ -15,7 +15,7 @@ func execute(targets: Array[Node]):
 		elif target is Area3:
 			target.quality_changed(amount * 2)
 		elif target is Area4:
-			target.quality_changed(amount)
+			target.quality_changed(amount * 2)
 		elif target is Area5:
 			target.quality_changed(amount)
 
@@ -31,6 +31,6 @@ func simulate(targets: Array[Node]):
 		elif target is Area3:
 			target.simulate_quality(amount * 2)
 		elif target is Area4:
-			target.simulate_quality(amount)
+			target.simulate_quality(amount * 2)
 		elif target is Area5:
 			target.simulate_quality(amount)

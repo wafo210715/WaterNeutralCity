@@ -1,9 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://b33k26qebuwpu"]
+[gd_scene load_steps=27 format=3 uid="uid://b33k26qebuwpu"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_cqk0h"]
 [ext_resource type="Script" path="res://Cards/hand.gd" id="2_36bfw"]
 [ext_resource type="Resource" uid="uid://bq488oaycntco" path="res://CardPile/GeneralCharacter/player.tres" id="2_p5wye"]
-[ext_resource type="AudioStream" uid="uid://bmchst7fnrwi7" path="res://Audio/time_for_adventure.mp3" id="3_erxme"]
 [ext_resource type="Texture2D" uid="uid://xn7ufo0mfn4r" path="res://Map/UI_15.png" id="3_exljk"]
 [ext_resource type="PackedScene" uid="uid://csgjhpq32lxm" path="res://Scenes/area_1.tscn" id="4_3tx81"]
 [ext_resource type="PackedScene" uid="uid://dllle1f2o1hf0" path="res://Scenes/player.tscn" id="4_6bwaq"]
@@ -47,7 +46,6 @@ point_count = 3
 [node name="Main" type="Node2D"]
 script = ExtResource("1_cqk0h")
 player_stats = ExtResource("2_p5wye")
-music = ExtResource("3_erxme")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(1920, 1440)

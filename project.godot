@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="game_version_35"
+config/name="game_version_36"
 run/main_scene="res://Scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://Icons/logo.png"
@@ -45,3 +45,8 @@ right_mouse={
 
 2d_physics/layer_1="card target selector"
 2d_physics/layer_2="card drop area"
+
+[rendering]
+
+textures/vram_compression/import_s3tc_bptc=true
+textures/vram_compression/import_etc2_astc=true

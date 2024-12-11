@@ -14,4 +14,4 @@ water_quality = 10
 water_quantity = 10
 popularity = 0
 image = ExtResource("1_dir08")
-tooltip_text = "This card promotes connecting green spaces, rivers, and trees to urban areas for ecological services. It helps manage stormwater, enhances biodiversity, and improves water quality, addressing Industrial Growth and Flood issues. Best used in urbanized areas like Area 2 and 4."
+tooltip_text = "Best used in urbanized areas like Area 2 and 4. This card promotes connecting green spaces, rivers, and trees to urban areas for ecological services. It helps manage stormwater, enhances biodiversity, and improves water quality, addressing Industrial Growth and Flood issues. "

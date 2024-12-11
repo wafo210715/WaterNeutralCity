@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_cjsa1")
 max_quality = 100
-innitial_quality = 30
+innitial_quality = 20
 max_quantity = 100
-innitial_quantity = 30
+innitial_quantity = 40
 max_popularity = 100
 innitial_popularity = 20
