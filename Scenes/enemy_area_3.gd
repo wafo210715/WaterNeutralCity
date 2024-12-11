@@ -26,6 +26,15 @@ func _ready():
 	logo.z_index = 1
 	enemy_stats_ui.z_index = 1
 	card_slot.z_index = 1
+	
+	# var repeat_count = 12
+	
+	#while repeat_count > 0:
+		#await  get_tree().create_timer(2).timeout
+		#quality_changed(10)
+		#quantity_changed(5)
+		#popularity_changed(10)
+		#repeat_count -= 1
 
 
 

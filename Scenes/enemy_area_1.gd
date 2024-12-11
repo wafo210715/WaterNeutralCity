@@ -31,6 +31,8 @@ func _ready():
 	logo.z_index = 1
 	enemy_stats_ui.z_index = 1
 	card_slot.z_index = 1
+	
+	
 
 
 

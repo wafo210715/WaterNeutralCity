@@ -11,6 +11,6 @@ func apply_effects(targets: Array[Node]) -> void:
 	quality_effect.amount = -10
 	quality_effect.execute(targets)
 	
-	var quantity_effect := QuantityEffect.new()
-	quantity_effect.amount = -10
-	quantity_effect.execute(targets)
+	# var quantity_effect := QuantityEffect.new()
+	# quantity_effect.amount = -10
+	# quantity_effect.execute(targets)

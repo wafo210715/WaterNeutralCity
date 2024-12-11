@@ -14,4 +14,4 @@ water_quality = 10
 water_quantity = 10
 popularity = 0
 image = ExtResource("1_6uatc")
-tooltip_text = "Agroforestry modifies planting patterns by incorporating trees alongside crops. This helps slow nutrient runoff and reduce water pollution from farmland. Ideal for areas with agricultural land, it addresses issues like Drought and nutrient preservation in Areas 1, 2, and 4."
+tooltip_text = "It addresses issues like Drought and nutrient preservation in Areas 1, 2, and 4. Agroforestry helps slow nutrient runoff and reduce water pollution from farmland by incorporating trees alongside crops. "

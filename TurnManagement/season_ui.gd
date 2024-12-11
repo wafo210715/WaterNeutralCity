@@ -109,9 +109,9 @@ func _on_season_changed(current_season: int, current_year: int):
 		
 		# Randomly select a target area (area1, area2, area3, etc.)
 		var target_area = choose_random_target_area()
-		print("Selected target area:", target_area.name)  # Debug statement
+		# print("Selected target area:", target_area.name)  # Debug statement
 		event_target.text = "Oops! " + str(probability*100) + "% chance of Season Event and it happened in "  + target_area.name
-		
+		print(event_target.text)
 		# Apply the effects to the selected area and player stats
 		selected_card.event_happen([target_area], player_stats)
 	else:
@@ -123,7 +123,7 @@ func _on_season_changed(current_season: int, current_year: int):
 # Probability calculation function
 func calculate_event_probability(current_year: int, current_season: int) -> float:
 	# Start with a base probability
-	var probability = 0.2 + (current_year - 1) * 0.1  # Example logic: increase probability each year
+	var probability = 0.25 + (current_year - 1) * 0.1  # Example logic: increase probability each year
 	
 	# Adjust probability based on the current season
 	# Each season gets a different "boost", so Spring is lower, Winter is higher
